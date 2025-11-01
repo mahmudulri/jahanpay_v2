@@ -14,6 +14,7 @@ import 'package:jahanpay/widgets/bottomsheet.dart';
 import 'package:jahanpay/widgets/drawer.dart';
 
 import '../controllers/drawer_controller.dart';
+import '../global_controller/font_controller.dart';
 import '../helpers/capture_image_helper.dart';
 import '../helpers/share_image_helper.dart';
 import '../screens/order_details_screen.dart';
@@ -1548,6 +1549,7 @@ class DetailsDialog extends StatelessWidget {
                                   ),
                                 ),
                               ),
+
                               // Foreground Container with Status Icon
                               Container(
                                 height: 60,
@@ -1680,7 +1682,19 @@ class DetailsDialog extends StatelessWidget {
                                                 fontSize: 15,
                                               ),
                                             ),
-                                            convertToDate(date.toString()),
+
+                                            Text(
+                                              convertToDate(date.toString()),
+                                              style: TextStyle(
+                                                fontSize: 12,
+                                                fontWeight: FontWeight.w500,
+                                                fontFamily:
+                                                    box.read("language") == "Fa"
+                                                    ? Get.find<FontController>()
+                                                          .currentFont
+                                                    : null,
+                                              ),
+                                            ),
                                           ],
                                         ),
                                         Row(
@@ -1694,7 +1708,24 @@ class DetailsDialog extends StatelessWidget {
                                                 fontSize: 15,
                                               ),
                                             ),
-                                            convertToLocalTime(date.toString()),
+
+                                            Text(
+                                              convertToLocalTime(
+                                                date.toString(),
+                                              ),
+                                              style: TextStyle(
+                                                fontSize:
+                                                    16, // 👈 custom font size here
+                                                fontWeight: FontWeight.w600,
+                                                fontFamily:
+                                                    box.read("language") == "Fa"
+                                                    ? Get.find<FontController>()
+                                                          .currentFont
+                                                    : null,
+                                                color: Colors
+                                                    .blue, // or any color you like
+                                              ),
+                                            ),
                                           ],
                                         ),
                                       ],

@@ -8,86 +8,44 @@ import '../global_controller/font_controller.dart';
 
 final TimeZoneController timeZoneController = Get.put(TimeZoneController());
 final box = GetStorage();
-Text convertToDate(String utcTimeString) {
-  String localTimeString;
+String convertToDate(String utcTimeString) {
   try {
-    // Parse the UTC time
     DateTime utcTime = DateTime.parse(utcTimeString);
-
-    // Calculate the offset duration
     Duration offset = Duration(
-      hours: int.parse(timeZoneController.hour),
-      minutes: int.parse(timeZoneController.minute),
+      hours: int.tryParse(timeZoneController.hour) ?? 0,
+      minutes: int.tryParse(timeZoneController.minute) ?? 0,
     );
-
-    // Apply the offset (subtracting for negative)
-
-    if (timeZoneController.sign == "+") {
-      DateTime localTime = utcTime.add(offset);
-      String formattedTime = DateFormat(
-        'yyyy-MM-dd',
-        'en_US',
-      ).format(localTime);
-      localTimeString = '$formattedTime';
-    } else {
-      DateTime localTime = utcTime.subtract(offset);
-      String formattedTime = DateFormat(
-        'yyyy-MM-dd',
-        'en_US',
-      ).format(localTime);
-
-      localTimeString = '$formattedTime';
-    }
+    DateTime localTime = timeZoneController.sign == "+"
+        ? utcTime.add(offset)
+        : utcTime.subtract(offset);
+    return DateFormat('yyyy-MM-dd', 'en_US').format(localTime);
   } catch (e) {
-    localTimeString = '';
+    print("Error in convertToDate: $e");
+    return '';
   }
-  return Text(
-    localTimeString,
-    style: TextStyle(
-      fontSize: 12,
-      fontWeight: FontWeight.w500,
-      fontFamily: box.read("language").toString() == "Fa"
-          ? Get.find<FontController>().currentFont
-          : null,
-    ),
-  );
 }
 
-Text convertToLocalTime(String utcTimeString) {
-  String localTimeString;
+String convertToLocalTime(String utcTimeString) {
   try {
-    // Parse the UTC time
+    // 🕓 Parse the UTC time (e.g. "2025-10-31 13:52:02.000Z")
     DateTime utcTime = DateTime.parse(utcTimeString);
 
-    // Calculate the offset duration
-    Duration offset = Duration(
-      hours: int.parse(timeZoneController.hour),
-      minutes: int.parse(timeZoneController.minute),
-    );
+    // 🧮 Safe timezone offset parsing
+    int hours = int.tryParse(timeZoneController.hour) ?? 0;
+    int minutes = int.tryParse(timeZoneController.minute) ?? 0;
+    String sign = timeZoneController.sign ?? '+';
 
-    // Apply the offset (subtracting for negative)
+    Duration offset = Duration(hours: hours, minutes: minutes);
 
-    if (timeZoneController.sign == "+") {
-      DateTime localTime = utcTime.add(offset);
-      String formattedTime = DateFormat('hh:mm a', 'en_US').format(localTime);
-      localTimeString = '$formattedTime';
-    } else {
-      DateTime localTime = utcTime.subtract(offset);
-      String formattedTime = DateFormat('hh:mm a', 'en_US').format(localTime);
+    // ➕ or ➖ Apply timezone offset
+    DateTime localTime = sign == "+"
+        ? utcTime.add(offset)
+        : utcTime.subtract(offset);
 
-      localTimeString = '$formattedTime';
-    }
+    // 🕘 Format to readable 12-hour format (e.g. "01:52 PM")
+    return DateFormat('hh:mm a', 'en_US').format(localTime);
   } catch (e) {
-    localTimeString = '';
+    print("Error converting time: $e");
+    return '--';
   }
-  return Text(
-    localTimeString,
-    style: TextStyle(
-      fontSize: 12,
-      fontWeight: FontWeight.w500,
-      fontFamily: box.read("language").toString() == "Fa"
-          ? Get.find<FontController>().currentFont
-          : null,
-    ),
-  );
 }

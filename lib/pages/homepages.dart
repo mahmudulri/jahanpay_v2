@@ -961,6 +961,10 @@ Password: se45w1ew
                                                       .bundle!
                                                       .sellingPrice
                                                       .toString(),
+                                                  buyingPrice: data
+                                                      .bundle!
+                                                      .buyingPrice
+                                                      .toString(),
                                                   orderID: data.id!.toString(),
                                                   resellerName:
                                                       dashboardController
