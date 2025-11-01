@@ -296,15 +296,7 @@ class _HawalaScreenState extends State<HawalaScreen> {
                                 child: Padding(
                                   padding: EdgeInsets.only(left: 15, right: 15),
                                   child: TextField(
-                                    style: TextStyle(
-                                      height: 1.1,
-                                      fontFamily:
-                                          box.read("language").toString() ==
-                                              "Fa"
-                                          ? Get.find<FontController>()
-                                                .currentFont
-                                          : null,
-                                    ),
+                                    style: TextStyle(height: 1.1),
                                     keyboardType: TextInputType.phone,
                                     inputFormatters: <TextInputFormatter>[
                                       FilteringTextInputFormatter.allow(

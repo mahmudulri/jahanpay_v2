@@ -17,6 +17,7 @@ import '../controllers/payments_controller.dart';
 import '../controllers/request_loan_controller.dart';
 import '../global_controller/font_controller.dart';
 import '../widgets/custom_text.dart';
+import '../widgets/normaltext.dart';
 import 'create_payments_screen.dart';
 
 class RequestLoanScreen extends StatefulWidget {
@@ -197,20 +198,7 @@ class _RequestLoanScreenState extends State<RequestLoanScreen> {
                                             children: [
                                               Expanded(
                                                 child: TextField(
-                                                  style: TextStyle(
-                                                    fontFamily:
-                                                        box
-                                                                .read(
-                                                                  "language",
-                                                                )
-                                                                .toString() ==
-                                                            "Fa"
-                                                        ? Get.find<
-                                                                FontController
-                                                              >()
-                                                              .currentFont
-                                                        : null,
-                                                  ),
+                                                  style: TextStyle(),
                                                   controller:
                                                       requestLoanController
                                                           .amountController,
@@ -491,7 +479,7 @@ class _RequestLoanScreenState extends State<RequestLoanScreen> {
                                                   fontWeight: FontWeight.w700,
                                                 ),
                                                 Spacer(),
-                                                KText(
+                                                DKText(
                                                   text: data.amount.toString(),
                                                   fontWeight: FontWeight.w700,
                                                 ),
@@ -541,7 +529,7 @@ class _RequestLoanScreenState extends State<RequestLoanScreen> {
                                                         ),
                                                   ),
                                                   Spacer(),
-                                                  KText(
+                                                  DKText(
                                                     text: data.remainingBalance
                                                         .toString(),
                                                   ),
@@ -666,7 +654,7 @@ class _RequestLoanScreenState extends State<RequestLoanScreen> {
                                                     text: languagesController
                                                         .tr("DATE"),
                                                   ),
-                                                  KText(
+                                                  DKText(
                                                     text:
                                                         DateFormat(
                                                           'dd MMM yyyy',
@@ -696,369 +684,6 @@ class _RequestLoanScreenState extends State<RequestLoanScreen> {
               ),
             ),
             SizedBox(height: 80),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class PaymentDialog extends StatelessWidget {
-  PaymentDialog({
-    super.key,
-    this.status,
-    this.paymentmethod,
-    this.amount,
-    this.performedByName,
-    this.notes,
-    this.currency,
-    this.date,
-    this.image1,
-    this.image2,
-    this.image3,
-  });
-
-  String? status;
-  String? paymentmethod;
-  String? amount;
-  String? performedByName;
-  String? notes;
-  String? currency;
-  String? date;
-  String? image1;
-  String? image2;
-  String? image3;
-
-  final box = GetStorage();
-
-  @override
-  Widget build(BuildContext context) {
-    var screenWidth = MediaQuery.of(context).size.width;
-    return Container(
-      height: 500,
-      width: screenWidth,
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(17),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            Container(
-              height: 420,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(10),
-                border: Border.all(
-                  width: 1,
-                  color: status.toString() == "pending"
-                      ? Color(0xffFFC107)
-                      : status.toString() == "completed"
-                      ? Colors.green
-                      : Color(0xffFF4842),
-                ),
-              ),
-              child: Center(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 8,
-                    vertical: 5,
-                  ),
-                  child: Column(
-                    children: [
-                      Container(
-                        height: 60,
-                        width: 60,
-                        padding: const EdgeInsets.all(5.0),
-                        child: Image.asset(
-                          status.toString() == "pending"
-                              ? "assets/icons/pending.png"
-                              : status.toString() == "completed"
-                              ? "assets/icons/successful.png"
-                              : "assets/icons/rejected.png",
-                          height: 60,
-                        ),
-                      ),
-                      Text(
-                        status.toString() == "pending"
-                            ? languagesController.tr("PENDING")
-                            : status.toString() == "completed"
-                            ? languagesController.tr("COMPLETED")
-                            : languagesController.tr("REJECTED"),
-                        style: TextStyle(
-                          color: status.toString() == "pending"
-                              ? Color(0xffFFC107)
-                              : status.toString() == "completed"
-                              ? Colors.green
-                              : Colors.red,
-                          fontWeight: FontWeight.w500,
-                          fontFamily: box.read("language").toString() == "Fa"
-                              ? Get.find<FontController>().currentFont
-                              : null,
-                        ),
-                      ),
-                      SizedBox(height: 10),
-                      Container(
-                        height: 80,
-                        width: screenWidth,
-                        // color: Colors.red,
-                        child: ListView(
-                          scrollDirection: Axis.horizontal,
-                          children: [
-                            Container(
-                              width: 120,
-                              height: 80,
-                              decoration: BoxDecoration(
-                                color: Colors.grey.shade300,
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(8),
-                                child:
-                                    (image1 == null ||
-                                        image1.toString().isEmpty)
-                                    ? Image.asset(
-                                        'assets/icons/no_image.png', // ✅ your local fallback image
-                                        fit: BoxFit.contain,
-                                      )
-                                    : Image.network(
-                                        image1.toString(),
-                                        fit: BoxFit.contain,
-                                        errorBuilder: (context, error, stackTrace) {
-                                          return Image.asset(
-                                            'assets/icons/no_image.png', // ✅ fallback asset image
-                                            fit: BoxFit.contain,
-                                          );
-                                        },
-                                      ),
-                              ),
-                            ),
-                            SizedBox(width: 5),
-                            Container(
-                              width: 120,
-                              height: 80,
-                              decoration: BoxDecoration(
-                                color: Colors.grey.shade300,
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(8),
-                                child:
-                                    (image2 == null ||
-                                        image2.toString().isEmpty)
-                                    ? Image.asset(
-                                        'assets/icons/no_image.png', // ✅ your local fallback image
-                                        fit: BoxFit.contain,
-                                      )
-                                    : Image.network(
-                                        image2.toString(),
-                                        fit: BoxFit.contain,
-                                        errorBuilder: (context, error, stackTrace) {
-                                          return Image.asset(
-                                            'assets/icons/no_image.png', // ✅ fallback asset image
-                                            fit: BoxFit.contain,
-                                          );
-                                        },
-                                      ),
-                              ),
-                            ),
-                            SizedBox(width: 5),
-                            Container(
-                              width: 120,
-                              height: 80,
-                              decoration: BoxDecoration(
-                                color: Colors.grey.shade300,
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(8),
-                                child:
-                                    (image3 == null ||
-                                        image3.toString().isEmpty)
-                                    ? Image.asset(
-                                        'assets/icons/no_image.png', // ✅ your local fallback image
-                                        fit: BoxFit.contain,
-                                      )
-                                    : Image.network(
-                                        image3.toString(),
-                                        fit: BoxFit.contain,
-                                        errorBuilder: (context, error, stackTrace) {
-                                          return Image.asset(
-                                            'assets/icons/no_image.png', // ✅ fallback asset image
-                                            fit: BoxFit.contain,
-                                          );
-                                        },
-                                      ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      SizedBox(height: 40),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            languagesController.tr("PAYMENT_METHOD"),
-                            style: TextStyle(
-                              color: Color(0xff637381),
-                              fontSize: 15,
-                            ),
-                          ),
-                          Text(
-                            paymentmethod.toString(),
-                            style: TextStyle(
-                              color: Color(0xff637381),
-                              fontSize: 15,
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: 8),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            languagesController.tr("AMOUNT"),
-                            style: TextStyle(
-                              color: Color(0xff637381),
-                              fontSize: 15,
-                            ),
-                          ),
-                          Spacer(),
-                          Text(
-                            amount.toString(),
-                            style: TextStyle(
-                              color: Color(0xff637381),
-                              fontSize: 15,
-                            ),
-                          ),
-                          SizedBox(width: 4),
-                          Text(
-                            currency.toString(),
-                            style: TextStyle(
-                              color: Color(0xff637381),
-                              fontSize: 15,
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: 8),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            languagesController.tr("PERFORMED_BY"),
-                            style: TextStyle(
-                              color: Color(0xff637381),
-                              fontSize: 15,
-                            ),
-                          ),
-                          Text(
-                            performedByName.toString(),
-                            style: TextStyle(
-                              color: Color(0xff637381),
-                              fontSize: 15,
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: 8),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            languagesController.tr("NOTES"),
-                            style: TextStyle(
-                              color: Color(0xff637381),
-                              fontSize: 15,
-                            ),
-                          ),
-                          Expanded(
-                            child: Text(
-                              notes.toString(),
-                              style: TextStyle(
-                                color: Color(0xff637381),
-                                fontSize: 15,
-                              ),
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                              textAlign: TextAlign.right,
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: 10),
-                      Container(
-                        height: 50,
-                        width: screenWidth,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(10),
-                          border: Border.all(
-                            width: 1,
-                            color: status.toString() == "pending"
-                                ? Color(0xffFFC107)
-                                : status.toString() == "completed"
-                                ? Colors.green
-                                : Colors.red,
-                          ),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 12),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                languagesController.tr("DATE"),
-                                style: TextStyle(fontWeight: FontWeight.w600),
-                              ),
-                              Text(
-                                DateFormat(
-                                  'dd MMM yyyy',
-                                ).format(DateTime.parse(date.toString())),
-                                style: TextStyle(
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 13,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-            GestureDetector(
-              onTap: () {
-                Navigator.pop(context);
-              },
-              child: Container(
-                height: 45,
-                width: screenWidth,
-                decoration: BoxDecoration(
-                  border: Border.all(width: 1, color: Colors.grey.shade600),
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: Center(
-                  child: Text(
-                    languagesController.tr("CLOSE"),
-                    style: TextStyle(
-                      fontSize: 14,
-                      color: Colors.black,
-                      fontWeight: FontWeight.w600,
-                      fontFamily: box.read("language").toString() == "Fa"
-                          ? Get.find<FontController>().currentFont
-                          : null,
-                    ),
-                  ),
-                ),
-              ),
-            ),
           ],
         ),
       ),

@@ -283,11 +283,7 @@ class ChangePinBox extends StatelessWidget {
               //   Icons.visibility_off,
               // ),
             ),
-            style: TextStyle(
-              fontFamily: box.read("language").toString() == "Fa"
-                  ? Get.find<FontController>().currentFont
-                  : null,
-            ),
+            style: TextStyle(),
           ),
         ),
       ),

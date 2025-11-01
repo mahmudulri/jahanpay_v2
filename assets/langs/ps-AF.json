@@ -241,7 +241,10 @@
 "COULD_NOT_SAVE_IMAGE": "انځور خوندي نشو",
 "ERROR": "تېروتنه",
 "FAILED_TO_CAPTURE_IMAGE": "انځور اخیستل ناکام شول",
-"BUYING_PRICE": "د پېرودلو قیمت"
+"BUYING_PRICE": "د پېرودلو قیمت",
+"COMPANY_NAME": "د شرکت نوم",
+"VALIDITY": "اعتبار"
+
 
 
 

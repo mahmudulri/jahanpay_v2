@@ -21,6 +21,7 @@ import '../utils/colors.dart';
 import '../widgets/authtextfield.dart';
 import '../widgets/bottomsheet.dart';
 import '../widgets/button_one.dart';
+import '../widgets/normaltext.dart';
 import 'commission_transfer_screen.dart';
 import 'selling_price_screen.dart';
 
@@ -195,14 +196,7 @@ class _CreateTransferScreenState extends State<CreateTransferScreen> {
                                     decoration: InputDecoration(
                                       border: InputBorder.none,
                                     ),
-                                    style: TextStyle(
-                                      fontFamily:
-                                          box.read("language").toString() ==
-                                              "Fa"
-                                          ? Get.find<FontController>()
-                                                .currentFont
-                                          : null,
-                                    ),
+                                    style: TextStyle(),
                                   ),
                                 ),
                               ),
@@ -219,7 +213,7 @@ class _CreateTransferScreenState extends State<CreateTransferScreen> {
                                   child: Center(
                                     child: Row(
                                       children: [
-                                        KText(
+                                        DKText(
                                           text: dashboardController
                                               .alldashboardData
                                               .value

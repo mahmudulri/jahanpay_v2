@@ -16,6 +16,7 @@ import '../controllers/drawer_controller.dart';
 import '../global_controller/font_controller.dart';
 import '../global_controller/page_controller.dart';
 import '../screens/sign_in_screen.dart';
+import '../widgets/normaltext.dart';
 
 class Transactions extends StatefulWidget {
   Transactions({super.key});
@@ -393,7 +394,7 @@ class _TransactionsState extends State<Transactions> {
                                               fontWeight: FontWeight.w400,
                                               fontSize: screenHeight * 0.020,
                                             ),
-                                            KText(
+                                            DKText(
                                               text: DateFormat("dd-MM-yyyy")
                                                   .format(
                                                     DateTime.parse(
@@ -402,7 +403,7 @@ class _TransactionsState extends State<Transactions> {
                                                   ),
                                               color: Colors.black,
                                               fontWeight: FontWeight.w400,
-                                              fontSize: screenHeight * 0.020,
+                                              fontSize: screenHeight * 0.018,
                                             ),
                                           ],
                                         ),
@@ -516,7 +517,7 @@ class _TransactionsState extends State<Transactions> {
                                                 ),
                                                 Row(
                                                   children: [
-                                                    KText(
+                                                    DKText(
                                                       text:
                                                           NumberFormat.currency(
                                                             locale: 'en_US',

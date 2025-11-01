@@ -1107,6 +1107,7 @@ class _AddNewUserState extends State<AddNewUser> {
                 ),
               ),
             ),
+            SizedBox(height: 80),
           ],
         ),
       ),

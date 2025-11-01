@@ -25,6 +25,7 @@ import '../utils/colors.dart';
 import '../widgets/authtextfield.dart';
 import '../widgets/bottomsheet.dart';
 import '../widgets/button_one.dart';
+import '../widgets/normaltext.dart';
 import 'hawala_list_screen.dart';
 import 'receipts_screen.dart';
 
@@ -349,15 +350,7 @@ class _CreatePaymentsScreenState extends State<CreatePaymentsScreen> {
                                   child: TextField(
                                     controller:
                                         addPaymentController.amountController,
-                                    style: TextStyle(
-                                      height: 1.1,
-                                      fontFamily:
-                                          box.read("language").toString() ==
-                                              "Fa"
-                                          ? Get.find<FontController>()
-                                                .currentFont
-                                          : null,
-                                    ),
+                                    style: TextStyle(height: 1.1),
                                     keyboardType: TextInputType.phone,
                                     inputFormatters: <TextInputFormatter>[
                                       FilteringTextInputFormatter.allow(
@@ -551,7 +544,7 @@ class _CreatePaymentsScreenState extends State<CreatePaymentsScreen> {
                             children: [
                               Expanded(
                                 child: Obx(
-                                  () => KText(
+                                  () => DKText(
                                     text:
                                         addPaymentController.selectedDate.value,
                                     fontSize: screenHeight * 0.020,

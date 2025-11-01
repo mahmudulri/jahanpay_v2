@@ -1,4 +1,4 @@
-package com.example.jahanpay
+package com.jahanpay.woosat
 
 import io.flutter.embedding.android.FlutterActivity
 

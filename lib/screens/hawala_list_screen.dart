@@ -17,6 +17,7 @@ import '../pages/homepages.dart';
 import '../pages/transaction_type.dart';
 import '../utils/colors.dart';
 import '../widgets/bottomsheet.dart';
+import '../widgets/normaltext.dart';
 import 'create_hawala_screen.dart';
 
 class HawalaListScreen extends StatefulWidget {
@@ -289,10 +290,8 @@ class _HawalaListScreenState extends State<HawalaListScreen> {
                                           children: [
                                             Text(
                                               languagesController.tr(
-                                                    "HAWALA_NUMBER",
-                                                  ) +
-                                                  " - " +
-                                                  data.hawalaNumber.toString(),
+                                                "HAWALA_NUMBER",
+                                              ),
                                               style: TextStyle(
                                                 color: Colors.white,
                                                 fontSize: 15,
@@ -307,6 +306,16 @@ class _HawalaListScreenState extends State<HawalaListScreen> {
                                                     : null,
                                               ),
                                             ),
+                                            SizedBox(width: 10),
+                                            Text(
+                                              data.hawalaNumber.toString(),
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 15,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                            Spacer(),
                                             Text(
                                               data.status.toString(),
                                               style: TextStyle(
@@ -451,16 +460,6 @@ class _HawalaListScreenState extends State<HawalaListScreen> {
                                                   color: Colors.black,
                                                   fontWeight: FontWeight.bold,
                                                   fontSize: 15,
-                                                  fontFamily:
-                                                      box
-                                                              .read("language")
-                                                              .toString() ==
-                                                          "Fa"
-                                                      ? Get.find<
-                                                              FontController
-                                                            >()
-                                                            .currentFont
-                                                      : null,
                                                 ),
                                               ),
                                             ],
@@ -497,16 +496,6 @@ class _HawalaListScreenState extends State<HawalaListScreen> {
                                                   color: Colors.black,
                                                   fontWeight: FontWeight.w400,
                                                   fontSize: 15,
-                                                  fontFamily:
-                                                      box
-                                                              .read("language")
-                                                              .toString() ==
-                                                          "Fa"
-                                                      ? Get.find<
-                                                              FontController
-                                                            >()
-                                                            .currentFont
-                                                      : null,
                                                 ),
                                               ),
                                             ],
@@ -656,7 +645,7 @@ class HawalaDetailsDialog extends StatelessWidget {
                                 text: languagesController.tr("HAWALA_NUMBER"),
                                 fontSize: 14,
                               ),
-                              KText(
+                              DKText(
                                 text: hawalaCustomNumber == null
                                     ? hawalaNumber.toString()
                                     : hawalaCustomNumber.toString(),
@@ -683,10 +672,6 @@ class HawalaDetailsDialog extends StatelessWidget {
                                 style: TextStyle(
                                   fontWeight: FontWeight.w600,
                                   fontSize: 14,
-                                  fontFamily:
-                                      box.read("language").toString() == "Fa"
-                                      ? Get.find<FontController>().currentFont
-                                      : null,
                                 ),
                               ),
                             ],
@@ -763,13 +748,7 @@ class HawalaDetailsDialog extends StatelessWidget {
                               ),
                               Text(
                                 idcardnumber.toString(),
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  fontFamily:
-                                      box.read("language").toString() == "Fa"
-                                      ? Get.find<FontController>().currentFont
-                                      : null,
-                                ),
+                                style: TextStyle(fontSize: 14),
                               ),
                             ],
                           ),
@@ -815,13 +794,7 @@ class HawalaDetailsDialog extends StatelessWidget {
                               ),
                               Text(
                                 hawalacurrencyRate.toString(),
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  fontFamily:
-                                      box.read("language").toString() == "Fa"
-                                      ? Get.find<FontController>().currentFont
-                                      : null,
-                                ),
+                                style: TextStyle(fontSize: 14),
                               ),
                             ],
                           ),
@@ -869,13 +842,7 @@ class HawalaDetailsDialog extends StatelessWidget {
                               ),
                               Text(
                                 resellCurrencyRate.toString(),
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  fontFamily:
-                                      box.read("language").toString() == "Fa"
-                                      ? Get.find<FontController>().currentFont
-                                      : null,
-                                ),
+                                style: TextStyle(fontSize: 14),
                               ),
                             ],
                           ),

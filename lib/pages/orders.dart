@@ -12,6 +12,7 @@ import 'package:jahanpay/utils/colors.dart';
 import 'package:intl/intl.dart';
 import 'package:jahanpay/widgets/bottomsheet.dart';
 import 'package:jahanpay/widgets/drawer.dart';
+import 'package:jahanpay/widgets/normaltext.dart' show DKText;
 
 import '../controllers/drawer_controller.dart';
 import '../global_controller/font_controller.dart';
@@ -628,19 +629,35 @@ class _OrdersState extends State<Orders> {
                                                         MainAxisAlignment
                                                             .spaceBetween,
                                                     children: [
-                                                      KText(
-                                                        text:
-                                                            "${languagesController.tr("ORDER_ID")} (# ${data.id})",
-                                                        color: Color(
-                                                          0xff637381,
-                                                        ),
-                                                        fontWeight:
-                                                            FontWeight.w400,
-                                                        fontSize:
-                                                            screenHeight *
-                                                            0.018,
+                                                      Row(
+                                                        children: [
+                                                          KText(
+                                                            text:
+                                                                "${languagesController.tr("ORDER_ID")}",
+                                                            color: Color(
+                                                              0xff637381,
+                                                            ),
+                                                            fontWeight:
+                                                                FontWeight.w400,
+                                                            fontSize:
+                                                                screenHeight *
+                                                                0.018,
+                                                          ),
+                                                          DKText(
+                                                            text:
+                                                                "(# ${data.id})",
+                                                            color: Color(
+                                                              0xff637381,
+                                                            ),
+                                                            fontWeight:
+                                                                FontWeight.w400,
+                                                            fontSize:
+                                                                screenHeight *
+                                                                0.018,
+                                                          ),
+                                                        ],
                                                       ),
-                                                      KText(
+                                                      DKText(
                                                         text:
                                                             DateFormat(
                                                               'dd MMM yyyy',
@@ -707,7 +724,7 @@ class _OrdersState extends State<Orders> {
                                                                   0.018,
                                                             ),
                                                           ),
-                                                          KText(
+                                                          DKText(
                                                             text: data
                                                                 .rechargebleAccount
                                                                 .toString(),
@@ -715,7 +732,7 @@ class _OrdersState extends State<Orders> {
                                                                 FontWeight.bold,
                                                             fontSize:
                                                                 screenHeight *
-                                                                0.016,
+                                                                0.015,
                                                           ),
                                                         ],
                                                       ),
@@ -853,7 +870,7 @@ class _OrdersState extends State<Orders> {
                                                                     0.018,
                                                               ),
                                                               Text(" : "),
-                                                              KText(
+                                                              DKText(
                                                                 text:
                                                                     NumberFormat.currency(
                                                                       locale:
@@ -915,7 +932,7 @@ class _OrdersState extends State<Orders> {
                                                                     0.018,
                                                               ),
                                                               Text(" : "),
-                                                              KText(
+                                                              DKText(
                                                                 text:
                                                                     NumberFormat.currency(
                                                                       locale:
@@ -1113,19 +1130,35 @@ class _OrdersState extends State<Orders> {
                                                         MainAxisAlignment
                                                             .spaceBetween,
                                                     children: [
-                                                      KText(
-                                                        text:
-                                                            "${languagesController.tr("ORDER_ID")} (# ${data.id})",
-                                                        color: Color(
-                                                          0xff637381,
-                                                        ),
-                                                        fontWeight:
-                                                            FontWeight.w400,
-                                                        fontSize:
-                                                            screenHeight *
-                                                            0.018,
+                                                      Row(
+                                                        children: [
+                                                          KText(
+                                                            text:
+                                                                "${languagesController.tr("ORDER_ID")}",
+                                                            color: Color(
+                                                              0xff637381,
+                                                            ),
+                                                            fontWeight:
+                                                                FontWeight.w400,
+                                                            fontSize:
+                                                                screenHeight *
+                                                                0.018,
+                                                          ),
+                                                          DKText(
+                                                            text:
+                                                                "(# ${data.id})",
+                                                            color: Color(
+                                                              0xff637381,
+                                                            ),
+                                                            fontWeight:
+                                                                FontWeight.w400,
+                                                            fontSize:
+                                                                screenHeight *
+                                                                0.018,
+                                                          ),
+                                                        ],
                                                       ),
-                                                      KText(
+                                                      DKText(
                                                         text:
                                                             DateFormat(
                                                               'dd MMM yyyy',
@@ -1192,7 +1225,7 @@ class _OrdersState extends State<Orders> {
                                                                   0.018,
                                                             ),
                                                           ),
-                                                          KText(
+                                                          DKText(
                                                             text: data
                                                                 .rechargebleAccount
                                                                 .toString(),
@@ -1200,7 +1233,7 @@ class _OrdersState extends State<Orders> {
                                                                 FontWeight.bold,
                                                             fontSize:
                                                                 screenHeight *
-                                                                0.016,
+                                                                0.015,
                                                           ),
                                                         ],
                                                       ),
@@ -1338,7 +1371,7 @@ class _OrdersState extends State<Orders> {
                                                                     0.018,
                                                               ),
                                                               Text(" : "),
-                                                              KText(
+                                                              DKText(
                                                                 text:
                                                                     NumberFormat.currency(
                                                                       locale:
@@ -1400,7 +1433,7 @@ class _OrdersState extends State<Orders> {
                                                                     0.018,
                                                               ),
                                                               Text(" : "),
-                                                              KText(
+                                                              DKText(
                                                                 text:
                                                                     NumberFormat.currency(
                                                                       locale:

@@ -20,6 +20,7 @@ import '../pages/transaction_type.dart';
 import '../utils/colors.dart';
 import '../widgets/bottomsheet.dart';
 import '../widgets/default_button1.dart';
+import '../widgets/normaltext.dart';
 import 'create_selling_price_screen.dart';
 import 'create_transfer_screen.dart';
 
@@ -241,7 +242,7 @@ class _CommissionTransferScreenState extends State<CommissionTransferScreen> {
                                               "AMOUNT",
                                             ),
                                           ),
-                                          KText(text: data.amount.toString()),
+                                          DKText(text: data.amount.toString()),
                                         ],
                                       ),
                                       Row(

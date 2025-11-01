@@ -14,6 +14,7 @@ import 'package:jahanpay/widgets/bottomsheet.dart';
 import '../controllers/payments_controller.dart';
 import '../global_controller/font_controller.dart';
 import '../widgets/custom_text.dart';
+import '../widgets/normaltext.dart';
 import 'create_payments_screen.dart';
 
 class ReceiptsScreen extends StatefulWidget {
@@ -417,7 +418,7 @@ class _ReceiptsScreenState extends State<ReceiptsScreen> {
                                                   fontWeight: FontWeight.w700,
                                                 ),
                                                 Spacer(),
-                                                KText(
+                                                DKText(
                                                   text: data.amount.toString(),
                                                   fontWeight: FontWeight.w700,
                                                 ),
@@ -556,7 +557,7 @@ class _ReceiptsScreenState extends State<ReceiptsScreen> {
                                                     text: languagesController
                                                         .tr("DATE"),
                                                   ),
-                                                  KText(
+                                                  DKText(
                                                     text:
                                                         DateFormat(
                                                           'dd MMM yyyy',
@@ -959,7 +960,7 @@ class PaymentDialog extends StatelessWidget {
                             fontSize: 15,
                           ),
                           Spacer(),
-                          KText(
+                          DKText(
                             text: amount.toString(),
                             color: Color(0xff637381),
                             fontSize: 15,
@@ -1040,7 +1041,7 @@ class PaymentDialog extends StatelessWidget {
                                 text: languagesController.tr("DATE"),
                                 fontWeight: FontWeight.w600,
                               ),
-                              KText(
+                              DKText(
                                 text: DateFormat(
                                   'dd MMM yyyy',
                                 ).format(DateTime.parse(date.toString())),

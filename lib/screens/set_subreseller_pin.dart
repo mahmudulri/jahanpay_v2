@@ -53,6 +53,7 @@ class _SetSubresellerPinState extends State<SetSubresellerPin> {
     var screenWidth = MediaQuery.of(context).size.width;
     // ignore: deprecated_member_use
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
       key: _scaffoldKey,
       body: Container(

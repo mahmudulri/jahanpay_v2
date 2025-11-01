@@ -1,3 +1,4 @@
+import 'package:dotted_border/dotted_border.dart';
 import 'package:jahanpay/global_controller/font_controller.dart';
 import 'package:jahanpay/global_controller/languages_controller.dart';
 import 'package:jahanpay/utils/colors.dart';
@@ -13,6 +14,7 @@ import '../helpers/capture_image_helper.dart';
 
 import '../helpers/localtime_helper.dart';
 import '../helpers/share_image_helper.dart';
+import '../widgets/normaltext.dart';
 
 class OrderDetailsScreen extends StatefulWidget {
   OrderDetailsScreen({
@@ -88,7 +90,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                 child: RepaintBoundary(
                   key: shareKey,
                   child: Container(
-                    height: 500,
+                    height: 550,
                     width: screenWidth,
                     decoration: BoxDecoration(
                       color: Colors.white,
@@ -97,7 +99,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                     child: Column(
                       children: [
                         Expanded(
-                          flex: 2,
+                          flex: 4,
                           child: Container(
                             decoration: BoxDecoration(
                               color: Colors.white,
@@ -112,7 +114,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                 Padding(
                                   padding: EdgeInsets.symmetric(horizontal: 30),
                                   child: Container(
-                                    height: 55,
+                                    height: 50,
                                     width: double.maxFinite,
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(15),
@@ -129,31 +131,57 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                     ),
                                   ),
                                 ),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      "JAHAN",
-                                      style: TextStyle(
-                                        fontSize: 17,
-                                        fontWeight: FontWeight.bold,
-                                        color: AppColors.primaryColor,
+                                box.read("language").toString() == "Fa"
+                                    ? Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Text(
+                                            "PAY",
+                                            style: TextStyle(
+                                              fontSize: 15,
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.green,
+                                            ),
+                                          ),
+                                          SizedBox(width: 3),
+                                          Text(
+                                            "JAHAN",
+                                            style: TextStyle(
+                                              fontSize: 15,
+                                              fontWeight: FontWeight.bold,
+                                              color: AppColors.primaryColor,
+                                            ),
+                                          ),
+                                        ],
+                                      )
+                                    : Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Text(
+                                            "JAHAN",
+                                            style: TextStyle(
+                                              fontSize: 15,
+                                              fontWeight: FontWeight.bold,
+                                              color: AppColors.primaryColor,
+                                            ),
+                                          ),
+                                          SizedBox(width: 3),
+                                          Text(
+                                            "PAY",
+                                            style: TextStyle(
+                                              fontSize: 15,
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.green,
+                                            ),
+                                          ),
+                                        ],
                                       ),
-                                    ),
-                                    SizedBox(width: 2),
-                                    Text(
-                                      "PAY",
-                                      style: TextStyle(
-                                        fontSize: 17,
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.green,
-                                      ),
-                                    ),
-                                  ],
-                                ),
 
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
+                                SizedBox(height: 5),
+
+                                Column(
                                   children: [
                                     KText(
                                       text: widget.status.toString() == "0"
@@ -167,19 +195,20 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                           : widget.status.toString() == "1"
                                           ? Colors.green
                                           : Colors.red,
-                                      fontSize: 17,
+                                      fontSize: 15,
                                     ),
-                                    SizedBox(width: 10),
+                                    SizedBox(height: 2),
                                     Image.asset(
                                       widget.status.toString() == "0"
                                           ? "assets/icons/info-circle.png"
                                           : widget.status.toString() == "1"
                                           ? "assets/icons/confirmed.png"
                                           : "assets/icons/close-circle.png",
-                                      height: 27,
+                                      height: 40,
                                     ),
                                   ],
                                 ),
+                                SizedBox(height: 5),
                                 Visibility(
                                   visible: widget.status.toString() == "2",
                                   child: Text(
@@ -192,7 +221,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                           ),
                         ),
                         Expanded(
-                          flex: 2,
+                          flex: 4,
                           child: Container(
                             color: Color(0xffE8F4FF),
                             child: Padding(
@@ -205,7 +234,15 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                     MainAxisAlignment.spaceEvenly,
                                 children: [
                                   Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
                                     children: [
+                                      KText(
+                                        text: languagesController.tr(
+                                          "COMPANY_NAME",
+                                        ),
+                                        color: Color(0xff637381),
+                                      ),
                                       Container(
                                         height: 40,
                                         width: 40,
@@ -219,16 +256,42 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                           shape: BoxShape.circle,
                                         ),
                                       ),
-                                      SizedBox(width: 10),
+                                    ],
+                                  ),
+
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      KText(
+                                        text: languagesController.tr(
+                                          "BUNDLE_TITLE",
+                                        ),
+
+                                        color: Color(0xff637381),
+                                      ),
                                       Text(
                                         widget.bundleTitle.toString(),
                                         style: TextStyle(
                                           fontSize: 15,
-                                          color: Color(0xff212B36),
+                                          color: Color(0xff637381),
+
                                           fontWeight: FontWeight.w400,
                                         ),
                                       ),
-                                      Spacer(),
+                                    ],
+                                  ),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      KText(
+                                        text: languagesController.tr(
+                                          "VALIDITY",
+                                        ),
+                                        color: Color(0xff637381),
+                                        fontSize: 14,
+                                      ),
                                       KText(
                                         text:
                                             widget.validityType.toString() ==
@@ -256,12 +319,11 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                             ? languagesController.tr("NIGHTLY")
                                             : "",
                                         fontWeight: FontWeight.w500,
+                                        color: Color(0xff637381),
                                         fontSize: 14,
-                                        color: Color(0xff3E4094),
                                       ),
                                     ],
                                   ),
-                                  SizedBox(height: 8),
                                   Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
@@ -270,15 +332,16 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                         text: languagesController.tr(
                                           "ORDER_ID",
                                         ),
-                                        fontSize: 14,
                                         color: Color(0xff637381),
+                                        fontSize: 14,
+
                                         fontWeight: FontWeight.w400,
                                       ),
-                                      KText(
+                                      DKText(
                                         text:
                                             "JP#- " + widget.orderID.toString(),
                                         fontSize: 14,
-                                        color: Color(0xff212B36),
+                                        color: Color(0xff637381),
                                       ),
                                     ],
                                   ),
@@ -303,12 +366,8 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                           ),
                                           style: TextStyle(
                                             fontSize: 14,
+                                            color: Color(0xff637381),
                                             fontWeight: FontWeight.w500,
-                                            fontFamily:
-                                                box.read("language") == "Fa"
-                                                ? Get.find<FontController>()
-                                                      .currentFont
-                                                : null,
                                           ),
                                         ),
                                       ],
@@ -333,11 +392,8 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                         style: TextStyle(
                                           fontSize: 14,
                                           fontWeight: FontWeight.w500,
-                                          fontFamily:
-                                              box.read("language") == "Fa"
-                                              ? Get.find<FontController>()
-                                                    .currentFont
-                                              : null,
+                                          color: Color(0xff637381),
+
                                           // or any color you like
                                         ),
                                       ),
@@ -383,7 +439,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                           widget.rechargebleAccount.toString(),
                                           style: TextStyle(
                                             fontSize: 14,
-                                            color: Color(0xff212B36),
+                                            color: Color(0xff637381),
                                           ),
                                         ),
                                       ),
@@ -409,7 +465,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                             text: widget.resellerName
                                                 .toString(),
                                             fontSize: 14,
-                                            color: Color(0xff212B36),
+                                            color: Color(0xff637381),
                                           ),
                                         ),
                                       ],
@@ -435,12 +491,12 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                             children: [
                                               KText(
                                                 text: box.read("currency_code"),
-                                                fontSize: 14,
+                                                fontSize: 12,
                                                 color: Colors.grey,
                                                 fontWeight: FontWeight.w600,
                                               ),
                                               SizedBox(width: 8),
-                                              KText(
+                                              DKText(
                                                 text:
                                                     NumberFormat.currency(
                                                       locale: 'en_US',
@@ -452,7 +508,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                                             .toString(),
                                                       ),
                                                     ),
-                                                color: Color(0xff212B36),
+                                                color: Color(0xff637381),
                                                 fontSize: 14,
                                                 fontWeight: FontWeight.w600,
                                               ),
@@ -482,12 +538,12 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                             children: [
                                               KText(
                                                 text: box.read("currency_code"),
-                                                fontSize: 14,
+                                                fontSize: 12,
                                                 color: Colors.grey,
                                                 fontWeight: FontWeight.w600,
                                               ),
                                               SizedBox(width: 8),
-                                              KText(
+                                              DKText(
                                                 text:
                                                     NumberFormat.currency(
                                                       locale: 'en_US',
@@ -499,7 +555,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                                             .toString(),
                                                       ),
                                                     ),
-                                                color: Color(0xff212B36),
+                                                color: Color(0xff637381),
                                                 fontSize: 14,
                                                 fontWeight: FontWeight.w600,
                                               ),
@@ -509,29 +565,38 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                       ),
                                     ),
                                   ),
-
-                                  Spacer(),
-                                  Container(
-                                    height: 50,
-                                    width: screenWidth,
-                                    decoration: BoxDecoration(
-                                      border: Border.all(
-                                        width: 1,
-                                        color: AppColors.primaryColor,
-                                      ),
-                                      borderRadius: BorderRadius.circular(10),
-                                    ),
-                                    child: Center(
-                                      child: Text(
-                                        "جهان پی، پرداخت آسان و مطمئن",
-                                        style: TextStyle(
-                                          fontSize: 15,
-                                          fontWeight: FontWeight.w700,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
                                 ],
+                              ),
+                            ),
+                          ),
+                        ),
+                        // Container(
+                        //   margin: EdgeInsets.only(left: 20, right: 20),
+                        //   height: 1,
+                        //   width: screenWidth,
+                        //   color: Colors.green,
+                        // ),
+
+                        // SizedBox(height: 5),
+                        Container(
+                          height: 50,
+                          width: screenWidth,
+                          decoration: BoxDecoration(
+                            color: Colors.green,
+                            borderRadius: BorderRadius.only(
+                              bottomLeft: Radius.circular(20),
+                              bottomRight: Radius.circular(20),
+                            ),
+                          ),
+
+                          child: Center(
+                            child: Text(
+                              "جهان پی ارسال سریع و مطمین",
+                              style: TextStyle(
+                                fontSize: 16,
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontFamily: "Iranfontregular",
                               ),
                             ),
                           ),
@@ -542,7 +607,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                 ),
               ),
             ),
-            SizedBox(height: 10),
+            SizedBox(height: 5),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 18),
               child: Container(

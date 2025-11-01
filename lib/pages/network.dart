@@ -23,6 +23,7 @@ import '../controllers/sub_reseller_controller.dart';
 import '../global_controller/font_controller.dart';
 import '../screens/set_subreseller_pin.dart';
 import '../widgets/custom_text.dart';
+import '../widgets/normaltext.dart';
 
 class Network extends StatefulWidget {
   const Network({super.key});
@@ -460,7 +461,7 @@ class _NetworkState extends State<Network> {
                                                 color: Colors.grey.shade800,
                                                 fontSize: screenHeight * 0.020,
                                               ),
-                                              KText(
+                                              DKText(
                                                 text: data.phone.toString(),
                                                 color: Colors.grey.shade800,
                                                 fontSize: screenHeight * 0.020,
@@ -909,7 +910,7 @@ class _NetworkState extends State<Network> {
                                                                               horizontal: 8,
                                                                               vertical: 8,
                                                                             ),
-                                                                            child: KText(
+                                                                            child: DKText(
                                                                               text:
                                                                                   detailsController.allsubresellerDetailsData.value.data!.reseller!.todayOrders
                                                                                       .toString() +
@@ -946,7 +947,7 @@ class _NetworkState extends State<Network> {
                                                                               horizontal: 8,
                                                                               vertical: 8,
                                                                             ),
-                                                                            child: KText(
+                                                                            child: DKText(
                                                                               text:
                                                                                   detailsController.allsubresellerDetailsData.value.data!.reseller!.totalOrders
                                                                                       .toString() +
@@ -992,7 +993,7 @@ class _NetworkState extends State<Network> {
                                                                               horizontal: 8,
                                                                               vertical: 8,
                                                                             ),
-                                                                            child: KText(
+                                                                            child: DKText(
                                                                               text:
                                                                                   detailsController.allsubresellerDetailsData.value.data!.reseller!.totalSale
                                                                                       .toString() +
@@ -1029,7 +1030,7 @@ class _NetworkState extends State<Network> {
                                                                               horizontal: 8,
                                                                               vertical: 8,
                                                                             ),
-                                                                            child: KText(
+                                                                            child: DKText(
                                                                               text:
                                                                                   detailsController.allsubresellerDetailsData.value.data!.reseller!.totalProfit
                                                                                       .toString() +
@@ -1075,7 +1076,7 @@ class _NetworkState extends State<Network> {
                                                                               horizontal: 8,
                                                                               vertical: 8,
                                                                             ),
-                                                                            child: KText(
+                                                                            child: DKText(
                                                                               text:
                                                                                   detailsController.allsubresellerDetailsData.value.data!.reseller!.todaySale
                                                                                       .toString() +
@@ -1112,7 +1113,7 @@ class _NetworkState extends State<Network> {
                                                                               horizontal: 8,
                                                                               vertical: 8,
                                                                             ),
-                                                                            child: KText(
+                                                                            child: DKText(
                                                                               text:
                                                                                   detailsController.allsubresellerDetailsData.value.data!.reseller!.todayProfit
                                                                                       .toString() +
@@ -1167,7 +1168,7 @@ class _NetworkState extends State<Network> {
                                                                       screenHeight *
                                                                       0.020,
                                                                 ),
-                                                                KText(
+                                                                DKText(
                                                                   text:
                                                                       detailsController
                                                                           .allsubresellerDetailsData
