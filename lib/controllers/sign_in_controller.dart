@@ -91,16 +91,16 @@ class SignInController extends GetxController {
           // Fetch country data only if login is successful
         } else {
           Get.snackbar(
-            "Oops!",
             results["message"],
+            results["error"],
             backgroundColor: Colors.red,
             colorText: Colors.white,
           );
         }
       } else {
         Get.snackbar(
-          "Oops!",
           results["message"],
+          results["error"],
           backgroundColor: Colors.red,
           colorText: Colors.white,
         );

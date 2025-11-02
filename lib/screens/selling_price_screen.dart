@@ -110,12 +110,17 @@ class _SellingPriceScreenState extends State<SellingPriceScreen> {
                       ),
                       Spacer(),
                       Obx(
-                        () => Text(
-                          languagesController.tr("SELLING_PRICE"),
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: screenWidth * 0.045,
-                            color: Colors.white,
+                        () => GestureDetector(
+                          onTap: () {
+                            sellingPriceController.fetchpriceData();
+                          },
+                          child: Text(
+                            languagesController.tr("SELLING_PRICE"),
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: screenWidth * 0.045,
+                              color: Colors.white,
+                            ),
                           ),
                         ),
                       ),
@@ -402,6 +407,7 @@ class _SellingPriceScreenState extends State<SellingPriceScreen> {
                                               context: context,
                                               builder: (context) {
                                                 return AlertDialog(
+                                                  backgroundColor: Colors.white,
                                                   contentPadding:
                                                       EdgeInsets.all(0.0),
                                                   content: Container(
@@ -487,6 +493,9 @@ class _SellingPriceScreenState extends State<SellingPriceScreen> {
                                                                     context,
                                                                 builder: (context) {
                                                                   return AlertDialog(
+                                                                    backgroundColor:
+                                                                        Colors
+                                                                            .white,
                                                                     content: Container(
                                                                       height:
                                                                           150,
@@ -771,6 +780,7 @@ class _SellingPriceScreenState extends State<SellingPriceScreen> {
                                               context: context,
                                               builder: (context) {
                                                 return AlertDialog(
+                                                  backgroundColor: Colors.white,
                                                   content: DeleteDialog(
                                                     priceID: data.id.toString(),
                                                   ),
