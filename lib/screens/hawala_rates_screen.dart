@@ -132,232 +132,196 @@ class _HawalaCurrencyScreenState extends State<HawalaCurrencyScreen> {
             SizedBox(height: 10),
             Expanded(
               child: Obx(
-                () => hawalacurrencycontroller.isLoading.value == false
-                    ? SingleChildScrollView(
-                        // vertical scroll only, as you had
-                        child: Card(
-                          elevation: 2,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12),
-                            side: BorderSide(color: borderColor, width: 1),
-                          ),
-                          margin: EdgeInsets.all(8),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(12),
-                            child: DataTableTheme(
-                              data: DataTableThemeData(
-                                headingRowColor: MaterialStateProperty.all(
-                                  headerBg,
-                                ),
-                                headingTextStyle: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: 13,
-                                  letterSpacing: 0.3,
-                                ),
-                                dataTextStyle: TextStyle(
-                                  fontSize: 12,
-                                  height: 1.2,
-                                ),
-                                dividerThickness: 1,
-                                horizontalMargin: 12,
-                                columnSpacing: 12,
+                () => hawalacurrencycontroller.isLoading.value
+                    ? Center(child: CircularProgressIndicator())
+                    : SingleChildScrollView(
+                        child: Container(
+                          margin: EdgeInsets.all(10),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(16),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black12,
+                                blurRadius: 6,
+                                offset: Offset(0, 3),
                               ),
-                              child: DataTable(
-                                showCheckboxColumn: false,
-                                headingRowHeight: 40,
-                                dataRowMinHeight: 36,
-                                dataRowMaxHeight: 44,
-                                border: TableBorder(
-                                  horizontalInside: BorderSide(
-                                    color: borderColor.withOpacity(0.25),
-                                    width: 1,
+                            ],
+                            gradient: LinearGradient(
+                              colors: [Colors.white, Colors.grey.shade100],
+                              begin: Alignment.topLeft,
+                              end: Alignment.bottomRight,
+                            ),
+                          ),
+                          child: Card(
+                            color: Colors.white,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(16),
+                            ),
+                            elevation: 0,
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(16),
+                              child: DataTableTheme(
+                                data: DataTableThemeData(
+                                  headingRowColor: MaterialStateProperty.all(
+                                    Colors.blueGrey.shade800,
                                   ),
-                                  verticalInside: BorderSide(
-                                    color: borderColor.withOpacity(0.15),
-                                    width: 1,
+                                  headingTextStyle: const TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 13.5,
                                   ),
-                                  top: BorderSide(color: borderColor, width: 1),
-                                  bottom: BorderSide(
-                                    color: borderColor,
-                                    width: 1,
+                                  dataTextStyle: const TextStyle(
+                                    fontSize: 12.5,
+                                    fontWeight: FontWeight.w500,
                                   ),
-                                  left: BorderSide(
-                                    color: borderColor,
-                                    width: 1,
-                                  ),
-                                  right: BorderSide(
-                                    color: borderColor,
-                                    width: 1,
-                                  ),
+                                  dividerThickness: 0.5,
+                                  horizontalMargin: 16,
+                                  columnSpacing: 16,
                                 ),
-                                columns: [
-                                  DataColumn(
-                                    label: Expanded(
-                                      child: Center(
+                                child: DataTable(
+                                  showCheckboxColumn: false,
+                                  headingRowHeight: 45,
+                                  dataRowMinHeight: 42,
+                                  dataRowMaxHeight: 52,
+                                  border: TableBorder.symmetric(
+                                    inside: BorderSide(
+                                      color: Colors.grey.shade300,
+                                      width: 0.5,
+                                    ),
+                                  ),
+                                  columns: [
+                                    DataColumn(
+                                      label: Center(
                                         child: Text(
                                           languagesController.tr("AMOUNT"),
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(
-                                            color: headerText,
-                                            fontWeight: FontWeight.w800,
-                                          ),
                                         ),
                                       ),
                                     ),
-                                  ),
-                                  DataColumn(
-                                    label: Expanded(
-                                      child: Center(
+                                    DataColumn(
+                                      label: Center(
                                         child: Text(
                                           languagesController.tr("FROM"),
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(
-                                            color: headerText,
-                                            fontWeight: FontWeight.w800,
-                                          ),
                                         ),
                                       ),
                                     ),
-                                  ),
-                                  DataColumn(
-                                    label: Expanded(
-                                      child: Center(
+                                    DataColumn(
+                                      label: Center(
                                         child: Text(
                                           languagesController.tr("TO"),
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(
-                                            color: headerText,
-                                            fontWeight: FontWeight.w800,
-                                          ),
                                         ),
                                       ),
                                     ),
-                                  ),
-                                  DataColumn(
-                                    label: Expanded(
-                                      child: Center(
+                                    DataColumn(
+                                      label: Center(
                                         child: Text(
                                           languagesController.tr("BUY"),
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(
-                                            color: headerText,
-                                            fontWeight: FontWeight.w800,
-                                          ),
                                         ),
                                       ),
                                     ),
-                                  ),
-                                  DataColumn(
-                                    label: Expanded(
-                                      child: Center(
+                                    DataColumn(
+                                      label: Center(
                                         child: Text(
                                           languagesController.tr("SELL"),
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(
-                                            color: headerText,
-                                            fontWeight: FontWeight.w800,
-                                          ),
                                         ),
                                       ),
                                     ),
-                                  ),
-                                ],
-                                rows: List<DataRow>.generate(
-                                  hawalacurrencycontroller
+                                  ],
+                                  rows: List.generate(
+                                    hawalacurrencycontroller
+                                            .allcurrencylist
+                                            .value
+                                            .data
+                                            ?.rates
+                                            ?.length ??
+                                        0,
+                                    (i) {
+                                      final data = hawalacurrencycontroller
                                           .allcurrencylist
                                           .value
-                                          .data
-                                          ?.rates
-                                          ?.length ??
-                                      0,
-                                  (i) {
-                                    final data = hawalacurrencycontroller
-                                        .allcurrencylist
-                                        .value
-                                        .data!
-                                        .rates![i];
-                                    final isEven = i.isEven;
+                                          .data!
+                                          .rates![i];
 
-                                    return DataRow(
-                                      color:
-                                          MaterialStateProperty.resolveWith<
-                                            Color?
-                                          >((states) {
-                                            if (states.contains(
-                                              MaterialState.selected,
-                                            )) {
-                                              return selectTint;
-                                            }
-                                            if (states.contains(
-                                              MaterialState.hovered,
-                                            )) {
-                                              return hoverTint;
-                                            }
-                                            return isEven
-                                                ? stripeLight
-                                                : stripeTint;
-                                          }),
-                                      // If you don't need row selection visuals, you can remove this line.
-                                      onSelectChanged: (_) {},
-                                      cells: [
-                                        DataCell(
-                                          Center(
-                                            child: Text(
-                                              data.amount.toString(),
-                                              textAlign: TextAlign.center,
-                                            ),
-                                          ),
-                                        ),
-                                        DataCell(
-                                          Center(
-                                            child: Text(
-                                              data.fromCurrency?.name ?? "-",
-                                              textAlign: TextAlign.center,
-                                            ),
-                                          ),
-                                        ),
-                                        DataCell(
-                                          Center(
-                                            child: Text(
-                                              data.toCurrency?.name ?? "-",
-                                              textAlign: TextAlign.center,
-                                            ),
-                                          ),
-                                        ),
-                                        DataCell(
-                                          Center(
-                                            child: Text(
-                                              "${data.buyRate ?? '-'} ${data.toCurrency?.symbol ?? ''}",
-                                              textAlign: TextAlign.center,
-                                              style: TextStyle(
-                                                fontWeight: FontWeight.w600,
+                                      return DataRow(
+                                        color:
+                                            MaterialStateProperty.resolveWith<
+                                              Color?
+                                            >((states) {
+                                              if (states.contains(
+                                                MaterialState.hovered,
+                                              )) {
+                                                return Colors.blue.shade50;
+                                              }
+                                              return i.isEven
+                                                  ? Colors.grey.shade100
+                                                  : Colors.white;
+                                            }),
+                                        onSelectChanged: (_) {},
+                                        cells: [
+                                          DataCell(
+                                            Center(
+                                              child: Text(
+                                                data.amount.toString(),
+                                                style: TextStyle(
+                                                  color: Colors.black87,
+                                                  fontWeight: FontWeight.w600,
+                                                ),
                                               ),
                                             ),
                                           ),
-                                        ),
-                                        DataCell(
-                                          Center(
-                                            child: Text(
-                                              "${data.sellRate ?? '-'} ${data.toCurrency?.symbol ?? ''}",
-                                              textAlign: TextAlign.center,
-                                              style: TextStyle(
-                                                fontWeight: FontWeight.w600,
-                                                color: Colors.red,
+                                          DataCell(
+                                            Center(
+                                              child: Text(
+                                                data.fromCurrency?.name ?? "-",
+                                                style: TextStyle(
+                                                  color:
+                                                      Colors.blueGrey.shade700,
+                                                ),
                                               ),
                                             ),
                                           ),
-                                        ),
-                                      ],
-                                    );
-                                  },
+                                          DataCell(
+                                            Center(
+                                              child: Text(
+                                                data.toCurrency?.name ?? "-",
+                                                style: TextStyle(
+                                                  color:
+                                                      Colors.blueGrey.shade700,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          DataCell(
+                                            Center(
+                                              child: Text(
+                                                "${data.buyRate ?? '-'} ${data.toCurrency?.symbol ?? ''}",
+                                                style: TextStyle(
+                                                  color: Colors.green.shade700,
+                                                  fontWeight: FontWeight.w600,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          DataCell(
+                                            Center(
+                                              child: Text(
+                                                "${data.sellRate ?? '-'} ${data.toCurrency?.symbol ?? ''}",
+                                                style: TextStyle(
+                                                  color: Colors.red.shade700,
+                                                  fontWeight: FontWeight.w600,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      );
+                                    },
+                                  ),
                                 ),
                               ),
                             ),
                           ),
                         ),
-                      )
-                    : Center(child: CircularProgressIndicator()),
+                      ),
               ),
             ),
           ],

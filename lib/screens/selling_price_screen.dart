@@ -772,7 +772,11 @@ class _SellingPriceScreenState extends State<SellingPriceScreen> {
                                               },
                                             );
                                           },
-                                          child: Icon(Icons.edit),
+                                          child: CircleAvatar(
+                                            radius: 15,
+
+                                            child: Icon(Icons.edit, size: 18),
+                                          ),
                                         ),
                                         GestureDetector(
                                           onTap: () {
@@ -788,9 +792,14 @@ class _SellingPriceScreenState extends State<SellingPriceScreen> {
                                               },
                                             );
                                           },
-                                          child: Icon(
-                                            Icons.delete,
-                                            color: Colors.red,
+                                          child: CircleAvatar(
+                                            radius: 15,
+                                            backgroundColor: Colors.red,
+                                            child: Icon(
+                                              Icons.delete,
+                                              color: Colors.white,
+                                              size: 18,
+                                            ),
                                           ),
                                         ),
                                       ],

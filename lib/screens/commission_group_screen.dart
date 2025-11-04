@@ -376,9 +376,10 @@ class _CommissionGroupScreenState extends State<CommissionGroupScreen> {
                                               },
                                             );
                                           },
-                                          child: Icon(
-                                            Icons.edit,
-                                            color: Colors.black,
+                                          child: CircleAvatar(
+                                            radius: 15,
+
+                                            child: Icon(Icons.edit, size: 18),
                                           ),
                                         ),
                                         GestureDetector(
@@ -395,9 +396,14 @@ class _CommissionGroupScreenState extends State<CommissionGroupScreen> {
                                               },
                                             );
                                           },
-                                          child: Icon(
-                                            Icons.delete,
-                                            color: Colors.red,
+                                          child: CircleAvatar(
+                                            radius: 15,
+                                            backgroundColor: Colors.red,
+                                            child: Icon(
+                                              Icons.delete,
+                                              color: Colors.white,
+                                              size: 18,
+                                            ),
                                           ),
                                         ),
                                       ],
