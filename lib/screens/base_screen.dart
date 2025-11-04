@@ -331,7 +331,12 @@ Widget _buildSimpleStack(Color color, String image, String name) {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Image.asset(image.toString(), color: Colors.white, height: 20),
-              KText(text: name, fontSize: 8, color: Colors.white),
+              KText(
+                text: name,
+                fontSize: 8,
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+              ),
             ],
           ),
         ),

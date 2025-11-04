@@ -788,6 +788,7 @@ class _SocialBundlesState extends State<SocialBundles> {
                 ),
               ),
             ),
+            SizedBox(height: 120),
           ],
         ),
       ),

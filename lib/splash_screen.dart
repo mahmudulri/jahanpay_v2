@@ -1,3 +1,4 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -92,7 +93,29 @@ class _SplashScreenState extends State<SplashScreen> {
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [Image.asset("assets/icons/logo.png", height: 240)],
+          children: [
+            Image.asset("assets/icons/logo.png", height: 240),
+
+            AnimatedTextKit(
+              animatedTexts: [
+                ColorizeAnimatedText(
+                  "Welcome To Jahan Pay",
+                  textStyle: TextStyle(
+                    fontSize: 30,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: "iranyekanbold",
+                  ),
+                  colors: [
+                    Colors.blue,
+                    Colors.green,
+                    Colors.blue,
+                    Colors.green,
+                  ],
+                ),
+              ],
+              repeatForever: true,
+            ),
+          ],
         ),
       ),
     );

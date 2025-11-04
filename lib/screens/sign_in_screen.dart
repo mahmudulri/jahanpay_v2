@@ -41,7 +41,7 @@ class _SignInScreenState extends State<SignInScreen> {
 
   final box = GetStorage();
 
-  final String phoneNumber = "+989059472461";
+  final String phoneNumber = "+93700741044";
 
   @override
   void initState() {

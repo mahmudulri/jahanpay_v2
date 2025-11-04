@@ -27,6 +27,8 @@ import '../controllers/company_controller.dart';
 
 import '../controllers/dashboard_controller.dart';
 import '../controllers/service_controller.dart';
+import '../global_controller/font_controller.dart' show FontController;
+import '../widgets/custom_text.dart';
 import 'recharge_screen.dart';
 
 class ServiceScreen extends StatefulWidget {
@@ -167,14 +169,82 @@ class _ServiceScreenState extends State<ServiceScreen> {
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text(
-                                      data["countryName"],
-                                      style: TextStyle(
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.black,
-                                      ),
-                                    ),
+                                    box.read("direction") == "ltr"
+                                        ? Row(
+                                            children: [
+                                              Text(
+                                                data["countryName"],
+                                                style: TextStyle(
+                                                  fontSize: 15,
+                                                  fontWeight: FontWeight.bold,
+                                                  color: Colors.black,
+                                                  fontFamily:
+                                                      box
+                                                              .read("language")
+                                                              .toString() ==
+                                                          "Fa"
+                                                      ? Get.find<
+                                                              FontController
+                                                            >()
+                                                            .currentFont
+                                                      : null,
+                                                ),
+                                              ),
+
+                                              SizedBox(width: 5),
+                                              KText(
+                                                text: languagesController.tr(
+                                                  "OPERATOR",
+                                                ),
+                                                fontFamily:
+                                                    box
+                                                            .read("language")
+                                                            .toString() ==
+                                                        "Fa"
+                                                    ? Get.find<FontController>()
+                                                          .currentFont
+                                                    : null,
+                                              ),
+                                            ],
+                                          )
+                                        : Row(
+                                            children: [
+                                              KText(
+                                                text: languagesController.tr(
+                                                  "OPERATOR",
+                                                ),
+                                                fontWeight: FontWeight.bold,
+                                                fontFamily:
+                                                    box
+                                                            .read("language")
+                                                            .toString() ==
+                                                        "Fa"
+                                                    ? Get.find<FontController>()
+                                                          .currentFont
+                                                    : null,
+                                              ),
+                                              SizedBox(width: 5),
+                                              Text(
+                                                data["countryName"],
+                                                style: TextStyle(
+                                                  fontSize: 15,
+                                                  fontWeight: FontWeight.bold,
+                                                  color: Colors.black,
+                                                  fontFamily:
+                                                      box
+                                                              .read("language")
+                                                              .toString() ==
+                                                          "Fa"
+                                                      ? Get.find<
+                                                              FontController
+                                                            >()
+                                                            .currentFont
+                                                      : null,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+
                                     Container(
                                       height: 125,
                                       width: screenWidth,
@@ -267,6 +337,18 @@ class _ServiceScreenState extends State<ServiceScreen> {
                                                         color: Colors.black,
                                                         fontWeight:
                                                             FontWeight.bold,
+                                                        fontFamily:
+                                                            box
+                                                                    .read(
+                                                                      "language",
+                                                                    )
+                                                                    .toString() ==
+                                                                "Fa"
+                                                            ? Get.find<
+                                                                    FontController
+                                                                  >()
+                                                                  .currentFont
+                                                            : null,
                                                       ),
                                                     ),
                                                   ],
@@ -303,9 +385,15 @@ class _ServiceScreenState extends State<ServiceScreen> {
                                       Text(
                                         category.categoryName.toString(),
                                         style: TextStyle(
-                                          fontSize: 16,
+                                          fontSize: 15,
                                           fontWeight: FontWeight.bold,
                                           color: Colors.black,
+                                          fontFamily:
+                                              box.read("language").toString() ==
+                                                  "Fa"
+                                              ? Get.find<FontController>()
+                                                    .currentFont
+                                              : null,
                                         ),
                                       ),
                                       GridView.builder(
@@ -399,6 +487,18 @@ class _ServiceScreenState extends State<ServiceScreen> {
                                                           color: Colors.black,
                                                           fontWeight:
                                                               FontWeight.bold,
+                                                          fontFamily:
+                                                              box
+                                                                      .read(
+                                                                        "language",
+                                                                      )
+                                                                      .toString() ==
+                                                                  "Fa"
+                                                              ? Get.find<
+                                                                      FontController
+                                                                    >()
+                                                                    .currentFont
+                                                              : null,
                                                         ),
                                                       ),
                                                     ],
@@ -421,6 +521,8 @@ class _ServiceScreenState extends State<ServiceScreen> {
                 ],
               ),
             ),
+
+            SizedBox(height: 80),
           ],
         ),
       ),

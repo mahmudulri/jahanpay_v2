@@ -2332,6 +2332,7 @@ class _RechargeScreenState extends State<RechargeScreen> {
                 ),
               ),
             ),
+            SizedBox(height: 120),
           ],
         ),
       ),
