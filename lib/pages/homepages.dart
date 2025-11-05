@@ -17,6 +17,7 @@ import 'package:jahanpay/controllers/drawer_controller.dart';
 import 'package:jahanpay/global_controller/languages_controller.dart';
 import 'package:jahanpay/screens/credit_transfer.dart';
 import 'package:jahanpay/widgets/bottomsheet.dart';
+import 'package:jahanpay/widgets/drawer.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../controllers/categories_controller.dart';
 import '../controllers/categories_list_controller.dart';
@@ -27,6 +28,7 @@ import '../controllers/history_controller.dart';
 import '../controllers/slider_controller.dart';
 import '../global_controller/balance_controller.dart';
 import '../global_controller/page_controller.dart';
+import '../helpers/price.dart';
 import '../screens/order_details_screen.dart';
 import '../screens/service_screen.dart';
 import '../utils/colors.dart';
@@ -192,6 +194,7 @@ Password: se45w1ew
     var screenHeight = MediaQuery.of(context).size.height;
     var screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
+      drawer: DrawerWidget(),
       key: _scaffoldKey,
       body: Container(
         height: screenHeight,
@@ -310,7 +313,7 @@ Password: se45w1ew
                       Spacer(),
                       GestureDetector(
                         onTap: () {
-                          CustomFullScreenSheet.show(context);
+                          _scaffoldKey.currentState?.openDrawer();
                         },
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
@@ -460,7 +463,8 @@ Password: se45w1ew
                                                       .value ==
                                                   false
                                               ? Text(
-                                                  userBalanceController.balance
+                                                  userBalanceController
+                                                      .formattedBalance
                                                       .toString(),
                                                   style: TextStyle(
                                                     fontSize: 20,
@@ -741,8 +745,10 @@ Password: se45w1ew
                                         return Container(
                                           decoration: BoxDecoration(
                                             color: isSelected
-                                                ? AppColors.primaryColor
+                                                ? userBalanceController
+                                                      .currentColor
                                                 : Colors.white,
+
                                             borderRadius: BorderRadius.circular(
                                               8,
                                             ),
@@ -1078,25 +1084,37 @@ Password: se45w1ew
                                                 flex: 2,
                                                 child: Row(
                                                   children: [
-                                                    Text(
-                                                      NumberFormat.currency(
-                                                        locale: 'en_US',
-                                                        symbol: '',
-                                                        decimalDigits: 2,
-                                                      ).format(
-                                                        double.parse(
-                                                          data
-                                                              .bundle!
-                                                              .sellingPrice
-                                                              .toString(),
-                                                        ),
-                                                      ),
-                                                      style: TextStyle(
-                                                        fontSize: 11,
+                                                    PriceTextView(
+                                                      price: data
+                                                          .bundle!
+                                                          .sellingPrice
+                                                          .toString(),
+                                                      textStyle: TextStyle(
                                                         fontWeight:
                                                             FontWeight.w600,
+                                                        fontSize: 11,
+                                                        color: Colors.black,
                                                       ),
                                                     ),
+                                                    // Text(
+                                                    //   NumberFormat.currency(
+                                                    //     locale: 'en_US',
+                                                    //     symbol: '',
+                                                    //     decimalDigits: 0,
+                                                    //   ).format(
+                                                    //     double.parse(
+                                                    //       data
+                                                    //           .bundle!
+                                                    //           .sellingPrice
+                                                    //           .toString(),
+                                                    //     ),
+                                                    //   ),
+                                                    //   style: TextStyle(
+                                                    //     fontSize: 11,
+                                                    //     fontWeight:
+                                                    //         FontWeight.w600,
+                                                    //   ),
+                                                    // ),
                                                     SizedBox(width: 2),
                                                     Text(
                                                       " " +
@@ -1324,23 +1342,16 @@ Password: se45w1ew
                                                 flex: 2,
                                                 child: Row(
                                                   children: [
-                                                    Text(
-                                                      NumberFormat.currency(
-                                                        locale: 'en_US',
-                                                        symbol: '',
-                                                        decimalDigits: 2,
-                                                      ).format(
-                                                        double.parse(
-                                                          data
-                                                              .bundle!
-                                                              .sellingPrice
-                                                              .toString(),
-                                                        ),
-                                                      ),
-                                                      style: TextStyle(
-                                                        fontSize: 11,
+                                                    PriceTextView(
+                                                      price: data
+                                                          .bundle!
+                                                          .sellingPrice
+                                                          .toString(),
+                                                      textStyle: TextStyle(
                                                         fontWeight:
                                                             FontWeight.w600,
+                                                        fontSize: 11,
+                                                        color: Colors.black,
                                                       ),
                                                     ),
                                                     SizedBox(width: 2),

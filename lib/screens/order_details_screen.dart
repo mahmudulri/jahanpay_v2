@@ -1,6 +1,7 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:jahanpay/global_controller/font_controller.dart';
 import 'package:jahanpay/global_controller/languages_controller.dart';
+import 'package:jahanpay/helpers/price.dart';
 import 'package:jahanpay/utils/colors.dart';
 import 'package:jahanpay/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
@@ -496,21 +497,14 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                                 fontWeight: FontWeight.w600,
                                               ),
                                               SizedBox(width: 8),
-                                              DKText(
-                                                text:
-                                                    NumberFormat.currency(
-                                                      locale: 'en_US',
-                                                      symbol: '',
-                                                      decimalDigits: 2,
-                                                    ).format(
-                                                      double.parse(
-                                                        widget.sellingPrice
-                                                            .toString(),
-                                                      ),
-                                                    ),
-                                                color: Color(0xff637381),
-                                                fontSize: 14,
-                                                fontWeight: FontWeight.w600,
+                                              PriceTextView(
+                                                price: widget.sellingPrice
+                                                    .toString(),
+                                                textStyle: TextStyle(
+                                                  color: Color(0xff637381),
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.w600,
+                                                ),
                                               ),
                                             ],
                                           ),

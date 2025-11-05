@@ -17,6 +17,7 @@ import 'package:jahanpay/widgets/normaltext.dart' show DKText;
 import '../controllers/drawer_controller.dart';
 import '../global_controller/font_controller.dart';
 import '../helpers/capture_image_helper.dart';
+import '../helpers/price.dart';
 import '../helpers/share_image_helper.dart';
 import '../screens/order_details_screen.dart';
 
@@ -870,33 +871,51 @@ class _OrdersState extends State<Orders> {
                                                                     0.018,
                                                               ),
                                                               Text(" : "),
-                                                              DKText(
-                                                                text:
-                                                                    NumberFormat.currency(
-                                                                      locale:
-                                                                          'en_US',
-                                                                      symbol:
-                                                                          '',
-                                                                      decimalDigits:
-                                                                          2,
-                                                                    ).format(
-                                                                      double.parse(
-                                                                        data
-                                                                            .bundle!
-                                                                            .buyingPrice
-                                                                            .toString(),
-                                                                      ),
-                                                                    ),
-                                                                color: Colors
-                                                                    .grey
-                                                                    .shade700,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w400,
-                                                                fontSize:
-                                                                    screenHeight *
-                                                                    0.018,
+
+                                                              PriceTextView(
+                                                                price: data
+                                                                    .bundle!
+                                                                    .buyingPrice
+                                                                    .toString(),
+                                                                textStyle: TextStyle(
+                                                                  color: Colors
+                                                                      .grey
+                                                                      .shade700,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w400,
+                                                                  fontSize:
+                                                                      screenHeight *
+                                                                      0.018,
+                                                                ),
                                                               ),
+                                                              // DKText(
+                                                              //   text:
+                                                              //       NumberFormat.currency(
+                                                              //         locale:
+                                                              //             'en_US',
+                                                              //         symbol:
+                                                              //             '',
+                                                              //         decimalDigits:
+                                                              //             2,
+                                                              //       ).format(
+                                                              //         double.parse(
+                                                              //           data
+                                                              //               .bundle!
+                                                              //               .buyingPrice
+                                                              //               .toString(),
+                                                              //         ),
+                                                              //       ),
+                                                              //   color: Colors
+                                                              //       .grey
+                                                              //       .shade700,
+                                                              //   fontWeight:
+                                                              //       FontWeight
+                                                              //           .w400,
+                                                              //   fontSize:
+                                                              //       screenHeight *
+                                                              //       0.018,
+                                                              // ),
                                                               SizedBox(
                                                                 width: 5,
                                                               ),
@@ -932,33 +951,24 @@ class _OrdersState extends State<Orders> {
                                                                     0.018,
                                                               ),
                                                               Text(" : "),
-                                                              DKText(
-                                                                text:
-                                                                    NumberFormat.currency(
-                                                                      locale:
-                                                                          'en_US',
-                                                                      symbol:
-                                                                          '',
-                                                                      decimalDigits:
-                                                                          2,
-                                                                    ).format(
-                                                                      double.parse(
-                                                                        data
-                                                                            .bundle!
-                                                                            .sellingPrice
-                                                                            .toString(),
-                                                                      ),
-                                                                    ),
-                                                                color: Colors
-                                                                    .grey
-                                                                    .shade700,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w400,
-                                                                fontSize:
-                                                                    screenHeight *
-                                                                    0.018,
+                                                              PriceTextView(
+                                                                price: data
+                                                                    .bundle!
+                                                                    .sellingPrice
+                                                                    .toString(),
+                                                                textStyle: TextStyle(
+                                                                  color: Colors
+                                                                      .grey
+                                                                      .shade700,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w400,
+                                                                  fontSize:
+                                                                      screenHeight *
+                                                                      0.018,
+                                                                ),
                                                               ),
+
                                                               SizedBox(
                                                                 width: 5,
                                                               ),
@@ -1371,33 +1381,51 @@ class _OrdersState extends State<Orders> {
                                                                     0.018,
                                                               ),
                                                               Text(" : "),
-                                                              DKText(
-                                                                text:
-                                                                    NumberFormat.currency(
-                                                                      locale:
-                                                                          'en_US',
-                                                                      symbol:
-                                                                          '',
-                                                                      decimalDigits:
-                                                                          2,
-                                                                    ).format(
-                                                                      double.parse(
-                                                                        data
-                                                                            .bundle!
-                                                                            .buyingPrice
-                                                                            .toString(),
-                                                                      ),
-                                                                    ),
-                                                                color: Colors
-                                                                    .grey
-                                                                    .shade700,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w400,
-                                                                fontSize:
-                                                                    screenHeight *
-                                                                    0.018,
+
+                                                              PriceTextView(
+                                                                price: data
+                                                                    .bundle!
+                                                                    .buyingPrice
+                                                                    .toString(),
+                                                                textStyle: TextStyle(
+                                                                  color: Colors
+                                                                      .grey
+                                                                      .shade700,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w400,
+                                                                  fontSize:
+                                                                      screenHeight *
+                                                                      0.018,
+                                                                ),
                                                               ),
+                                                              // DKText(
+                                                              //   text:
+                                                              //       NumberFormat.currency(
+                                                              //         locale:
+                                                              //             'en_US',
+                                                              //         symbol:
+                                                              //             '',
+                                                              //         decimalDigits:
+                                                              //             2,
+                                                              //       ).format(
+                                                              //         double.parse(
+                                                              //           data
+                                                              //               .bundle!
+                                                              //               .buyingPrice
+                                                              //               .toString(),
+                                                              //         ),
+                                                              //       ),
+                                                              //   color: Colors
+                                                              //       .grey
+                                                              //       .shade700,
+                                                              //   fontWeight:
+                                                              //       FontWeight
+                                                              //           .w400,
+                                                              //   fontSize:
+                                                              //       screenHeight *
+                                                              //       0.018,
+                                                              // ),
                                                               SizedBox(
                                                                 width: 5,
                                                               ),
@@ -1433,33 +1461,24 @@ class _OrdersState extends State<Orders> {
                                                                     0.018,
                                                               ),
                                                               Text(" : "),
-                                                              DKText(
-                                                                text:
-                                                                    NumberFormat.currency(
-                                                                      locale:
-                                                                          'en_US',
-                                                                      symbol:
-                                                                          '',
-                                                                      decimalDigits:
-                                                                          2,
-                                                                    ).format(
-                                                                      double.parse(
-                                                                        data
-                                                                            .bundle!
-                                                                            .sellingPrice
-                                                                            .toString(),
-                                                                      ),
-                                                                    ),
-                                                                color: Colors
-                                                                    .grey
-                                                                    .shade700,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w400,
-                                                                fontSize:
-                                                                    screenHeight *
-                                                                    0.018,
+                                                              PriceTextView(
+                                                                price: data
+                                                                    .bundle!
+                                                                    .sellingPrice
+                                                                    .toString(),
+                                                                textStyle: TextStyle(
+                                                                  color: Colors
+                                                                      .grey
+                                                                      .shade700,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w400,
+                                                                  fontSize:
+                                                                      screenHeight *
+                                                                      0.018,
+                                                                ),
                                                               ),
+
                                                               SizedBox(
                                                                 width: 5,
                                                               ),
@@ -1498,370 +1517,6 @@ class _OrdersState extends State<Orders> {
             ),
             SizedBox(height: 10),
           ],
-        ),
-      ),
-    );
-  }
-}
-
-class DetailsDialog extends StatelessWidget {
-  DetailsDialog({
-    super.key,
-    this.status,
-    this.bundletitle,
-    this.phoneNumber,
-    this.sellingPrice,
-    this.orderId,
-    this.imagelink,
-    this.date,
-  });
-
-  String? status;
-  String? bundletitle;
-  String? phoneNumber;
-  String? sellingPrice;
-  String? orderId;
-  String? imagelink;
-  String? date;
-
-  LanguagesController languagesController = Get.put(LanguagesController());
-  final box = GetStorage();
-  @override
-  Widget build(BuildContext context) {
-    var screenWidth = MediaQuery.of(context).size.width;
-    return Container(
-      height: 490,
-      width: screenWidth,
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(17),
-      ),
-      child: Padding(
-        padding: EdgeInsets.all(10.0),
-        child: SizedBox(
-          child: Column(
-            children: [
-              RepaintBoundary(
-                key: catpureKey,
-                child: RepaintBoundary(
-                  key: shareKey,
-                  child: Container(
-                    width: screenWidth,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(10),
-                      border: Border.all(
-                        width: 1,
-                        color: status.toString() == "0"
-                            ? Color(0xffFFC107)
-                            : status.toString() == "1"
-                            ? Colors.green
-                            : Colors.red,
-                      ),
-                    ),
-                    child: Padding(
-                      padding: EdgeInsets.all(10.0),
-                      child: Column(
-                        children: [
-                          Stack(
-                            children: [
-                              // Background Image with Opacity
-                              Opacity(
-                                opacity:
-                                    0.2, // Adjust the opacity value (0.0 to 1.0)
-                                child: Container(
-                                  height: 60,
-                                  width: 60,
-                                  decoration: BoxDecoration(
-                                    image: DecorationImage(
-                                      image: AssetImage(
-                                        "assets/icons/logo.png",
-                                      ),
-                                      fit: BoxFit.cover,
-                                    ),
-                                  ),
-                                ),
-                              ),
-
-                              // Foreground Container with Status Icon
-                              Container(
-                                height: 60,
-                                width: 60,
-                                padding: const EdgeInsets.all(5.0),
-                                child: Image.asset(
-                                  status.toString() == "0"
-                                      ? "assets/icons/pending.png"
-                                      : status.toString() == "1"
-                                      ? "assets/icons/successful.png"
-                                      : "assets/icons/rejected.png",
-                                  height: 60,
-                                ),
-                              ),
-                            ],
-                          ),
-                          Text(
-                            status.toString() == "0"
-                                ? languagesController.tr("PENDING")
-                                : status.toString() == "1"
-                                ? languagesController.tr("CONFIRMED")
-                                : languagesController.tr("REJECTED"),
-                            style: TextStyle(
-                              color: status.toString() == "0"
-                                  ? Color(0xffFFC107)
-                                  : status.toString() == "1"
-                                  ? Colors.green
-                                  : Colors.red,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                          SizedBox(height: 50),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                languagesController.tr("BUNDLE_TITLE"),
-                                style: TextStyle(fontSize: 12),
-                              ),
-                              Text(
-                                bundletitle.toString(),
-                                style: TextStyle(fontSize: 12),
-                              ),
-                            ],
-                          ),
-                          SizedBox(height: 10),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                languagesController.tr("PHONENUMBER"),
-                                style: TextStyle(fontSize: 14),
-                              ),
-                              Text(
-                                phoneNumber.toString(),
-                                style: TextStyle(fontSize: 12),
-                              ),
-                            ],
-                          ),
-                          SizedBox(height: 10),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                languagesController.tr("SELLING_PRICE"),
-                                style: TextStyle(fontSize: 14),
-                              ),
-                              Spacer(),
-                              Text(
-                                sellingPrice.toString(),
-                                style: TextStyle(fontSize: 12),
-                              ),
-                              SizedBox(width: 5),
-                              Text(
-                                box.read("currency_code"),
-                                style: TextStyle(
-                                  fontSize: 10,
-                                  color: Colors.grey,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
-                            ],
-                          ),
-                          SizedBox(height: 10),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                languagesController.tr("ORDER_ID"),
-                                style: TextStyle(fontSize: 14),
-                              ),
-                              Text(
-                                orderId.toString(),
-                                style: TextStyle(fontSize: 12),
-                              ),
-                            ],
-                          ),
-                          SizedBox(height: 10),
-                          Container(
-                            height: 65,
-                            width: screenWidth,
-                            decoration: BoxDecoration(
-                              color: status.toString() == "1"
-                                  ? AppColors.secondaryColor
-                                  : Colors.red.withOpacity(0.08),
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 10,
-                                vertical: 8,
-                              ),
-                              child: Row(
-                                children: [
-                                  Image.network(imagelink.toString()),
-                                  SizedBox(width: 8),
-                                  Expanded(
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Text(
-                                              languagesController.tr("DATE"),
-                                              style: TextStyle(
-                                                color: Colors.grey.shade600,
-                                                fontSize: 15,
-                                              ),
-                                            ),
-
-                                            Text(
-                                              convertToDate(date.toString()),
-                                              style: TextStyle(
-                                                fontSize: 12,
-                                                fontWeight: FontWeight.w500,
-                                                fontFamily:
-                                                    box.read("language") == "Fa"
-                                                    ? Get.find<FontController>()
-                                                          .currentFont
-                                                    : null,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Text(
-                                              languagesController.tr("TIME"),
-                                              style: TextStyle(
-                                                color: Colors.grey.shade600,
-                                                fontSize: 15,
-                                              ),
-                                            ),
-
-                                            Text(
-                                              convertToLocalTime(
-                                                date.toString(),
-                                              ),
-                                              style: TextStyle(
-                                                fontSize:
-                                                    16, // 👈 custom font size here
-                                                fontWeight: FontWeight.w600,
-                                                fontFamily:
-                                                    box.read("language") == "Fa"
-                                                    ? Get.find<FontController>()
-                                                          .currentFont
-                                                    : null,
-                                                color: Colors
-                                                    .blue, // or any color you like
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              SizedBox(height: 13),
-              Container(
-                height: 45,
-                width: screenWidth,
-                child: Row(
-                  children: [
-                    Expanded(
-                      flex: 1,
-                      child: GestureDetector(
-                        onTap: () async {
-                          capturePng();
-                        },
-                        child: Container(
-                          decoration: BoxDecoration(
-                            border: Border.all(
-                              width: 1,
-                              color: AppColors.primaryColor,
-                            ),
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                          child: Center(
-                            child: Text(
-                              languagesController.tr("SAVE_TO_GALLERY"),
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                color: AppColors.primaryColor,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 12,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(width: 10),
-                    Expanded(
-                      flex: 1,
-                      child: GestureDetector(
-                        onTap: () async {
-                          captureImageFromWidgetAsFile(shareKey);
-                        },
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: AppColors.primaryColor,
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                          child: Center(
-                            child: Text(
-                              languagesController.tr("SHARE"),
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 14,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Spacer(),
-              GestureDetector(
-                onTap: () {
-                  Navigator.pop(context);
-                },
-                child: Container(
-                  height: 45,
-                  width: screenWidth,
-                  decoration: BoxDecoration(
-                    border: Border.all(width: 1, color: Colors.grey.shade600),
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  child: Center(
-                    child: Text(
-                      languagesController.tr("CLOSE"),
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              SizedBox(height: 8),
-            ],
-          ),
         ),
       ),
     );

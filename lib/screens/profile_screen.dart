@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:intl/intl.dart';
 import 'package:jahanpay/widgets/custom_text.dart';
 import 'package:jahanpay/widgets/default_button1.dart';
 import 'package:dotted_border/dotted_border.dart';
@@ -20,6 +21,7 @@ import 'package:jahanpay/widgets/button_one.dart';
 import 'package:jahanpay/widgets/drawer.dart';
 
 import '../global_controller/page_controller.dart';
+import '../widgets/normaltext.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -220,7 +222,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ),
                       SizedBox(height: 7),
                       Obx(
-                        () => Profilebox(
+                        () => NProfilebox(
                           boxname: languagesController.tr("PHONENUMBER"),
                           data: dashboardController
                               .alldashboardData
@@ -240,64 +242,52 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       // ),
                       SizedBox(height: 7),
                       Obx(
-                        () => Profilebox(
+                        () => DProfilebox(
                           boxname: languagesController.tr("BALANCE"),
-                          data:
-                              dashboardController
-                                  .alldashboardData
-                                  .value
-                                  .data!
-                                  .userInfo!
-                                  .balance
-                                  .toString() +
-                              " " +
-                              box.read("currency_code"),
+                          data: dashboardController
+                              .alldashboardData
+                              .value
+                              .data!
+                              .userInfo!
+                              .balance
+                              .toString(), // only numeric part
                         ),
                       ),
                       SizedBox(height: 7),
                       Obx(
-                        () => Profilebox(
+                        () => DProfilebox(
                           boxname: languagesController.tr("LOAN_BALANCE"),
-                          data:
-                              dashboardController
-                                  .alldashboardData
-                                  .value
-                                  .data!
-                                  .userInfo!
-                                  .loanBalance
-                                  .toString() +
-                              " " +
-                              box.read("currency_code"),
+                          data: dashboardController
+                              .alldashboardData
+                              .value
+                              .data!
+                              .userInfo!
+                              .loanBalance
+                              .toString(),
                         ),
                       ),
                       SizedBox(height: 7),
                       Obx(
-                        () => Profilebox(
+                        () => DProfilebox(
                           boxname: languagesController.tr("TOTAL_SOLD_AMOUNT"),
-                          data:
-                              dashboardController
-                                  .alldashboardData
-                                  .value
-                                  .data!
-                                  .totalSoldAmount
-                                  .toString() +
-                              " " +
-                              box.read("currency_code"),
+                          data: dashboardController
+                              .alldashboardData
+                              .value
+                              .data!
+                              .totalSoldAmount
+                              .toString(),
                         ),
                       ),
                       SizedBox(height: 7),
                       Obx(
-                        () => Profilebox(
+                        () => DProfilebox(
                           boxname: languagesController.tr("TOTAL_REVENUE"),
-                          data:
-                              dashboardController
-                                  .alldashboardData
-                                  .value
-                                  .data!
-                                  .totalRevenue
-                                  .toString() +
-                              " " +
-                              box.read("currency_code"),
+                          data: dashboardController
+                              .alldashboardData
+                              .value
+                              .data!
+                              .totalRevenue
+                              .toString(),
                         ),
                       ),
 
@@ -338,6 +328,83 @@ class Profilebox extends StatelessWidget {
           children: [
             KText(text: boxname.toString()),
             KText(text: data.toString(), fontSize: screenHeight * 0.0150),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class NProfilebox extends StatelessWidget {
+  NProfilebox({super.key, this.boxname, this.data});
+
+  String? boxname;
+  String? data;
+
+  @override
+  Widget build(BuildContext context) {
+    var screenHeight = MediaQuery.of(context).size.height;
+    var screenWidth = MediaQuery.of(context).size.width;
+    return Container(
+      height: screenHeight * 0.065,
+      width: screenWidth,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(8),
+      ),
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 10),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            KText(text: boxname.toString()),
+            DKText(text: data.toString(), fontSize: screenHeight * 0.0150),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class DProfilebox extends StatelessWidget {
+  DProfilebox({super.key, this.boxname, this.data});
+
+  final String? boxname;
+  final String? data;
+
+  /// 🧠 Format the data as money
+  String get formattedData {
+    if (data == null || data!.isEmpty) return '0.00';
+    final value = double.tryParse(data!.replaceAll(',', '')) ?? 0.0;
+    final formatter = NumberFormat.currency(
+      locale: 'en_US',
+      symbol: '', // change to '' if you don't want a symbol
+      decimalDigits: 2,
+    );
+    return formatter.format(value);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    var screenHeight = MediaQuery.of(context).size.height;
+    var screenWidth = MediaQuery.of(context).size.width;
+    return Container(
+      height: screenHeight * 0.065,
+      width: screenWidth,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(8),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 10),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            KText(text: boxname.toString()),
+            DKText(
+              text: formattedData, // ✅ Use formatted value here
+              fontSize: screenHeight * 0.0150,
+            ),
           ],
         ),
       ),

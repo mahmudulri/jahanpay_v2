@@ -156,9 +156,9 @@ class _CustomTextFieldState extends State<CustomTextField> {
               maxLength: int.parse(box.read("maxlength").toString()),
               style: TextStyle(
                 color: Colors.grey.shade600,
-                fontFamily: box.read("language").toString() == "Fa"
-                    ? Get.find<FontController>().currentFont
-                    : null,
+                // fontFamily: box.read("language").toString() == "Fa"
+                //     ? Get.find<FontController>().currentFont
+                //     : null,
               ),
               controller: widget.confirmPinController,
               keyboardType: TextInputType.phone,

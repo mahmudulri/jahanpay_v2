@@ -1,21 +1,30 @@
-import 'package:jahanpay/widgets/custom_text.dart';
+import 'dart:io';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:jahanpay/controllers/drawer_controller.dart';
-import 'package:jahanpay/controllers/sign_in_controller.dart';
-import 'package:jahanpay/global_controller/languages_controller.dart';
-import 'package:jahanpay/global_controller/page_controller.dart';
-import 'package:jahanpay/pages/homepages.dart';
-import 'package:jahanpay/screens/helpscreen.dart';
-import 'package:jahanpay/screens/profile_screen.dart';
-import 'package:jahanpay/screens/sign_in_screen.dart';
-import 'package:jahanpay/screens/termscondition.dart';
-import 'package:jahanpay/utils/colors.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../controllers/dashboard_controller.dart';
+import '../controllers/sign_in_controller.dart';
+import '../global_controller/font_controller.dart';
+
+import '../global_controller/languages_controller.dart';
+import '../global_controller/page_controller.dart';
+import '../pages/network.dart';
+import '../screens/change_password_screen.dart';
+
+import '../screens/change_pin.dart';
+import '../screens/commission_group_screen.dart';
+import '../screens/hawala_list_screen.dart';
+import '../screens/helpscreen.dart';
+import '../screens/profile_screen.dart';
+import '../screens/selling_price_screen.dart';
+import '../screens/sign_in_screen.dart';
+import '../utils/colors.dart';
+import 'appwidget.dart';
+import 'custom_text.dart';
 
 class DrawerWidget extends StatefulWidget {
   DrawerWidget({super.key});
@@ -33,257 +42,365 @@ class _DrawerWidgetState extends State<DrawerWidget> {
 
   LanguagesController languagesController = Get.put(LanguagesController());
 
-  MyDrawerController drawerController = Get.put(MyDrawerController());
-
   @override
   Widget build(BuildContext context) {
     var screenHeight = MediaQuery.of(context).size.height;
     var screenWidth = MediaQuery.of(context).size.width;
     return Container(
       height: screenHeight,
-      width: 250,
+      width: 280,
       decoration: BoxDecoration(
-        color: Color.fromARGB(255, 20, 20, 20).withOpacity(0.99),
-        borderRadius: BorderRadius.only(
-          topRight: Radius.circular(30),
-          bottomRight: Radius.circular(30),
-        ),
-      ),
-      child: ListView(
-        children: [
-          SizedBox(height: 50),
-          Obx(
-            () => Padding(
-              padding: EdgeInsets.all(5.0),
-              child: dashboardController.isLoading.value == false
-                  ? CircleAvatar(
-                      radius: 60,
-                      backgroundColor: Colors.grey,
-                      backgroundImage:
-                          dashboardController
-                                  .alldashboardData
-                                  .value
-                                  .data!
-                                  .userInfo!
-                                  .profileImageUrl
-                                  .toString() !=
-                              "null"
-                          ? NetworkImage(
-                              dashboardController
-                                  .alldashboardData
-                                  .value
-                                  .data!
-                                  .userInfo!
-                                  .profileImageUrl
-                                  .toString(),
-                            )
-                          : null, // Remove background image if null
-                      child:
-                          dashboardController
-                                  .alldashboardData
-                                  .value
-                                  .data!
-                                  .userInfo!
-                                  .profileImageUrl
-                                  .toString() ==
-                              "null"
-                          ? Icon(
-                              Icons.person,
-                              color: Colors.white,
-                              size: 24,
-                            ) // Placeholder icon
-                          : null,
-                    )
-                  : SizedBox(),
-            ),
-          ),
-          SizedBox(height: 30),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Obx(
-                () => dashboardController.isLoading.value == false
-                    ? Column(
-                        children: [
-                          Text(
-                            dashboardController
-                                .alldashboardData
-                                .value
-                                .data!
-                                .userInfo!
-                                .resellerName
-                                .toString(),
-                            style: TextStyle(
-                              fontSize: screenHeight * 0.022,
-                              color: Colors.white,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                          Text(
-                            dashboardController
-                                .alldashboardData
-                                .value
-                                .data!
-                                .userInfo!
-                                .email
-                                .toString(),
-                            style: TextStyle(
-                              fontSize: screenHeight * 0.022,
-                              color: Colors.grey,
-                              fontWeight: FontWeight.w300,
-                            ),
-                          ),
-                        ],
-                      )
-                    : SizedBox(),
+        color: Colors.white,
+        borderRadius: box.read("direction") != "rtl"
+            ? BorderRadius.only(
+                topRight: Radius.circular(30),
+                bottomRight: Radius.circular(30),
+              )
+            : BorderRadius.only(
+                topLeft: Radius.circular(30),
+                bottomLeft: Radius.circular(30),
               ),
-            ],
-          ),
-          SizedBox(height: 50),
-          Obx(
-            () => drawermenu(
-              imagelink: "assets/icons/user.png",
-              menuname: languagesController.tr("PROFILE"),
-              onpressed: () {
-                mypagecontroller.changePage(ProfileScreen(), isMainPage: false);
-                drawerController.isOpen.value = false;
-              },
+      ),
+      child: Column(
+        children: [
+          Container(
+            height: 200,
+            width: double.maxFinite,
+            decoration: BoxDecoration(
+              color: AppColors.primaryColor,
+              // gradient: LinearGradient(
+              //   colors: [
+              //     Color(0xFFE0BCF3), // Left side color
+              //     Color(0xFF7EE7EE), // Right side color
+              //   ],
+              //   begin: Alignment.centerLeft,
+              //   end: Alignment.centerRight,
+              // ),
+              borderRadius: box.read("direction") != "rtl"
+                  ? BorderRadius.only(
+                      topRight: Radius.circular(30),
+                      // bottomRight: Radius.circular(30),
+                    )
+                  : BorderRadius.only(
+                      topLeft: Radius.circular(30),
+                      // bottomLeft: Radius.circular(30),
+                    ),
+            ),
+            child: Column(
+              children: [
+                SizedBox(height: 50),
+                CircleAvatar(
+                  backgroundColor: Colors.transparent,
+                  radius: 45,
+                  backgroundImage: AssetImage("assets/icons/logo.png"),
+                ),
+                SizedBox(height: 8),
+                Text(
+                  "انصاف تیلیکام",
+                  style: TextStyle(
+                    fontSize: screenHeight * 0.030,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
             ),
           ),
-          SizedBox(height: screenHeight * 0.025),
-          drawermenu(
-            imagelink: "assets/icons/security-safe.png",
-            menuname: languagesController.tr("TERMS_AND_CONDITIONS"),
-            onpressed: () {
-              mypagecontroller.changePage(Termscondition(), isMainPage: false);
-              drawerController.isOpen.value = false;
-            },
-          ),
-          SizedBox(height: screenHeight * 0.025),
-          drawermenu(
-            imagelink: "assets/icons/note-text.png",
-            menuname: languagesController.tr("HELP"),
-            onpressed: () {
-              mypagecontroller.changePage(Helpscreen(), isMainPage: false);
-            },
-          ),
-          SizedBox(height: screenHeight * 0.025),
-          drawermenu(
-            imagelink: "assets/icons/whatsapp.png",
-            menuname: languagesController.tr("CONTACTUS"),
-            onpressed: () {
-              showDialog(
-                context: context,
-                builder: (context) {
-                  return AlertDialog(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(17),
-                    ),
-                    contentPadding: EdgeInsets.all(0),
-                    content: ContactDialogBox(),
-                  );
-                },
-              );
-            },
-          ),
-          SizedBox(height: screenHeight * 0.025),
-          drawermenu(
-            imagelink: "assets/icons/global.png",
-            menuname: languagesController.tr("LANGUAGES"),
-            onpressed: () {
-              // Open the AlertDialog when the text is tapped
-              showDialog(
-                context: context,
-                builder: (context) {
-                  return AlertDialog(
-                    title: Text("Change Language"),
-                    content: Container(
-                      height: 350,
-                      width: screenWidth,
-                      child: ListView.builder(
-                        shrinkWrap: true,
-                        itemCount: languagesController.alllanguagedata.length,
-                        itemBuilder: (context, index) {
-                          final data =
-                              languagesController.alllanguagedata[index];
-                          return GestureDetector(
-                            onTap: () {
-                              languagesController.changeLanguage(
-                                data["name"].toString(),
-                              );
-                              box.write("language", data["name"]);
-                              if (data["direction"].toString() == "ltr") {
-                                box.write("direction", "ltr");
-                                setState(() {
-                                  EasyLocalization.of(
-                                    context,
-                                  )!.setLocale(Locale('en', 'US'));
-                                });
-                                print("LRT Mode.....................");
-                              } else {
-                                box.write("direction", "rtl");
-                                setState(() {
-                                  EasyLocalization.of(
-                                    context,
-                                  )!.setLocale(Locale('ar', 'AE'));
-                                });
-                              }
-                              Navigator.pop(context);
-                            },
-                            child: Container(
-                              margin: EdgeInsets.only(bottom: 5),
-                              height: 45,
-                              width: screenWidth,
-                              decoration: BoxDecoration(
-                                border: Border.all(
-                                  width: 1,
-                                  color: Colors.grey.shade100,
+          Expanded(
+            child: ListView(
+              physics: BouncingScrollPhysics(),
+              children: [
+                Obx(
+                  () => drawermenu(
+                    imagelink: "assets/icons/drawerprofile.png",
+                    menuname: languagesController.tr("PROFILE"),
+                    onpressed: () {
+                      mypagecontroller.changePage(
+                        ProfileScreen(),
+                        isMainPage: false,
+                      );
+                      Navigator.pop(context);
+                    },
+                  ),
+                ),
+                SizedBox(height: screenHeight * 0.015),
+                Obx(
+                  () => drawermenu(
+                    imagelink: "assets/icons/faq.png",
+                    menuname: languagesController.tr("SET_SALE_PRICE"),
+                    onpressed: () {
+                      mypagecontroller.changePage(
+                        SellingPriceScreen(),
+                        isMainPage: false,
+                      );
+                      Navigator.pop(context);
+                    },
+                  ),
+                ),
+
+                SizedBox(height: screenHeight * 0.015),
+                Obx(
+                  () => drawermenu(
+                    imagelink: "assets/icons/discount.png",
+                    menuname: languagesController.tr("COMMISSION_GROUP"),
+                    onpressed: () {
+                      mypagecontroller.changePage(
+                        CommissionGroupScreen(),
+                        isMainPage: false,
+                      );
+                      Navigator.pop(context);
+                    },
+                  ),
+                ),
+                SizedBox(height: screenHeight * 0.015),
+                drawermenu(
+                  imagelink: "assets/icons/discount.png",
+                  menuname: languagesController.tr("ACCOUNTING"),
+                  onpressed: () {
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          backgroundColor: Colors.white,
+                          title: Row(
+                            children: [
+                              Icon(
+                                Icons.hourglass_empty,
+                                color: Colors.deepPurple,
+                                size: 28,
+                              ),
+                              SizedBox(width: 8),
+                              Text(
+                                languagesController.tr("COMMING_SOON"),
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.deepPurple,
                                 ),
                               ),
-                              child: Padding(
-                                padding: const EdgeInsets.symmetric(
-                                  horizontal: 10,
+                            ],
+                          ),
+                          actions: [
+                            TextButton(
+                              style: TextButton.styleFrom(
+                                foregroundColor: Colors.white,
+                                backgroundColor: Colors.deepPurple,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(12),
                                 ),
-                                child: Row(
-                                  children: [
-                                    Center(
-                                      child: Text(
-                                        languagesController
-                                            .alllanguagedata[index]["name"]
-                                            .toString(),
+                              ),
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              },
+                              child: Text(languagesController.tr("CLOSE")),
+                            ),
+                          ],
+                        );
+                      },
+                    );
+                  },
+                ),
+                SizedBox(height: screenHeight * 0.015),
+                drawermenu(
+                  imagelink: "assets/icons/key.png",
+                  menuname: languagesController.tr("CHANGE_PIN"),
+                  onpressed: () {
+                    mypagecontroller.changePage(
+                      ChangePinScreen(),
+                      isMainPage: false,
+                    );
+                    Navigator.pop(context);
+                  },
+                ),
+                SizedBox(height: screenHeight * 0.015),
+                drawermenu(
+                  imagelink: "assets/icons/padlock.png",
+                  menuname: languagesController.tr("CHANGE_PASSWORD"),
+                  onpressed: () {
+                    mypagecontroller.changePage(
+                      ChangePasswordScreen(),
+                      isMainPage: false,
+                    );
+                    Navigator.pop(context);
+                  },
+                ),
+                SizedBox(height: screenHeight * 0.015),
+                drawermenu(
+                  imagelink: "assets/icons/drawerguide.png",
+                  menuname: languagesController.tr("HELP"),
+                  onpressed: () {
+                    mypagecontroller.changePage(
+                      Helpscreen(),
+                      isMainPage: false,
+                    );
+                    Navigator.pop(context);
+                  },
+                ),
+                SizedBox(height: screenHeight * 0.015),
+                drawermenu(
+                  imagelink: "assets/icons/drawerwhatsapp.png",
+                  menuname: languagesController.tr("CONTACTUS"),
+                  onpressed: () {
+                    Navigator.pop(context);
+                    showDialog(
+                      context: context,
+                      builder: (context) {
+                        return AlertDialog(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(17),
+                          ),
+                          contentPadding: EdgeInsets.all(0),
+                          content: ContactDialogBox(),
+                        );
+                      },
+                    );
+                  },
+                ),
+                SizedBox(height: screenHeight * 0.015),
+                drawermenu(
+                  imagelink: "assets/icons/drawerlanguage.png",
+                  menuname: languagesController.tr("LANGUAGES"),
+                  onpressed: () {
+                    showDialog(
+                      context: context,
+                      builder: (context) {
+                        return AlertDialog(
+                          title: Text(languagesController.tr("LANGUAGES")),
+                          content: Container(
+                            height: 350,
+                            width: screenWidth,
+                            child: ListView.builder(
+                              shrinkWrap: true,
+                              itemCount:
+                                  languagesController.alllanguagedata.length,
+                              itemBuilder: (context, index) {
+                                final data =
+                                    languagesController.alllanguagedata[index];
+                                return GestureDetector(
+                                  onTap: () {
+                                    final languageName = data["name"]
+                                        .toString();
+
+                                    final matched = languagesController
+                                        .alllanguagedata
+                                        .firstWhere(
+                                          (lang) =>
+                                              lang["name"] == languageName,
+                                          orElse: () => {
+                                            "isoCode": "en",
+                                            "direction": "ltr",
+                                          },
+                                        );
+
+                                    final languageISO = matched["isoCode"]!;
+                                    final languageDirection =
+                                        matched["direction"]!;
+
+                                    // Store selected language & direction
+                                    languagesController.changeLanguage(
+                                      languageName,
+                                    );
+                                    box.write("language", languageName);
+                                    box.write("direction", languageDirection);
+
+                                    // Set locale based on ISO
+                                    Locale locale;
+                                    switch (languageISO) {
+                                      case "fa":
+                                        locale = Locale("fa", "IR");
+                                        break;
+                                      case "ar":
+                                        locale = Locale("ar", "AE");
+                                        break;
+                                      case "ps":
+                                        locale = Locale("ps", "AF");
+                                        break;
+                                      case "tr":
+                                        locale = Locale("tr", "TR");
+                                        break;
+                                      case "bn":
+                                        locale = Locale("bn", "BD");
+                                        break;
+                                      case "en":
+                                      default:
+                                        locale = Locale("en", "US");
+                                    }
+
+                                    // Set app locale
+                                    setState(() {
+                                      EasyLocalization.of(
+                                        context,
+                                      )!.setLocale(locale);
+                                    });
+
+                                    // Pop dialog
+                                    Navigator.pop(context);
+
+                                    print(
+                                      "🌐 Language changed to $languageName ($languageISO), Direction: $languageDirection",
+                                    );
+                                  },
+                                  child: Container(
+                                    margin: EdgeInsets.only(bottom: 5),
+                                    height: 45,
+                                    width: screenWidth,
+                                    decoration: BoxDecoration(
+                                      border: Border.all(
+                                        width: 1,
+                                        color: Colors.grey.shade300,
+                                      ),
+                                      borderRadius: BorderRadius.circular(8),
+                                    ),
+                                    child: Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                        horizontal: 10,
+                                      ),
+                                      child: Row(
+                                        children: [
+                                          Center(
+                                            child: KText(
+                                              text: languagesController
+                                                  .alllanguagedata[index]["fullname"]
+                                                  .toString(),
+                                            ),
+                                          ),
+                                        ],
                                       ),
                                     ),
-                                  ],
-                                ),
-                              ),
+                                  ),
+                                );
+                              },
                             ),
-                          );
-                        },
-                      ),
-                    ),
-                  );
-                },
-              );
-            },
-          ),
-          SizedBox(height: screenHeight * 0.025),
-          drawermenu(
-            imagelink: "assets/icons/logout.png",
-            menuname: languagesController.tr("LOGOUT"),
-            onpressed: () {
-              showDialog(
-                context: context,
-                builder: (context) {
-                  return AlertDialog(
-                    contentPadding: EdgeInsets.all(0),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    content: LogoutDialogBox(),
-                  );
-                },
-              );
-            },
+                          ),
+                        );
+                      },
+                    );
+                    // Navigator.pop(context);
+                  },
+                ),
+                SizedBox(height: screenHeight * 0.015),
+                drawermenu(
+                  imagelink: "assets/icons/logout.png",
+                  menuname: languagesController.tr("LOGOUT"),
+                  onpressed: () {
+                    showDialog(
+                      context: context,
+                      builder: (context) {
+                        return AlertDialog(
+                          contentPadding: EdgeInsets.all(0),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                          content: LogoutDialogBox(),
+                        );
+                      },
+                    );
+                  },
+                ),
+              ],
+            ),
           ),
         ],
       ),
@@ -298,6 +415,8 @@ class drawermenu extends StatelessWidget {
   String? imagelink;
   VoidCallback? onpressed;
 
+  final box = GetStorage();
+
   @override
   Widget build(BuildContext context) {
     var screenHeight = MediaQuery.of(context).size.height;
@@ -306,14 +425,24 @@ class drawermenu extends StatelessWidget {
       onTap: onpressed,
       child: Row(
         children: [
-          SizedBox(width: 10),
-          Image.asset(imagelink.toString(), height: 30),
+          SizedBox(width: 20),
+          Image.asset(
+            imagelink.toString(),
+            height: 26,
+            color: menuname.toString() == languagesController.tr("ACCOUNTING")
+                ? null
+                : AppColors.primaryColor,
+          ),
           SizedBox(width: 10),
           Text(
             menuname.toString(),
             style: TextStyle(
-              color: Color(0xff919EAB),
-              fontSize: screenHeight * 0.022,
+              color: Colors.black,
+              fontSize: screenHeight * 0.017,
+              fontWeight: FontWeight.w600,
+              fontFamily: box.read("language").toString() == "Fa"
+                  ? Get.find<FontController>().currentFont
+                  : null,
             ),
           ),
         ],
@@ -322,116 +451,19 @@ class drawermenu extends StatelessWidget {
   }
 }
 
-class LogoutDialogBox extends StatelessWidget {
-  LogoutDialogBox({super.key});
+whatsapp() async {
+  var contact = "+930777005805";
+  var androidUrl = "whatsapp://send?phone=$contact&text=Hi, I need some help";
+  var iosUrl = "https://wa.me/$contact?text=${Uri.parse('')}";
 
-  final signInController = Get.find<SignInController>();
-  final Mypagecontroller mypagecontroller = Get.find();
-
-  final box = GetStorage();
-
-  LanguagesController languagesController = Get.put(LanguagesController());
-
-  @override
-  Widget build(BuildContext context) {
-    var screenWidth = MediaQuery.of(context).size.width;
-    return Container(
-      height: 200,
-      width: screenWidth,
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(15),
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Image.asset("assets/icons/rejected.png", height: 40),
-              SizedBox(width: 15),
-              KText(
-                text: languagesController.tr("ARE_YOU_READY_TO_LOG_OUT"),
-                color: Colors.black,
-                fontSize: 15,
-                fontWeight: FontWeight.w600,
-              ),
-            ],
-          ),
-          // SizedBox(
-          //   height: 20,
-          // ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: Container(
-              height: 45,
-              width: screenWidth,
-              child: Row(
-                children: [
-                  Expanded(
-                    flex: 2,
-                    child: GestureDetector(
-                      onTap: () {
-                        signInController.usernameController.clear();
-                        signInController.passwordController.clear();
-
-                        box.remove("userToken");
-                        mypagecontroller.changePage(
-                          Homepages(),
-                          isMainPage: false,
-                        );
-
-                        Get.to(() => SignInScreen());
-                      },
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: Colors.red,
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: Center(
-                          child: KText(
-                            text: languagesController.tr("YES_IAMGOING_OUT"),
-                            color: Colors.white,
-                            fontWeight: FontWeight.w600,
-                            fontSize: 15,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(width: 15),
-                  Expanded(
-                    flex: 1,
-                    child: GestureDetector(
-                      onTap: () {
-                        Navigator.pop(context);
-                      },
-                      child: Container(
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            width: 1,
-                            color: Colors.grey.shade300,
-                          ),
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: Center(
-                          child: KText(
-                            text: languagesController.tr("CANCEL"),
-                            color: Colors.black,
-                            fontSize: 15,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
+  try {
+    if (Platform.isIOS) {
+      await launchUrl(Uri.parse(iosUrl));
+    } else {
+      await launchUrl(Uri.parse(androidUrl));
+    }
+  } on Exception {
+    print("not found");
   }
 }
 
@@ -456,13 +488,15 @@ class ContactDialogBox extends StatelessWidget {
           Image.asset("assets/icons/whatsapp2.png", height: 80),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: Text(
-              "You will be redirected to the WhatsApp page to contact us. Continue?",
-              style: TextStyle(
-                color: Colors.black,
-                fontWeight: FontWeight.bold,
+            child: Obx(
+              () => Text(
+                languagesController.tr("WHATSAPP_TITLE"),
+                style: TextStyle(
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                ),
+                textAlign: TextAlign.center,
               ),
-              textAlign: TextAlign.center,
             ),
           ),
           Padding(
@@ -473,20 +507,24 @@ class ContactDialogBox extends StatelessWidget {
               child: Row(
                 children: [
                   Expanded(
-                    flex: 3,
+                    flex: 1,
                     child: GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        whatsapp();
+                      },
                       child: Container(
                         decoration: BoxDecoration(
                           color: Colors.green,
                           borderRadius: BorderRadius.circular(10),
                         ),
                         child: Center(
-                          child: Text(
-                            languagesController.tr("YES"),
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
+                          child: Obx(
+                            () => Text(
+                              languagesController.tr("YES"),
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                           ),
                         ),
@@ -495,7 +533,7 @@ class ContactDialogBox extends StatelessWidget {
                   ),
                   SizedBox(width: 10),
                   Expanded(
-                    flex: 2,
+                    flex: 1,
                     child: GestureDetector(
                       onTap: () {
                         Navigator.pop(context);
@@ -506,11 +544,13 @@ class ContactDialogBox extends StatelessWidget {
                           borderRadius: BorderRadius.circular(10),
                         ),
                         child: Center(
-                          child: Text(
-                            languagesController.tr("CANCEL"),
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontWeight: FontWeight.bold,
+                          child: Obx(
+                            () => Text(
+                              languagesController.tr("CANCEL"),
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                           ),
                         ),

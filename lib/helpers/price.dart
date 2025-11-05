@@ -16,7 +16,7 @@ class PriceTextView extends StatelessWidget {
       NumberFormat.currency(
         locale: 'en_US',
         symbol: '',
-        decimalDigits: 2,
+        decimalDigits: 0,
       ).format(double.parse(formattedPrice)),
       style: textStyle, // Using the provided text style
     );

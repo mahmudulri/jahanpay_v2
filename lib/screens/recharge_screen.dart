@@ -20,6 +20,7 @@ import '../global_controller/font_controller.dart';
 import '../global_controller/page_controller.dart';
 import '../pages/homepages.dart';
 import '../widgets/custom_text.dart';
+import '../widgets/normaltext.dart';
 import 'country_selection.dart';
 
 class RechargeScreen extends StatefulWidget {
@@ -462,7 +463,7 @@ class _RechargeScreenState extends State<RechargeScreen> {
                 padding: const EdgeInsets.symmetric(horizontal: 15),
                 child: Container(
                   decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: Color(0xffEEF4FF),
                     boxShadow: [
                       BoxShadow(
                         color: Colors.grey.withOpacity(0.2),
@@ -678,18 +679,6 @@ class _RechargeScreenState extends State<RechargeScreen> {
                                                                                         color: Colors.grey.shade600,
                                                                                         fontSize: 12,
                                                                                         fontWeight: FontWeight.w600,
-                                                                                        fontFamily:
-                                                                                            box
-                                                                                                    .read(
-                                                                                                      "language",
-                                                                                                    )
-                                                                                                    .toString() ==
-                                                                                                "Fa"
-                                                                                            ? Get.find<
-                                                                                                    FontController
-                                                                                                  >()
-                                                                                                  .currentFont
-                                                                                            : null,
                                                                                       ),
                                                                                     ),
                                                                                     SizedBox(
@@ -731,18 +720,6 @@ class _RechargeScreenState extends State<RechargeScreen> {
                                                                                         color: Colors.grey.shade600,
                                                                                         fontSize: 12,
                                                                                         fontWeight: FontWeight.w600,
-                                                                                        fontFamily:
-                                                                                            box
-                                                                                                    .read(
-                                                                                                      "language",
-                                                                                                    )
-                                                                                                    .toString() ==
-                                                                                                "Fa"
-                                                                                            ? Get.find<
-                                                                                                    FontController
-                                                                                                  >()
-                                                                                                  .currentFont
-                                                                                            : null,
                                                                                       ),
                                                                                     ),
                                                                                     SizedBox(
@@ -816,7 +793,7 @@ class _RechargeScreenState extends State<RechargeScreen> {
                                                                       .grey
                                                                       .shade600,
                                                                 ),
-                                                                KText(
+                                                                DKText(
                                                                   text: confirmPinController
                                                                       .numberController
                                                                       .text
@@ -894,8 +871,12 @@ class _RechargeScreenState extends State<RechargeScreen> {
                                                                                                                               false &&
                                                                                                                           confirmPinController.loadsuccess.value ==
                                                                                                                               false
-                                                                                                                      ? "Confirm your pin"
-                                                                                                                      : "Please wait",
+                                                                                                                      ? languagesController.tr(
+                                                                                                                          "CONFIRM_YOUR_PIN",
+                                                                                                                        )
+                                                                                                                      : languagesController.tr(
+                                                                                                                          "PLEASE_WAIT",
+                                                                                                                        ),
                                                                                                                   fontWeight: FontWeight.w600,
                                                                                                                   fontSize: 15,
                                                                                                                 ),
@@ -925,18 +906,18 @@ class _RechargeScreenState extends State<RechargeScreen> {
                                                                                                             focusNode: _focusNode,
                                                                                                             style: TextStyle(
                                                                                                               fontWeight: FontWeight.w600,
-                                                                                                              fontFamily:
-                                                                                                                  box
-                                                                                                                          .read(
-                                                                                                                            "language",
-                                                                                                                          )
-                                                                                                                          .toString() ==
-                                                                                                                      "Fa"
-                                                                                                                  ? Get.find<
-                                                                                                                          FontController
-                                                                                                                        >()
-                                                                                                                        .currentFont
-                                                                                                                  : null,
+                                                                                                              // fontFamily:
+                                                                                                              //     box
+                                                                                                              //             .read(
+                                                                                                              //               "language",
+                                                                                                              //             )
+                                                                                                              //             .toString() ==
+                                                                                                              //         "Fa"
+                                                                                                              //     ? Get.find<
+                                                                                                              //             FontController
+                                                                                                              //           >()
+                                                                                                              //           .currentFont
+                                                                                                              //     : null,
                                                                                                             ),
                                                                                                             controller: confirmPinController.pinController,
                                                                                                             maxLength: 4,
@@ -1218,7 +1199,7 @@ class _RechargeScreenState extends State<RechargeScreen> {
                                       margin: EdgeInsets.only(bottom: 5),
                                       width: screenWidth,
                                       decoration: BoxDecoration(
-                                        color: Color(0xffEEF4FF),
+                                        color: Colors.white,
                                         borderRadius: BorderRadius.circular(10),
                                       ),
                                       child: Padding(
@@ -1244,63 +1225,31 @@ class _RechargeScreenState extends State<RechargeScreen> {
                                               ),
                                             ),
                                             Expanded(
-                                              flex: 2,
-                                              child: Padding(
-                                                padding: EdgeInsets.only(
-                                                  left: 10,
-                                                  right: 10,
-                                                ),
-                                                child: Column(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    KText(
-                                                      text: data.bundleTitle
-                                                          .toString(),
-                                                      fontWeight:
-                                                          FontWeight.w600,
-                                                      fontSize: 10,
-                                                    ),
-                                                    Obx(
-                                                      () => KText(
-                                                        text:
-                                                            languagesController
-                                                                .tr("SALE"),
-                                                        fontWeight:
-                                                            FontWeight.w500,
-                                                        fontSize: 12,
-                                                        color: Colors.grey,
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                            ),
-                                            SizedBox(width: 2),
-                                            Expanded(
-                                              flex: 2,
-                                              child: Column(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                children: [
-                                                  Row(
+                                              flex: 3,
+                                              child: Container(
+                                                // color: Colors.red,
+                                                child: Padding(
+                                                  padding: EdgeInsets.only(
+                                                    left: 10,
+                                                    right: 10,
+                                                  ),
+                                                  child: Column(
                                                     mainAxisAlignment:
-                                                        MainAxisAlignment.end,
+                                                        MainAxisAlignment
+                                                            .center,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
                                                     children: [
-                                                      // Text(
-                                                      //   data.validityType
-                                                      //       .toString(),
-                                                      //   style: TextStyle(
-                                                      //     fontSize: 14,
-                                                      //     color: Colors
-                                                      //         .grey.shade600,
-                                                      //     fontWeight:
-                                                      //         FontWeight.w600,
-                                                      //   ),
-                                                      // ),
+                                                      Text(
+                                                        data.bundleTitle
+                                                            .toString(),
+                                                        style: TextStyle(
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                          fontSize: 14,
+                                                        ),
+                                                      ),
                                                       Obx(
                                                         () => KText(
                                                           text:
@@ -1352,45 +1301,250 @@ class _RechargeScreenState extends State<RechargeScreen> {
                                                           color: Colors.grey,
                                                         ),
                                                       ),
+                                                      // Obx(
+                                                      //   () => KText(
+                                                      //     text:
+                                                      //         languagesController
+                                                      //             .tr("SALE"),
+                                                      //     fontWeight:
+                                                      //         FontWeight.w500,
+                                                      //     fontSize: 12,
+                                                      //     color: Colors.grey,
+                                                      //   ),
+                                                      // ),
                                                     ],
                                                   ),
-                                                  Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment.end,
-                                                    children: [
-                                                      PriceTextView(
-                                                        price: data.sellingPrice
-                                                            .toString(),
-                                                        textStyle: TextStyle(
-                                                          fontFamily:
-                                                              box
-                                                                      .read(
-                                                                        "language",
-                                                                      )
-                                                                      .toString() ==
-                                                                  "Fa"
-                                                              ? Get.find<
-                                                                      FontController
-                                                                    >()
-                                                                    .currentFont
-                                                              : null,
-                                                        ),
-                                                      ),
-                                                      SizedBox(width: 2),
-                                                      Text(
-                                                        " ${box.read("currency_code")}",
-                                                        style: TextStyle(
-                                                          fontSize: 12,
-                                                          fontWeight:
-                                                              FontWeight.w500,
-                                                          color: Colors
-                                                              .grey
-                                                              .shade600,
-                                                        ),
-                                                      ),
-                                                    ],
+                                                ),
+                                              ),
+                                            ),
+
+                                            Expanded(
+                                              flex: 2,
+                                              child: Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  PriceTextView(
+                                                    price: data.sellingPrice
+                                                        .toString(),
+                                                    textStyle: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                    ),
+                                                  ),
+                                                  SizedBox(width: 2),
+                                                  Text(
+                                                    " ${box.read("currency_code")}",
+                                                    style: TextStyle(
+                                                      fontSize: 10,
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                      color:
+                                                          Colors.grey.shade600,
+                                                    ),
                                                   ),
                                                 ],
+                                              ),
+                                            ),
+                                            GestureDetector(
+                                              onTap: () {
+                                                showDialog(
+                                                  context: context,
+
+                                                  builder: (context) {
+                                                    return AlertDialog(
+                                                      backgroundColor:
+                                                          Colors.white,
+                                                      content: Container(
+                                                        height: 170,
+                                                        width: screenWidth,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                              color:
+                                                                  Colors.white,
+                                                            ),
+                                                        child: Padding(
+                                                          padding:
+                                                              const EdgeInsets.all(
+                                                                12.0,
+                                                              ),
+                                                          child: Column(
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .spaceEvenly,
+                                                            children: [
+                                                              Text(
+                                                                data.bundleTitle
+                                                                    .toString(),
+                                                                style: TextStyle(
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
+                                                                  fontSize: 15,
+                                                                ),
+                                                              ),
+                                                              SizedBox(
+                                                                height: 10,
+                                                              ),
+                                                              Row(
+                                                                mainAxisAlignment:
+                                                                    MainAxisAlignment
+                                                                        .spaceBetween,
+                                                                children: [
+                                                                  KText(
+                                                                    text: languagesController.tr(
+                                                                      "BUYING_PRICE",
+                                                                    ),
+                                                                    fontSize:
+                                                                        15,
+                                                                  ),
+                                                                  Spacer(),
+                                                                  PriceTextView(
+                                                                    price: data
+                                                                        .buyingPrice
+                                                                        .toString(),
+                                                                    textStyle: TextStyle(
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .bold,
+                                                                    ),
+                                                                  ),
+                                                                  SizedBox(
+                                                                    width: 2,
+                                                                  ),
+                                                                  Text(
+                                                                    " ${box.read("currency_code")}",
+                                                                    style: TextStyle(
+                                                                      fontSize:
+                                                                          10,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w500,
+                                                                      color: Colors
+                                                                          .grey
+                                                                          .shade600,
+                                                                    ),
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                              Row(
+                                                                mainAxisAlignment:
+                                                                    MainAxisAlignment
+                                                                        .spaceBetween,
+                                                                children: [
+                                                                  KText(
+                                                                    text: languagesController.tr(
+                                                                      "SELLING_PRICE",
+                                                                    ),
+                                                                    fontSize:
+                                                                        15,
+                                                                  ),
+                                                                  Spacer(),
+                                                                  PriceTextView(
+                                                                    price: data
+                                                                        .sellingPrice
+                                                                        .toString(),
+                                                                    textStyle: TextStyle(
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .bold,
+                                                                    ),
+                                                                  ),
+                                                                  SizedBox(
+                                                                    width: 2,
+                                                                  ),
+                                                                  Text(
+                                                                    " ${box.read("currency_code")}",
+                                                                    style: TextStyle(
+                                                                      fontSize:
+                                                                          10,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w500,
+                                                                      color: Colors
+                                                                          .grey
+                                                                          .shade600,
+                                                                    ),
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                              SizedBox(
+                                                                height: 12,
+                                                              ),
+                                                              Row(
+                                                                mainAxisAlignment:
+                                                                    MainAxisAlignment
+                                                                        .center,
+                                                                children: [
+                                                                  GestureDetector(
+                                                                    onTap: () {
+                                                                      Navigator.pop(
+                                                                        context,
+                                                                      );
+                                                                    },
+                                                                    child: Container(
+                                                                      height:
+                                                                          50,
+                                                                      decoration: BoxDecoration(
+                                                                        color: Colors
+                                                                            .grey,
+                                                                        borderRadius:
+                                                                            BorderRadius.circular(
+                                                                              12,
+                                                                            ),
+                                                                      ),
+                                                                      child: Padding(
+                                                                        padding: EdgeInsets.symmetric(
+                                                                          horizontal:
+                                                                              16,
+                                                                          vertical:
+                                                                              2,
+                                                                        ),
+                                                                        child: Center(
+                                                                          child: KText(
+                                                                            text: languagesController.tr(
+                                                                              "CLOSE",
+                                                                            ),
+                                                                            color:
+                                                                                Colors.white,
+                                                                            fontSize:
+                                                                                14,
+                                                                            fontWeight:
+                                                                                FontWeight.w600,
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    );
+                                                  },
+                                                );
+                                              },
+                                              child: Container(
+                                                decoration: BoxDecoration(
+                                                  color: AppColors.primaryColor,
+                                                  borderRadius:
+                                                      BorderRadius.circular(12),
+                                                ),
+                                                child: Padding(
+                                                  padding: EdgeInsets.symmetric(
+                                                    horizontal: 10,
+                                                    vertical: 4,
+                                                  ),
+                                                  child: KText(
+                                                    text: languagesController
+                                                        .tr("DETAILS"),
+                                                    fontSize: 13,
+                                                    color: Colors.white,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                                ),
                                               ),
                                             ),
                                             SizedBox(width: 10),
@@ -1603,18 +1757,6 @@ class _RechargeScreenState extends State<RechargeScreen> {
                                                                                         color: Colors.grey.shade600,
                                                                                         fontSize: 12,
                                                                                         fontWeight: FontWeight.w600,
-                                                                                        fontFamily:
-                                                                                            box
-                                                                                                    .read(
-                                                                                                      "language",
-                                                                                                    )
-                                                                                                    .toString() ==
-                                                                                                "Fa"
-                                                                                            ? Get.find<
-                                                                                                    FontController
-                                                                                                  >()
-                                                                                                  .currentFont
-                                                                                            : null,
                                                                                       ),
                                                                                     ),
                                                                                     SizedBox(
@@ -1656,18 +1798,6 @@ class _RechargeScreenState extends State<RechargeScreen> {
                                                                                         color: Colors.grey.shade600,
                                                                                         fontSize: 12,
                                                                                         fontWeight: FontWeight.w600,
-                                                                                        fontFamily:
-                                                                                            box
-                                                                                                    .read(
-                                                                                                      "language",
-                                                                                                    )
-                                                                                                    .toString() ==
-                                                                                                "Fa"
-                                                                                            ? Get.find<
-                                                                                                    FontController
-                                                                                                  >()
-                                                                                                  .currentFont
-                                                                                            : null,
                                                                                       ),
                                                                                     ),
                                                                                     SizedBox(
@@ -1741,7 +1871,7 @@ class _RechargeScreenState extends State<RechargeScreen> {
                                                                       .grey
                                                                       .shade600,
                                                                 ),
-                                                                KText(
+                                                                DKText(
                                                                   text: confirmPinController
                                                                       .numberController
                                                                       .text
@@ -1819,8 +1949,12 @@ class _RechargeScreenState extends State<RechargeScreen> {
                                                                                                                               false &&
                                                                                                                           confirmPinController.loadsuccess.value ==
                                                                                                                               false
-                                                                                                                      ? "Confirm your pin"
-                                                                                                                      : "Please wait",
+                                                                                                                      ? languagesController.tr(
+                                                                                                                          "CONFIRM_YOUR_PIN",
+                                                                                                                        )
+                                                                                                                      : languagesController.tr(
+                                                                                                                          "PLEASE_WAIT",
+                                                                                                                        ),
                                                                                                                   fontWeight: FontWeight.w600,
                                                                                                                   fontSize: 15,
                                                                                                                 ),
@@ -1850,18 +1984,18 @@ class _RechargeScreenState extends State<RechargeScreen> {
                                                                                                             focusNode: _focusNode,
                                                                                                             style: TextStyle(
                                                                                                               fontWeight: FontWeight.w600,
-                                                                                                              fontFamily:
-                                                                                                                  box
-                                                                                                                          .read(
-                                                                                                                            "language",
-                                                                                                                          )
-                                                                                                                          .toString() ==
-                                                                                                                      "Fa"
-                                                                                                                  ? Get.find<
-                                                                                                                          FontController
-                                                                                                                        >()
-                                                                                                                        .currentFont
-                                                                                                                  : null,
+                                                                                                              // fontFamily:
+                                                                                                              //     box
+                                                                                                              //             .read(
+                                                                                                              //               "language",
+                                                                                                              //             )
+                                                                                                              //             .toString() ==
+                                                                                                              //         "Fa"
+                                                                                                              //     ? Get.find<
+                                                                                                              //             FontController
+                                                                                                              //           >()
+                                                                                                              //           .currentFont
+                                                                                                              //     : null,
                                                                                                             ),
                                                                                                             controller: confirmPinController.pinController,
                                                                                                             maxLength: 4,
@@ -2143,7 +2277,7 @@ class _RechargeScreenState extends State<RechargeScreen> {
                                       margin: EdgeInsets.only(bottom: 5),
                                       width: screenWidth,
                                       decoration: BoxDecoration(
-                                        color: Color(0xffEEF4FF),
+                                        color: Colors.white,
                                         borderRadius: BorderRadius.circular(10),
                                       ),
                                       child: Padding(
@@ -2169,63 +2303,31 @@ class _RechargeScreenState extends State<RechargeScreen> {
                                               ),
                                             ),
                                             Expanded(
-                                              flex: 2,
-                                              child: Padding(
-                                                padding: EdgeInsets.only(
-                                                  left: 10,
-                                                  right: 10,
-                                                ),
-                                                child: Column(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    KText(
-                                                      text: data.bundleTitle
-                                                          .toString(),
-                                                      fontWeight:
-                                                          FontWeight.w600,
-                                                      fontSize: 10,
-                                                    ),
-                                                    Obx(
-                                                      () => KText(
-                                                        text:
-                                                            languagesController
-                                                                .tr("SALE"),
-                                                        fontWeight:
-                                                            FontWeight.w500,
-                                                        fontSize: 12,
-                                                        color: Colors.grey,
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                            ),
-                                            SizedBox(width: 2),
-                                            Expanded(
-                                              flex: 2,
-                                              child: Column(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                children: [
-                                                  Row(
+                                              flex: 3,
+                                              child: Container(
+                                                // color: Colors.red,
+                                                child: Padding(
+                                                  padding: EdgeInsets.only(
+                                                    left: 10,
+                                                    right: 10,
+                                                  ),
+                                                  child: Column(
                                                     mainAxisAlignment:
-                                                        MainAxisAlignment.end,
+                                                        MainAxisAlignment
+                                                            .center,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
                                                     children: [
-                                                      // Text(
-                                                      //   data.validityType
-                                                      //       .toString(),
-                                                      //   style: TextStyle(
-                                                      //     fontSize: 14,
-                                                      //     color: Colors
-                                                      //         .grey.shade600,
-                                                      //     fontWeight:
-                                                      //         FontWeight.w600,
-                                                      //   ),
-                                                      // ),
+                                                      Text(
+                                                        data.bundleTitle
+                                                            .toString(),
+                                                        style: TextStyle(
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                          fontSize: 14,
+                                                        ),
+                                                      ),
                                                       Obx(
                                                         () => KText(
                                                           text:
@@ -2277,45 +2379,250 @@ class _RechargeScreenState extends State<RechargeScreen> {
                                                           color: Colors.grey,
                                                         ),
                                                       ),
+                                                      // Obx(
+                                                      //   () => KText(
+                                                      //     text:
+                                                      //         languagesController
+                                                      //             .tr("SALE"),
+                                                      //     fontWeight:
+                                                      //         FontWeight.w500,
+                                                      //     fontSize: 12,
+                                                      //     color: Colors.grey,
+                                                      //   ),
+                                                      // ),
                                                     ],
                                                   ),
-                                                  Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment.end,
-                                                    children: [
-                                                      PriceTextView(
-                                                        price: data.sellingPrice
-                                                            .toString(),
-                                                        textStyle: TextStyle(
-                                                          fontFamily:
-                                                              box
-                                                                      .read(
-                                                                        "language",
-                                                                      )
-                                                                      .toString() ==
-                                                                  "Fa"
-                                                              ? Get.find<
-                                                                      FontController
-                                                                    >()
-                                                                    .currentFont
-                                                              : null,
-                                                        ),
-                                                      ),
-                                                      SizedBox(width: 2),
-                                                      Text(
-                                                        " ${box.read("currency_code")}",
-                                                        style: TextStyle(
-                                                          fontSize: 12,
-                                                          fontWeight:
-                                                              FontWeight.w500,
-                                                          color: Colors
-                                                              .grey
-                                                              .shade600,
-                                                        ),
-                                                      ),
-                                                    ],
+                                                ),
+                                              ),
+                                            ),
+
+                                            Expanded(
+                                              flex: 2,
+                                              child: Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  PriceTextView(
+                                                    price: data.sellingPrice
+                                                        .toString(),
+                                                    textStyle: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                    ),
+                                                  ),
+                                                  SizedBox(width: 2),
+                                                  Text(
+                                                    " ${box.read("currency_code")}",
+                                                    style: TextStyle(
+                                                      fontSize: 10,
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                      color:
+                                                          Colors.grey.shade600,
+                                                    ),
                                                   ),
                                                 ],
+                                              ),
+                                            ),
+                                            GestureDetector(
+                                              onTap: () {
+                                                showDialog(
+                                                  context: context,
+
+                                                  builder: (context) {
+                                                    return AlertDialog(
+                                                      backgroundColor:
+                                                          Colors.white,
+                                                      content: Container(
+                                                        height: 170,
+                                                        width: screenWidth,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                              color:
+                                                                  Colors.white,
+                                                            ),
+                                                        child: Padding(
+                                                          padding:
+                                                              const EdgeInsets.all(
+                                                                12.0,
+                                                              ),
+                                                          child: Column(
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .spaceEvenly,
+                                                            children: [
+                                                              Text(
+                                                                data.bundleTitle
+                                                                    .toString(),
+                                                                style: TextStyle(
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
+                                                                  fontSize: 15,
+                                                                ),
+                                                              ),
+                                                              SizedBox(
+                                                                height: 10,
+                                                              ),
+                                                              Row(
+                                                                mainAxisAlignment:
+                                                                    MainAxisAlignment
+                                                                        .spaceBetween,
+                                                                children: [
+                                                                  KText(
+                                                                    text: languagesController.tr(
+                                                                      "BUYING_PRICE",
+                                                                    ),
+                                                                    fontSize:
+                                                                        15,
+                                                                  ),
+                                                                  Spacer(),
+                                                                  PriceTextView(
+                                                                    price: data
+                                                                        .buyingPrice
+                                                                        .toString(),
+                                                                    textStyle: TextStyle(
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .bold,
+                                                                    ),
+                                                                  ),
+                                                                  SizedBox(
+                                                                    width: 2,
+                                                                  ),
+                                                                  Text(
+                                                                    " ${box.read("currency_code")}",
+                                                                    style: TextStyle(
+                                                                      fontSize:
+                                                                          10,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w500,
+                                                                      color: Colors
+                                                                          .grey
+                                                                          .shade600,
+                                                                    ),
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                              Row(
+                                                                mainAxisAlignment:
+                                                                    MainAxisAlignment
+                                                                        .spaceBetween,
+                                                                children: [
+                                                                  KText(
+                                                                    text: languagesController.tr(
+                                                                      "SELLING_PRICE",
+                                                                    ),
+                                                                    fontSize:
+                                                                        15,
+                                                                  ),
+                                                                  Spacer(),
+                                                                  PriceTextView(
+                                                                    price: data
+                                                                        .sellingPrice
+                                                                        .toString(),
+                                                                    textStyle: TextStyle(
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .bold,
+                                                                    ),
+                                                                  ),
+                                                                  SizedBox(
+                                                                    width: 2,
+                                                                  ),
+                                                                  Text(
+                                                                    " ${box.read("currency_code")}",
+                                                                    style: TextStyle(
+                                                                      fontSize:
+                                                                          10,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w500,
+                                                                      color: Colors
+                                                                          .grey
+                                                                          .shade600,
+                                                                    ),
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                              SizedBox(
+                                                                height: 12,
+                                                              ),
+                                                              Row(
+                                                                mainAxisAlignment:
+                                                                    MainAxisAlignment
+                                                                        .center,
+                                                                children: [
+                                                                  GestureDetector(
+                                                                    onTap: () {
+                                                                      Navigator.pop(
+                                                                        context,
+                                                                      );
+                                                                    },
+                                                                    child: Container(
+                                                                      height:
+                                                                          50,
+                                                                      decoration: BoxDecoration(
+                                                                        color: Colors
+                                                                            .grey,
+                                                                        borderRadius:
+                                                                            BorderRadius.circular(
+                                                                              12,
+                                                                            ),
+                                                                      ),
+                                                                      child: Padding(
+                                                                        padding: EdgeInsets.symmetric(
+                                                                          horizontal:
+                                                                              16,
+                                                                          vertical:
+                                                                              2,
+                                                                        ),
+                                                                        child: Center(
+                                                                          child: KText(
+                                                                            text: languagesController.tr(
+                                                                              "CLOSE",
+                                                                            ),
+                                                                            color:
+                                                                                Colors.white,
+                                                                            fontSize:
+                                                                                14,
+                                                                            fontWeight:
+                                                                                FontWeight.w600,
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    );
+                                                  },
+                                                );
+                                              },
+                                              child: Container(
+                                                decoration: BoxDecoration(
+                                                  color: AppColors.primaryColor,
+                                                  borderRadius:
+                                                      BorderRadius.circular(12),
+                                                ),
+                                                child: Padding(
+                                                  padding: EdgeInsets.symmetric(
+                                                    horizontal: 10,
+                                                    vertical: 4,
+                                                  ),
+                                                  child: KText(
+                                                    text: languagesController
+                                                        .tr("DETAILS"),
+                                                    fontSize: 13,
+                                                    color: Colors.white,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                                ),
                                               ),
                                             ),
                                             SizedBox(width: 10),

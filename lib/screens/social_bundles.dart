@@ -21,6 +21,7 @@ import 'package:jahanpay/utils/colors.dart';
 
 import '../global_controller/font_controller.dart';
 import '../widgets/custom_text.dart';
+import '../widgets/normaltext.dart';
 import 'country_selection.dart';
 
 class SocialBundles extends StatefulWidget {
@@ -394,7 +395,7 @@ class _SocialBundlesState extends State<SocialBundles> {
                 child: Container(
                   width: screenWidth,
                   decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: Color(0xffEEF4FF),
                     boxShadow: [
                       BoxShadow(
                         color: Colors.grey.withOpacity(0.2),
@@ -509,7 +510,7 @@ class _SocialBundlesState extends State<SocialBundles> {
                                                       MainAxisAlignment
                                                           .spaceEvenly,
                                                   children: [
-                                                    KText(
+                                                    DKText(
                                                       text: data.bundleTitle
                                                           .toString(),
                                                       color:
@@ -553,18 +554,6 @@ class _SocialBundlesState extends State<SocialBundles> {
                                                               .toString(),
                                                           textStyle: TextStyle(
                                                             fontSize: 10,
-                                                            fontFamily:
-                                                                box
-                                                                        .read(
-                                                                          "language",
-                                                                        )
-                                                                        .toString() ==
-                                                                    "Fa"
-                                                                ? Get.find<
-                                                                        FontController
-                                                                      >()
-                                                                      .currentFont
-                                                                : null,
                                                           ),
                                                         ),
                                                         SizedBox(width: 2),
@@ -689,7 +678,7 @@ class _SocialBundlesState extends State<SocialBundles> {
                                                       MainAxisAlignment
                                                           .spaceEvenly,
                                                   children: [
-                                                    KText(
+                                                    DKText(
                                                       text: data.bundleTitle
                                                           .toString(),
                                                       color:
@@ -733,18 +722,6 @@ class _SocialBundlesState extends State<SocialBundles> {
                                                               .toString(),
                                                           textStyle: TextStyle(
                                                             fontSize: 10,
-                                                            fontFamily:
-                                                                box
-                                                                        .read(
-                                                                          "language",
-                                                                        )
-                                                                        .toString() ==
-                                                                    "Fa"
-                                                                ? Get.find<
-                                                                        FontController
-                                                                      >()
-                                                                      .currentFont
-                                                                : null,
                                                           ),
                                                         ),
                                                         SizedBox(width: 2),
@@ -880,7 +857,7 @@ class _SocialdialogBoxState extends State<SocialdialogBox> {
                           //     fontSize: 14,
                           //   ),
                           // ),
-                          KText(
+                          DKText(
                             text: widget.title.toString(),
                             color: Colors.grey.shade600,
                             fontSize: 14,
@@ -897,7 +874,7 @@ class _SocialdialogBoxState extends State<SocialdialogBox> {
                             fontSize: 12,
                           ),
                           Spacer(),
-                          KText(
+                          DKText(
                             text: widget.buyingprice.toString(),
                             color: Colors.black,
                             fontSize: 12,
@@ -921,7 +898,7 @@ class _SocialdialogBoxState extends State<SocialdialogBox> {
                             fontSize: 12,
                           ),
                           Spacer(),
-                          KText(
+                          DKText(
                             text: widget.sellingprice.toString(),
                             color: Colors.black,
                             fontSize: 12,
@@ -956,6 +933,7 @@ class _SocialdialogBoxState extends State<SocialdialogBox> {
                     child: GestureDetector(
                       onTap: () {
                         Navigator.pop(context);
+                        confirmPinController.numberController.clear();
                         showDialog(
                           context: context,
                           builder: (context) {
@@ -1010,18 +988,6 @@ class _SocialdialogBoxState extends State<SocialdialogBox> {
                                                       color:
                                                           Colors.grey.shade400,
                                                       fontSize: 15,
-                                                      fontFamily:
-                                                          box
-                                                                  .read(
-                                                                    "language",
-                                                                  )
-                                                                  .toString() ==
-                                                              "Fa"
-                                                          ? Get.find<
-                                                                  FontController
-                                                                >()
-                                                                .currentFont
-                                                          : null,
                                                     ),
                                                   ),
                                                 ),
