@@ -115,7 +115,7 @@ class _HawalaScreenState extends State<HawalaScreen> {
                     children: [
                       GestureDetector(
                         onTap: () {
-                          mypagecontroller.goBack();
+                          mypagecontroller.handleBack();
                         },
                         child: Container(
                           height: 45,
@@ -962,7 +962,7 @@ class _HawalaScreenState extends State<HawalaScreen> {
                               bool success = await addHawalaController
                                   .createhawala();
                               if (success) {
-                                Get.find<Mypagecontroller>().goBack();
+                                mypagecontroller.handleBack();
                               }
                             } else {
                               Fluttertoast.showToast(

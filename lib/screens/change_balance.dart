@@ -76,7 +76,7 @@ class _ChangeBalanceState extends State<ChangeBalance> {
                     children: [
                       GestureDetector(
                         onTap: () {
-                          mypagecontroller.goBack();
+                          mypagecontroller.handleBack();
                         },
                         child: Container(
                           height: 45,

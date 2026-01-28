@@ -83,7 +83,8 @@ class _CreateTransferScreenState extends State<CreateTransferScreen> {
                     children: [
                       GestureDetector(
                         onTap: () {
-                          mypagecontroller.goBack();
+                          mypagecontroller.handleBack();
+                          ;
                         },
                         child: Container(
                           height: 45,

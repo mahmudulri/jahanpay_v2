@@ -3,6 +3,14 @@ import 'package:jahanpay/models/orders_list_model.dart';
 import 'package:jahanpay/services/order_list_service.dart';
 
 class OrderlistController extends GetxController {
+  void onOrdersTabOpened() {
+    print("Orders tab opened 🔥");
+
+    finalList.clear();
+    initialpage = 1;
+    fetchOrderlistdata();
+  }
+
   String filterDate = "order_status=0";
   String orderstatus = "";
   int initialpage = 1;

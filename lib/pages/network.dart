@@ -302,10 +302,11 @@ class _NetworkState extends State<Network> {
                         children: [
                           GestureDetector(
                             onTap: () {
-                              mypagecontroller.changePage(
-                                AddNewUser(),
-                                isMainPage: false,
-                              );
+                              // mypagecontroller.changePage(
+                              //   AddNewUser(),
+                              //   isMainPage: false,
+                              // );
+                              mypagecontroller.openSubPage(AddNewUser());
                             },
                             child: Container(
                               height: 50,
@@ -643,15 +644,15 @@ class _NetworkState extends State<Network> {
                                                           children: [
                                                             GestureDetector(
                                                               onTap: () {
-                                                                mypagecontroller.changePage(
-                                                                  ChangeBalance(
-                                                                    subID: data
-                                                                        .id
-                                                                        .toString(),
-                                                                  ),
-                                                                  isMainPage:
-                                                                      false,
-                                                                );
+                                                                // mypagecontroller.changePage(
+                                                                //   ChangeBalance(
+                                                                //     subID: data
+                                                                //         .id
+                                                                //         .toString(),
+                                                                //   ),
+                                                                //   isMainPage:
+                                                                //       false,
+                                                                // );
                                                                 Navigator.pop(
                                                                   context,
                                                                 );
@@ -684,16 +685,16 @@ class _NetworkState extends State<Network> {
                                                             ),
                                                             GestureDetector(
                                                               onTap: () {
-                                                                mypagecontroller
-                                                                    .changePage(
-                                                                      SetPassword(
-                                                                        subID: data
-                                                                            .id
-                                                                            .toString(),
-                                                                      ),
-                                                                      isMainPage:
-                                                                          false,
-                                                                    );
+                                                                // mypagecontroller
+                                                                //     .changePage(
+                                                                //       SetPassword(
+                                                                //         subID: data
+                                                                //             .id
+                                                                //             .toString(),
+                                                                //       ),
+                                                                //       isMainPage:
+                                                                //           false,
+                                                                //     );
                                                                 Navigator.pop(
                                                                   context,
                                                                 );
@@ -832,15 +833,15 @@ class _NetworkState extends State<Network> {
                                                             ),
                                                             GestureDetector(
                                                               onTap: () {
-                                                                mypagecontroller.changePage(
-                                                                  SetSubresellerPin(
-                                                                    subID: data
-                                                                        .id
-                                                                        .toString(),
-                                                                  ),
-                                                                  isMainPage:
-                                                                      false,
-                                                                );
+                                                                // mypagecontroller.changePage(
+                                                                //   SetSubresellerPin(
+                                                                //     subID: data
+                                                                //         .id
+                                                                //         .toString(),
+                                                                //   ),
+                                                                //   isMainPage:
+                                                                //       false,
+                                                                // );
                                                                 Navigator.pop(
                                                                   context,
                                                                 );

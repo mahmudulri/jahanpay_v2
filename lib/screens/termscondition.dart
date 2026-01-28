@@ -25,7 +25,7 @@ class Termscondition extends StatelessWidget {
     var screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       key: _scaffoldKey,
-      drawer: DrawerWidget(),
+
       onDrawerChanged: (isOpen) {
         drawerController.isOpen.value = isOpen;
         print("Drawer is open: ${drawerController.isOpen.value}");
@@ -46,10 +46,10 @@ class Termscondition extends StatelessWidget {
                     children: [
                       GestureDetector(
                         onTap: () {
-                          mypagecontroller.changePage(
-                            Homepages(),
-                            isMainPage: true,
-                          );
+                          // mypagecontroller.changePage(
+                          //   Homepages(),
+                          //   isMainPage: true,
+                          // );
                         },
                         child: Container(
                           height: 45,

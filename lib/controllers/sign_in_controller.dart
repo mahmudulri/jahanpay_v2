@@ -72,6 +72,10 @@ class SignInController extends GetxController {
           "currencyName",
           results["data"]["user_info"]["currency"]["name"],
         );
+        box.write(
+          "resellerrate",
+          results["data"]["user_info"]["currency"]["exchange_rate_per_usd"],
+        );
 
         if (results["success"] == true) {
           loginsuccess.value = false;
@@ -99,7 +103,7 @@ class SignInController extends GetxController {
         }
       } else {
         Get.snackbar(
-          "Oops!",
+          results["message"],
           results["errors"],
           backgroundColor: Colors.red,
           colorText: Colors.white,

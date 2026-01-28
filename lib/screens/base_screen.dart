@@ -22,7 +22,7 @@ import '../controllers/drawer_controller.dart';
 import '../pages/transaction_type.dart';
 
 class BaseScreen extends StatefulWidget {
-  BaseScreen({super.key});
+  const BaseScreen({super.key});
 
   @override
   State<BaseScreen> createState() => _BaseScreenState();
@@ -30,240 +30,161 @@ class BaseScreen extends StatefulWidget {
 
 class _BaseScreenState extends State<BaseScreen> {
   final dashboardController = Get.find<DashboardController>();
-
-  int _selectedIndex = 0;
   final Mypagecontroller mypagecontroller = Get.put(Mypagecontroller());
+  final LanguagesController languagesController = Get.put(
+    LanguagesController(),
+  );
+  final MyDrawerController drawerController = Get.put(MyDrawerController());
 
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
-
-  var currentIndex = 0;
-
-  var selectedFlexIndex = 0.obs;
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    dashboardController.fetchDashboardData();
-    mypagecontroller.setUpdateIndexCallback(_onItemTapped);
   }
 
-  LanguagesController languagesController = Get.put(LanguagesController());
-  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  void _onTabTap(int index) {
+    if (mypagecontroller.selectedIndex.value == index) return;
 
-  MyDrawerController drawerController = Get.put(MyDrawerController());
+    HapticFeedback.lightImpact();
+    mypagecontroller.onTabSelected(index);
+    mypagecontroller.goToMainPageByIndex(index);
+  }
 
   @override
   Widget build(BuildContext context) {
-    double displayWidth = MediaQuery.of(context).size.width;
-    var screenHeight = MediaQuery.of(context).size.height;
-    var screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
+    final screenWidth = MediaQuery.of(context).size.width;
 
-    Future<bool> showExitPopup() async {
-      final shouldExit = mypagecontroller.goBack();
-      if (shouldExit) {
-        return await showDialog(
-              context: context,
-              builder: (context) => AlertDialog(
-                title: Text(languagesController.tr("EXIT_APP")),
-                content: Text(
-                  languagesController.tr("DO_YOU_WANT_TO_EXIT_APP"),
-                ),
-                actions: [
-                  ElevatedButton(
-                    onPressed: () => Navigator.of(context).pop(false),
-                    child: Text(languagesController.tr("NO")),
-                  ),
-                  ElevatedButton(
-                    onPressed: () {
-                      exit(0);
-                    },
-                    child: Text(languagesController.tr("YES")),
-                  ),
-                ],
-              ),
-            ) ??
-            false;
-      }
-      setState(() {}); // Rebuild screen after popping
-      return false;
-    }
-
-    // ignore: deprecated_member_use
     return WillPopScope(
-      onWillPop: showExitPopup,
+      onWillPop: mypagecontroller.handleBack,
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         key: _scaffoldKey,
-        backgroundColor: Color(0xffF1F3FF),
-        body: Container(
+        backgroundColor: const Color(0xffF1F3FF),
+        body: SizedBox(
           height: screenHeight,
           width: screenWidth,
           child: Stack(
             children: [
+              /// MAIN PAGE CONTENT (FROM NAVIGATOR)
               Positioned.fill(
-                child: Obx(() => mypagecontroller.pageStack.last),
+                child: Navigator(
+                  key: mypagecontroller.navigatorKey,
+                  onGenerateRoute: (_) => MaterialPageRoute(
+                    builder: (_) => Obx(
+                      () => mypagecontroller
+                          .mainPages[mypagecontroller.selectedIndex.value],
+                    ),
+                  ),
+                ),
               ),
+
+              /// BOTTOM BAR (DESIGN UNCHANGED)
               Positioned(
                 bottom: 0,
                 child: SafeArea(
                   child: Container(
                     height: 70,
                     width: screenWidth,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       color: AppColors.primaryColor,
                       borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(50),
                         topRight: Radius.circular(50),
                       ),
                     ),
-                    child: Padding(
-                      padding: EdgeInsets.only(left: 20, right: 20, top: 5),
-                      child: Row(
-                        // crossAxisAlignment: CrossAxisAlignment.center,
+                    padding: const EdgeInsets.only(left: 20, right: 20, top: 5),
+                    child: Obx(() {
+                      final index = mypagecontroller.selectedIndex.value;
+
+                      return Row(
                         children: [
                           Expanded(
-                            flex: selectedFlexIndex.value == 0 ? 2 : 1,
+                            flex: index == 0 ? 2 : 1,
                             child: GestureDetector(
-                              onTap: () {
-                                setState(() {
-                                  selectedFlexIndex.value =
-                                      0; // Set this container to active
-                                  mypagecontroller.changePage(Homepages());
-                                });
-                              },
-                              child: Container(
-                                child: Obx(
-                                  () => Center(
-                                    child: selectedFlexIndex.value == 0
-                                        ? _buildFullStack(
-                                            selectedFlexIndex.value == 0
-                                                ? Color(0xff6A32F6)
-                                                : Color(0xff6A32F6),
-                                            languagesController.tr("HOME"),
-                                            "assets/icons/homeicon.png",
-                                          ) // Show full Stack design
-                                        : _buildSimpleStack(
-                                            Color(0xff6A32F6),
-                                            "assets/icons/homeicon.png",
-                                            languagesController.tr("HOME"),
-                                          ), // Show reduced Stack design
-                                  ),
-                                ),
+                              onTap: () => _onTabTap(0),
+                              child: Center(
+                                child: index == 0
+                                    ? _buildFullStack(
+                                        const Color(0xff6A32F6),
+                                        languagesController.tr("HOME"),
+                                        "assets/icons/homeicon.png",
+                                      )
+                                    : _buildSimpleStack(
+                                        const Color(0xff6A32F6),
+                                        "assets/icons/homeicon.png",
+                                        languagesController.tr("HOME"),
+                                      ),
                               ),
                             ),
                           ),
-                          SizedBox(width: 5),
-                          Expanded(
-                            flex: selectedFlexIndex.value == 1 ? 2 : 1,
-                            child: GestureDetector(
-                              onTap: () {
-                                setState(() {
-                                  selectedFlexIndex.value =
-                                      1; // Set this container to active
-                                  print("Order");
-                                  mypagecontroller.changePage(Orders());
-                                });
-                              },
-                              child: Container(
-                                child: Obx(
-                                  () => Center(
-                                    child: selectedFlexIndex.value == 1
-                                        ? _buildFullStack(
-                                            selectedFlexIndex.value == 0
-                                                ? Color(0xff2ecc71)
-                                                : Color(0xff2ecc71),
-                                            languagesController.tr("ORDERS"),
-                                            "assets/icons/ordericon.png",
-                                          )
-                                        : _buildSimpleStack(
-                                            Color(0xff2ecc71),
-                                            "assets/icons/ordericon.png",
-                                            languagesController.tr("ORDERS"),
-                                          ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                          SizedBox(width: 5),
-                          Expanded(
-                            flex: selectedFlexIndex.value == 2 ? 2 : 1,
-                            child: GestureDetector(
-                              onTap: () {
-                                setState(() {
-                                  selectedFlexIndex.value =
-                                      2; // Set this container to active
-                                  mypagecontroller.changePage(
-                                    TransactionsType(),
-                                  );
+                          const SizedBox(width: 5),
 
-                                  print("Transactions");
-                                });
-                              },
-                              child: Container(
-                                child: Obx(
-                                  () => Center(
-                                    child: selectedFlexIndex.value == 2
-                                        ? _buildFullStack(
-                                            selectedFlexIndex.value == 0
-                                                ? Color(0xff2c3e50)
-                                                : Color(0xff2c3e50),
-                                            languagesController.tr(
-                                              "TRANSACTIONS",
-                                            ),
-                                            "assets/icons/transactionsicon.png",
-                                          )
-                                        : _buildSimpleStack(
-                                            Color(0xff2c3e50),
-                                            "assets/icons/transactionsicon.png",
-                                            languagesController.tr(
-                                              "TRANSACTIONS",
-                                            ),
-                                          ),
-                                  ),
-                                ),
+                          Expanded(
+                            flex: index == 1 ? 2 : 1,
+                            child: GestureDetector(
+                              onTap: () => _onTabTap(1),
+                              child: Center(
+                                child: index == 1
+                                    ? _buildFullStack(
+                                        const Color(0xff2ecc71),
+                                        languagesController.tr("ORDERS"),
+                                        "assets/icons/ordericon.png",
+                                      )
+                                    : _buildSimpleStack(
+                                        const Color(0xff2ecc71),
+                                        "assets/icons/ordericon.png",
+                                        languagesController.tr("ORDERS"),
+                                      ),
                               ),
                             ),
                           ),
-                          SizedBox(width: 5),
+                          const SizedBox(width: 5),
+
                           Expanded(
-                            flex: selectedFlexIndex.value == 3 ? 2 : 1,
+                            flex: index == 2 ? 2 : 1,
                             child: GestureDetector(
-                              onTap: () {
-                                setState(() {
-                                  selectedFlexIndex.value =
-                                      3; // Set this container to active
-                                  mypagecontroller.changePage(Network());
-                                });
-                              },
-                              child: Container(
-                                child: Obx(
-                                  () => Center(
-                                    child: selectedFlexIndex.value == 3
-                                        ? _buildFullStack(
-                                            selectedFlexIndex.value == 0
-                                                ? Color(0xffe74c3c)
-                                                : Color(0xffe74c3c),
-                                            languagesController.tr("NETWORK"),
-                                            "assets/icons/sub_reseller.png",
-                                          )
-                                        : _buildSimpleStack(
-                                            Color(0xffe74c3c),
-                                            "assets/icons/sub_reseller.png",
-                                            languagesController.tr("NETWORK"),
-                                          ),
-                                  ),
-                                ),
+                              onTap: () => _onTabTap(2),
+                              child: Center(
+                                child: index == 2
+                                    ? _buildFullStack(
+                                        const Color(0xff2c3e50),
+                                        languagesController.tr("TRANSACTIONS"),
+                                        "assets/icons/transactionsicon.png",
+                                      )
+                                    : _buildSimpleStack(
+                                        const Color(0xff2c3e50),
+                                        "assets/icons/transactionsicon.png",
+                                        languagesController.tr("TRANSACTIONS"),
+                                      ),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(width: 5),
+
+                          Expanded(
+                            flex: index == 3 ? 2 : 1,
+                            child: GestureDetector(
+                              onTap: () => _onTabTap(3),
+                              child: Center(
+                                child: index == 3
+                                    ? _buildFullStack(
+                                        const Color(0xffe74c3c),
+                                        languagesController.tr("NETWORK"),
+                                        "assets/icons/sub_reseller.png",
+                                      )
+                                    : _buildSimpleStack(
+                                        const Color(0xffe74c3c),
+                                        "assets/icons/sub_reseller.png",
+                                        languagesController.tr("NETWORK"),
+                                      ),
                               ),
                             ),
                           ),
                         ],
-                      ),
-                    ),
+                      );
+                    }),
                   ),
                 ),
               ),
@@ -273,13 +194,6 @@ class _BaseScreenState extends State<BaseScreen> {
       ),
     );
   }
-
-  List<String> imagedata = [
-    "assets/icons/homeicon.png",
-    "assets/icons/transactionsicon.png",
-    "assets/icons/ordericon.png",
-    "assets/icons/sub_reseller.png",
-  ];
 }
 
 Widget _buildFullStack(Color color, String menuname, String image) {

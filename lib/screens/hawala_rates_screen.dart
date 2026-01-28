@@ -24,8 +24,9 @@ class HawalaCurrencyScreen extends StatefulWidget {
 class _HawalaCurrencyScreenState extends State<HawalaCurrencyScreen> {
   final box = GetStorage();
 
-  HawalaCurrencyController hawalacurrencycontroller =
-      Get.put(HawalaCurrencyController());
+  HawalaCurrencyController hawalacurrencycontroller = Get.put(
+    HawalaCurrencyController(),
+  );
 
   LanguagesController languagesController = Get.put(LanguagesController());
 
@@ -34,11 +35,13 @@ class _HawalaCurrencyScreenState extends State<HawalaCurrencyScreen> {
   void initState() {
     super.initState();
     hawalacurrencycontroller.fetchcurrency();
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-      statusBarColor: AppColors.primaryColor,
-      statusBarIconBrightness: Brightness.light, // For Android
-      statusBarBrightness: Brightness.light, // For iOS
-    ));
+    SystemChrome.setSystemUIOverlayStyle(
+      SystemUiOverlayStyle(
+        statusBarColor: AppColors.primaryColor,
+        statusBarIconBrightness: Brightness.light, // For Android
+        statusBarBrightness: Brightness.light, // For iOS
+      ),
+    );
   }
 
   final dashboardController = Get.find<DashboardController>();
@@ -70,7 +73,8 @@ class _HawalaCurrencyScreenState extends State<HawalaCurrencyScreen> {
                     children: [
                       GestureDetector(
                         onTap: () {
-                          mypagecontroller.goBack();
+                          mypagecontroller.handleBack();
+                          ;
                         },
                         child: Container(
                           height: 45,
@@ -80,9 +84,7 @@ class _HawalaCurrencyScreenState extends State<HawalaCurrencyScreen> {
                             borderRadius: BorderRadius.circular(8),
                           ),
                           child: Center(
-                            child: Icon(
-                              FontAwesomeIcons.chevronLeft,
-                            ),
+                            child: Icon(FontAwesomeIcons.chevronLeft),
                           ),
                         ),
                       ),
@@ -111,10 +113,7 @@ class _HawalaCurrencyScreenState extends State<HawalaCurrencyScreen> {
                           ),
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: Icon(
-                              Icons.menu,
-                              color: Colors.black,
-                            ),
+                            child: Icon(Icons.menu, color: Colors.black),
                           ),
                         ),
                       ),
@@ -123,9 +122,7 @@ class _HawalaCurrencyScreenState extends State<HawalaCurrencyScreen> {
                 ),
               ),
             ),
-            SizedBox(
-              height: 10,
-            ),
+            SizedBox(height: 10),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 15),
               child: Expanded(
@@ -138,8 +135,9 @@ class _HawalaCurrencyScreenState extends State<HawalaCurrencyScreen> {
                             headingRowHeight: 36,
                             dataRowMinHeight: 34,
                             dataRowMaxHeight: 40,
-                            headingRowColor:
-                                WidgetStateProperty.all(Colors.white),
+                            headingRowColor: WidgetStateProperty.all(
+                              Colors.white,
+                            ),
                             border: TableBorder.all(
                               color: AppColors.primaryColor,
                               width: 1,
@@ -222,7 +220,10 @@ class _HawalaCurrencyScreenState extends State<HawalaCurrencyScreen> {
                             ],
 
                             rows: hawalacurrencycontroller
-                                .allcurrencylist.value.data!.rates!
+                                .allcurrencylist
+                                .value
+                                .data!
+                                .rates!
                                 .map(
                                   (data) => DataRow(
                                     cells: [
@@ -231,8 +232,9 @@ class _HawalaCurrencyScreenState extends State<HawalaCurrencyScreen> {
                                           child: Text(
                                             data.amount.toString(),
                                             textAlign: TextAlign.center,
-                                            style:
-                                                const TextStyle(fontSize: 12),
+                                            style: const TextStyle(
+                                              fontSize: 12,
+                                            ),
                                           ),
                                         ),
                                       ),
@@ -241,8 +243,9 @@ class _HawalaCurrencyScreenState extends State<HawalaCurrencyScreen> {
                                           child: Text(
                                             data.fromCurrency?.name ?? "-",
                                             textAlign: TextAlign.center,
-                                            style:
-                                                const TextStyle(fontSize: 12),
+                                            style: const TextStyle(
+                                              fontSize: 12,
+                                            ),
                                           ),
                                         ),
                                       ),
@@ -251,8 +254,9 @@ class _HawalaCurrencyScreenState extends State<HawalaCurrencyScreen> {
                                           child: Text(
                                             data.toCurrency?.name ?? "-",
                                             textAlign: TextAlign.center,
-                                            style:
-                                                const TextStyle(fontSize: 12),
+                                            style: const TextStyle(
+                                              fontSize: 12,
+                                            ),
                                           ),
                                         ),
                                       ),
@@ -261,8 +265,9 @@ class _HawalaCurrencyScreenState extends State<HawalaCurrencyScreen> {
                                           child: Text(
                                             "${data.buyRate ?? '-'} ${data.toCurrency?.symbol ?? ''}",
                                             textAlign: TextAlign.center,
-                                            style:
-                                                const TextStyle(fontSize: 12),
+                                            style: const TextStyle(
+                                              fontSize: 12,
+                                            ),
                                           ),
                                         ),
                                       ),

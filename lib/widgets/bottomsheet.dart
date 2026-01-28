@@ -2,6 +2,8 @@
 
 import 'dart:io';
 
+import 'package:jahanpay/controllers/sign_in_controller.dart';
+import 'package:jahanpay/screens/sign_in_screen.dart';
 import 'package:jahanpay/widgets/custom_text.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -120,10 +122,10 @@ class _CustomFullScreenSheetState extends State<CustomFullScreenSheet> {
                     onTap: () {
                       Navigator.pop(context);
                       Future.delayed(Duration(milliseconds: 100), () {
-                        mypagecontroller.changePage(
-                          Helpscreen(),
-                          isMainPage: false,
-                        );
+                        // mypagecontroller.changePage(
+                        //   Helpscreen(),
+                        //   isMainPage: false,
+                        // );
                       });
                     },
                     child: Container(
@@ -312,10 +314,11 @@ class _CustomFullScreenSheetState extends State<CustomFullScreenSheet> {
                     onTap: () {
                       Navigator.pop(context);
                       Future.delayed(Duration(milliseconds: 100), () {
-                        mypagecontroller.changePage(
-                          ProfileScreen(),
-                          isMainPage: false,
-                        );
+                        mypagecontroller.openSubPage(ProfileScreen());
+                        // mypagecontroller.changePage(
+                        //   ProfileScreen(),
+                        //   isMainPage: false,
+                        // );
                       });
                     },
                     child: Container(
@@ -361,10 +364,10 @@ class _CustomFullScreenSheetState extends State<CustomFullScreenSheet> {
                     onTap: () {
                       Navigator.pop(context);
                       Future.delayed(Duration(milliseconds: 100), () {
-                        mypagecontroller.changePage(
-                          ChangePinScreen(),
-                          isMainPage: false,
-                        );
+                        // mypagecontroller.changePage(
+                        //   ChangePinScreen(),
+                        //   isMainPage: false,
+                        // );
                       });
                     },
                     child: Container(
@@ -399,10 +402,10 @@ class _CustomFullScreenSheetState extends State<CustomFullScreenSheet> {
                     onTap: () {
                       Navigator.pop(context);
                       Future.delayed(Duration(milliseconds: 100), () {
-                        mypagecontroller.changePage(
-                          ChangePasswordScreen(),
-                          isMainPage: false,
-                        );
+                        // mypagecontroller.changePage(
+                        //   ChangePasswordScreen(),
+                        //   isMainPage: false,
+                        // );
                       });
                     },
                     child: Container(
@@ -449,10 +452,10 @@ class _CustomFullScreenSheetState extends State<CustomFullScreenSheet> {
                     onTap: () {
                       Navigator.pop(context);
                       Future.delayed(Duration(milliseconds: 100), () {
-                        mypagecontroller.changePage(
-                          SellingPriceScreen(),
-                          isMainPage: false,
-                        );
+                        // mypagecontroller.changePage(
+                        //   SellingPriceScreen(),
+                        //   isMainPage: false,
+                        // );
                       });
                     },
                     child: Container(
@@ -487,10 +490,10 @@ class _CustomFullScreenSheetState extends State<CustomFullScreenSheet> {
                     onTap: () {
                       Navigator.pop(context);
                       Future.delayed(Duration(milliseconds: 100), () {
-                        mypagecontroller.changePage(
-                          CommissionGroupScreen(),
-                          isMainPage: false,
-                        );
+                        // mypagecontroller.changePage(
+                        //   CommissionGroupScreen(),
+                        //   isMainPage: false,
+                        // );
                       });
                     },
                     child: Container(
@@ -529,6 +532,7 @@ class _CustomFullScreenSheetState extends State<CustomFullScreenSheet> {
           SizedBox(height: 10),
           GestureDetector(
             onTap: () {
+              Navigator.pop(context);
               showDialog(
                 context: context,
                 builder: (context) {
@@ -587,94 +591,203 @@ whatsapp() async {
   }
 }
 
-// class ContactDialogBox extends StatelessWidget {
-//   const ContactDialogBox({super.key});
+class LogoutDialogBox extends StatelessWidget {
+  LogoutDialogBox({super.key});
 
-//   @override
-//   Widget build(BuildContext context) {
-//     var screenWidth = MediaQuery.of(context).size.width;
-//     return Container(
-//       height: 300,
-//       width: screenWidth,
-//       decoration: BoxDecoration(
-//         borderRadius: BorderRadius.circular(17),
-//         color: Colors.white,
-//       ),
-//       child: Column(
-//         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-//         children: [
-//           Image.asset("assets/icons/whatsapp2.png", height: 80),
-//           Padding(
-//             padding: const EdgeInsets.symmetric(horizontal: 20),
-//             child: Text(
-//               "You will be redirected to the WhatsApp page to contact us. Continue?",
-//               style: TextStyle(
-//                 color: Colors.black,
-//                 fontWeight: FontWeight.bold,
-//               ),
-//               textAlign: TextAlign.center,
-//             ),
-//           ),
-//           Padding(
-//             padding: EdgeInsets.symmetric(horizontal: 20),
-//             child: Container(
-//               height: 50,
-//               width: screenWidth,
-//               child: Row(
-//                 children: [
-//                   Expanded(
-//                     flex: 3,
-//                     child: GestureDetector(
-//                       onTap: () {
-//                         whatsapp();
-//                       },
-//                       child: Container(
-//                         decoration: BoxDecoration(
-//                           color: Colors.green,
-//                           borderRadius: BorderRadius.circular(10),
-//                         ),
-//                         child: Center(
-//                           child: Text(
-//                             "Yes",
-//                             style: TextStyle(
-//                               color: Colors.white,
-//                               fontWeight: FontWeight.bold,
-//                             ),
-//                           ),
-//                         ),
-//                       ),
-//                     ),
-//                   ),
-//                   SizedBox(width: 10),
-//                   Expanded(
-//                     flex: 2,
-//                     child: GestureDetector(
-//                       onTap: () {
-//                         Navigator.pop(context);
-//                       },
-//                       child: Container(
-//                         decoration: BoxDecoration(
-//                           border: Border.all(width: 1, color: Colors.grey),
-//                           borderRadius: BorderRadius.circular(10),
-//                         ),
-//                         child: Center(
-//                           child: Text(
-//                             "Cancel",
-//                             style: TextStyle(
-//                               color: Colors.black,
-//                               fontWeight: FontWeight.bold,
-//                             ),
-//                           ),
-//                         ),
-//                       ),
-//                     ),
-//                   ),
-//                 ],
-//               ),
-//             ),
-//           ),
-//         ],
-//       ),
-//     );
-//   }
-// }
+  final signInController = Get.find<SignInController>();
+
+  final box = GetStorage();
+
+  LanguagesController languagesController = Get.put(LanguagesController());
+
+  @override
+  Widget build(BuildContext context) {
+    var screenWidth = MediaQuery.of(context).size.width;
+    return Container(
+      height: 200,
+      width: screenWidth,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(15),
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset("assets/icons/rejected.png", height: 40),
+              SizedBox(width: 15),
+              KText(
+                text: languagesController.tr("ARE_YOU_READY_TO_LOG_OUT"),
+                color: Colors.black,
+                fontSize: 15,
+                fontWeight: FontWeight.w600,
+              ),
+            ],
+          ),
+          // SizedBox(
+          //   height: 20,
+          // ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: Container(
+              height: 45,
+              width: screenWidth,
+              child: Row(
+                children: [
+                  Expanded(
+                    flex: 2,
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.pop(context);
+                        signInController.usernameController.clear();
+                        signInController.passwordController.clear();
+
+                        box.remove("userToken");
+
+                        Get.off(() => SignInScreen());
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Colors.red,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Center(
+                          child: KText(
+                            text: languagesController.tr("YES_IAMGOING_OUT"),
+                            color: Colors.white,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 15,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(width: 15),
+                  Expanded(
+                    flex: 1,
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            width: 1,
+                            color: Colors.grey.shade300,
+                          ),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Center(
+                          child: KText(
+                            text: languagesController.tr("CANCEL"),
+                            color: Colors.black,
+                            fontSize: 15,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class ContactDialogBox extends StatelessWidget {
+  ContactDialogBox({super.key});
+
+  LanguagesController languagesController = Get.put(LanguagesController());
+
+  @override
+  Widget build(BuildContext context) {
+    var screenWidth = MediaQuery.of(context).size.width;
+    return Container(
+      height: 300,
+      width: screenWidth,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(17),
+        color: Colors.white,
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          Image.asset("assets/icons/whatsapp2.png", height: 80),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: Text(
+              "You will be redirected to the WhatsApp page to contact us. Continue?",
+              style: TextStyle(
+                color: Colors.black,
+                fontWeight: FontWeight.bold,
+              ),
+              textAlign: TextAlign.center,
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20),
+            child: Container(
+              height: 50,
+              width: screenWidth,
+              child: Row(
+                children: [
+                  Expanded(
+                    flex: 3,
+                    child: GestureDetector(
+                      onTap: () {},
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Colors.green,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Center(
+                          child: Text(
+                            languagesController.tr("YES"),
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(width: 10),
+                  Expanded(
+                    flex: 2,
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                          border: Border.all(width: 1, color: Colors.grey),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Center(
+                          child: Text(
+                            languagesController.tr("CANCEL"),
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}

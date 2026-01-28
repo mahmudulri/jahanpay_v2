@@ -96,7 +96,8 @@ class _ServiceScreenState extends State<ServiceScreen> {
                     children: [
                       GestureDetector(
                         onTap: () {
-                          mypagecontroller.goBack();
+                          mypagecontroller.handleBack();
+                          ;
                         },
                         child: Container(
                           height: 45,
@@ -221,10 +222,10 @@ class _ServiceScreenState extends State<ServiceScreen> {
                                               bundleController
                                                   .fetchallbundles();
 
-                                              mypagecontroller.changePage(
-                                                RechargeScreen(),
-                                                isMainPage: false,
-                                              );
+                                              // mypagecontroller.changePage(
+                                              //   RechargeScreen(),
+                                              //   isMainPage: false,
+                                              // );
                                             },
                                             child: Card(
                                               child: Container(
@@ -345,10 +346,10 @@ class _ServiceScreenState extends State<ServiceScreen> {
                                               );
                                               bundleController.initialpage = 1;
 
-                                              mypagecontroller.changePage(
-                                                SocialBundles(),
-                                                isMainPage: false,
-                                              );
+                                              // mypagecontroller.changePage(
+                                              //   SocialBundles(),
+                                              //   isMainPage: false,
+                                              // );
                                             },
                                             child: Card(
                                               color: Colors.white,

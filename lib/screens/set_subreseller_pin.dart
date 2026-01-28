@@ -75,10 +75,10 @@ class _SetSubresellerPinState extends State<SetSubresellerPin> {
                     children: [
                       GestureDetector(
                         onTap: () {
-                          mypagecontroller.changePage(
-                            Network(),
-                            isMainPage: false,
-                          );
+                          // mypagecontroller.changePage(
+                          //   Network(),
+                          //   isMainPage: false,
+                          // );
                         },
                         child: Container(
                           height: 45,

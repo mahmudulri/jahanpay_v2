@@ -84,10 +84,10 @@ class _InternetPackState extends State<InternetPack> {
                     children: [
                       GestureDetector(
                         onTap: () {
-                          mypagecontroller.changePage(
-                            Homepages(),
-                            isMainPage: false,
-                          );
+                          // mypagecontroller.changePage(
+                          //   Homepages(),
+                          //   isMainPage: false,
+                          // );
                         },
                         child: Container(
                           height: 45,
@@ -218,10 +218,10 @@ class _InternetPackState extends State<InternetPack> {
                                       box.write("validity_type", "");
                                       box.write("company_id", "");
                                       box.write("search_tag", "");
-                                      mypagecontroller.changePage(
-                                        RechargeScreen(),
-                                        isMainPage: false,
-                                      );
+                                      // mypagecontroller.changePage(
+                                      //   RechargeScreen(),
+                                      //   isMainPage: false,
+                                      // );
                                     },
                                     child: Container(
                                       decoration: BoxDecoration(

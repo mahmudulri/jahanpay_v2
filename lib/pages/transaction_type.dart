@@ -1,29 +1,14 @@
-import 'package:jahanpay/widgets/button_one.dart';
 import 'package:jahanpay/widgets/custom_text.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
-import 'package:jahanpay/controllers/transaction_controller.dart';
 import 'package:jahanpay/global_controller/languages_controller.dart';
 import 'package:jahanpay/utils/colors.dart';
 import 'package:jahanpay/widgets/bottomsheet.dart';
-import 'package:jahanpay/widgets/drawer.dart';
-
 import '../controllers/dashboard_controller.dart';
 import '../controllers/drawer_controller.dart';
 import '../global_controller/page_controller.dart';
-import '../screens/commission_transfer_screen.dart';
-import '../screens/hawala_list_screen.dart';
-import '../screens/hawala_rates_screen.dart';
-import '../screens/receipts_screen.dart';
-import '../screens/loan_screen.dart';
-import '../screens/sign_in_screen.dart';
-import '../widgets/default_button1.dart';
 import '../widgets/payment_button.dart';
-import 'transactions.dart';
 
 class TransactionsType extends StatefulWidget {
   TransactionsType({super.key});
@@ -35,7 +20,6 @@ class TransactionsType extends StatefulWidget {
 class _TransactionsTypeState extends State<TransactionsType> {
   final Mypagecontroller mypagecontroller = Get.find();
 
-  final transactionController = Get.find<TransactionController>();
   LanguagesController languagesController = Get.put(LanguagesController());
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   final dashboardController = Get.find<DashboardController>();
@@ -44,7 +28,7 @@ class _TransactionsTypeState extends State<TransactionsType> {
   @override
   void initState() {
     super.initState();
-    dashboardController.fetchDashboardData();
+
     SystemChrome.setSystemUIOverlayStyle(
       SystemUiOverlayStyle(
         statusBarColor: AppColors.primaryColor,
@@ -52,7 +36,6 @@ class _TransactionsTypeState extends State<TransactionsType> {
         statusBarBrightness: Brightness.light, // For iOS
       ),
     );
-    transactionController.fetchTransactionData();
   }
 
   @override
@@ -306,10 +289,10 @@ class _TransactionsTypeState extends State<TransactionsType> {
                             imagelink: "assets/icons/wallet.png",
                             mycolor: Color(0xff04B75D),
                             onpressed: () {
-                              mypagecontroller.changePage(
-                                ReceiptsScreen(),
-                                isMainPage: false,
-                              );
+                              // mypagecontroller.changePage(
+                              //   ReceiptsScreen(),
+                              //   isMainPage: false,
+                              // );
                             },
                           ),
                           SizedBox(height: 10),
@@ -320,10 +303,10 @@ class _TransactionsTypeState extends State<TransactionsType> {
                             imagelink: "assets/icons/transactionsicon.png",
                             mycolor: Color(0xff3498db),
                             onpressed: () {
-                              mypagecontroller.changePage(
-                                RequestLoanScreen(),
-                                isMainPage: false,
-                              );
+                              // mypagecontroller.changePage(
+                              //   RequestLoanScreen(),
+                              //   isMainPage: false,
+                              // );
                             },
                           ),
                           SizedBox(height: 10),
@@ -332,10 +315,10 @@ class _TransactionsTypeState extends State<TransactionsType> {
                             imagelink: "assets/icons/exchange.png",
                             mycolor: Color(0xffFE8F2D),
                             onpressed: () {
-                              mypagecontroller.changePage(
-                                HawalaListScreen(),
-                                isMainPage: false,
-                              );
+                              // mypagecontroller.changePage(
+                              //   HawalaListScreen(),
+                              //   isMainPage: false,
+                              // );
                             },
                           ),
                           SizedBox(height: 10),
@@ -344,10 +327,10 @@ class _TransactionsTypeState extends State<TransactionsType> {
                             imagelink: "assets/icons/exchange-rate.png",
                             mycolor: Color(0xff4B7AFC),
                             onpressed: () {
-                              mypagecontroller.changePage(
-                                HawalaCurrencyScreen(),
-                                isMainPage: false,
-                              );
+                              // mypagecontroller.changePage(
+                              //   HawalaCurrencyScreen(),
+                              //   isMainPage: false,
+                              // );
                             },
                           ),
                           SizedBox(height: 10),
@@ -358,10 +341,10 @@ class _TransactionsTypeState extends State<TransactionsType> {
                             imagelink: "assets/icons/transactionsicon.png",
                             mycolor: Color(0xffDE4B5E),
                             onpressed: () {
-                              mypagecontroller.changePage(
-                                Transactions(),
-                                isMainPage: false,
-                              );
+                              // mypagecontroller.changePage(
+                              //   Transactions(),
+                              //   isMainPage: false,
+                              // );
                             },
                           ),
                           SizedBox(height: 10),
@@ -372,10 +355,10 @@ class _TransactionsTypeState extends State<TransactionsType> {
                             imagelink: "assets/icons/transactionsicon.png",
                             mycolor: Color(0xff9b59b6),
                             onpressed: () {
-                              mypagecontroller.changePage(
-                                CommissionTransferScreen(),
-                                isMainPage: false,
-                              );
+                              // mypagecontroller.changePage(
+                              //   CommissionTransferScreen(),
+                              //   isMainPage: false,
+                              // );
                             },
                           ),
                         ],

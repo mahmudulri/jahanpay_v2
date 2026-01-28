@@ -44,8 +44,11 @@ class CategorisListController extends GetxController {
               final String? countryId = service.company?.countryId.toString();
               final String? countryImage =
                   service.company?.country?.countryFlagImageUrl;
-              final String? phoneNumberLength =
-                  service.company?.country?.phoneNumberLength.toString();
+              final String? phoneNumberLength = service
+                  .company
+                  ?.country
+                  ?.phoneNumberLength
+                  .toString();
 
               if (country != null && countryId != null) {
                 countryData.putIfAbsent(country, () {
@@ -62,16 +65,18 @@ class CategorisListController extends GetxController {
                 });
 
                 // Add the category to the country's category list if not already present
-                if (!countryData[country]['categorySet']
-                    .contains(categoryId.toString())) {
+                if (!countryData[country]['categorySet'].contains(
+                  categoryId.toString(),
+                )) {
                   countryData[country]['categories'].add({
                     'categoryId': categoryId.toString(),
                     'categoryName': categoryName,
                   });
 
                   // Track the category in the set
-                  countryData[country]['categorySet']
-                      .add(categoryId.toString());
+                  countryData[country]['categorySet'].add(
+                    categoryId.toString(),
+                  );
                 }
               }
             }
@@ -79,13 +84,14 @@ class CategorisListController extends GetxController {
         }
 
         combinedList.value = countryData.values.map((country) {
-          country
-              .remove('categorySet'); // Remove the temporary set before saving
+          country.remove(
+            'categorySet',
+          ); // Remove the temporary set before saving
           return country;
         }).toList();
 
         // Print the JSON output
-        print('Combined List: ${combinedList.toJson()}');
+        // print('Combined List: ${combinedList.toJson()}');
 
         isLoading(false);
       });

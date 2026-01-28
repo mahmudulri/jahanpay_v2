@@ -9,10 +9,18 @@ import 'package:jahanpay/utils/api_endpoints.dart';
 
 import '../global_controller/balance_controller.dart';
 import '../models/dashboard_data_model.dart';
+import 'company_controller.dart';
 
 final box = GetStorage();
 
+final companyController = Get.find<CompanyController>();
+
 class DashboardController extends GetxController {
+  void onhomeTabOpened() {
+    fetchDashboardData();
+    companyController.fetchCompany();
+  }
+
   RxString message = "".obs;
   RxString myerror = "".obs;
   var isLoading = false.obs;

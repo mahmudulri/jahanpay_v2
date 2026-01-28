@@ -118,7 +118,7 @@ class _AddNewUserState extends State<AddNewUser> {
                     children: [
                       GestureDetector(
                         onTap: () {
-                          mypagecontroller.goBack();
+                          mypagecontroller.handleBack();
                         },
                         child: Container(
                           height: 45,

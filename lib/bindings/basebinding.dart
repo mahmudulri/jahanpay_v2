@@ -3,6 +3,7 @@ import 'package:jahanpay/controllers/add_sub_reseller_controller.dart';
 import 'package:jahanpay/controllers/confirm_pin_controller.dart';
 import 'package:jahanpay/controllers/custom_history_controller.dart';
 import 'package:jahanpay/controllers/order_list_controller.dart';
+import 'package:jahanpay/controllers/recharge_config_controller.dart';
 import 'package:jahanpay/controllers/subreseller_details_controller.dart';
 import '../controllers/bundle_controller.dart';
 import '../controllers/categories_controller.dart';
@@ -52,5 +53,6 @@ class Basebinding implements Bindings {
     Get.lazyPut<CompanyController>(() => CompanyController());
     Get.lazyPut<HelpController>(() => HelpController());
     Get.lazyPut<HistoryController>(() => HistoryController());
+    Get.lazyPut<RechargeConfigController>(() => RechargeConfigController());
   }
 }

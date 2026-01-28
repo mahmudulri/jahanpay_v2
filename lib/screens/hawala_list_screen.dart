@@ -76,10 +76,10 @@ class _HawalaListScreenState extends State<HawalaListScreen> {
                     children: [
                       GestureDetector(
                         onTap: () {
-                          mypagecontroller.changePage(
-                            TransactionsType(),
-                            isMainPage: false,
-                          );
+                          // mypagecontroller.changePage(
+                          //   TransactionsType(),
+                          //   isMainPage: false,
+                          // );
                         },
                         child: Container(
                           height: 45,
@@ -166,10 +166,10 @@ class _HawalaListScreenState extends State<HawalaListScreen> {
                       flex: 4,
                       child: GestureDetector(
                         onTap: () {
-                          mypagecontroller.changePage(
-                            HawalaScreen(),
-                            isMainPage: false,
-                          );
+                          // mypagecontroller.changePage(
+                          //   HawalaScreen(),
+                          //   isMainPage: false,
+                          // );
                         },
                         child: DefaultButton1(
                           width: double.maxFinite,

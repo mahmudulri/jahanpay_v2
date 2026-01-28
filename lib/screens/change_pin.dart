@@ -77,7 +77,7 @@ class _ChangePinScreenState extends State<ChangePinScreen> {
                     children: [
                       GestureDetector(
                         onTap: () {
-                          mypagecontroller.goBack();
+                          mypagecontroller.handleBack();
                         },
                         child: Container(
                           height: 45,

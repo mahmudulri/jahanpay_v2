@@ -15,7 +15,7 @@ class ConversationController extends GetxController {
   void resetConversion() {
     inputAmount.value = 0.0;
     resellerRate = 0.0;
-    currencies.clear(); // যদি চাই সবকিছুই ফাঁকা হোক
+    currencyRate = 0.0;
   }
 
   List<Map<String, dynamic>> getConvertedValues() {

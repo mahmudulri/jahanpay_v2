@@ -131,7 +131,7 @@ class _HomepagesState extends State<Homepages> {
     historyController.initialpage = 1;
     historyController.fetchHistory();
     scrollController.addListener(refresh);
-    // companyController.fetchCompany();
+    companyController.fetchCompany();
     countrylistController.fetchCountryData();
     dashboardController.fetchDashboardData();
 
@@ -172,14 +172,12 @@ class _HomepagesState extends State<Homepages> {
   ConversationController conversationController = Get.put(
     ConversationController(),
   );
-  CustomRechargeController customRechargeController = Get.put(
-    CustomRechargeController(),
-  );
+
   @override
   Widget build(BuildContext context) {
-    conversationController.resetConversion();
-    customRechargeController.amountController.clear();
-    confirmPinController.numberController.clear();
+    // conversationController.resetConversion();
+    // customRechargeController.amountController.clear();
+    // confirmPinController.numberController.clear();
     final Mypagecontroller mypagecontroller = Get.find();
 
     var screenHeight = MediaQuery.of(context).size.height;
@@ -903,10 +901,7 @@ class _HomepagesState extends State<Homepages> {
                         padding: EdgeInsets.symmetric(horizontal: 15),
                         child: GestureDetector(
                           onTap: () {
-                            mypagecontroller.changePage(
-                              ServiceScreen(),
-                              isMainPage: false,
-                            );
+                            mypagecontroller.openSubPage(ServiceScreen());
                             categorisListController.fetchcategories();
                           },
                           child: Container(
@@ -954,36 +949,34 @@ class _HomepagesState extends State<Homepages> {
                           width: screenWidth,
                           buttonName: languagesController.tr("CREDIT_TRANSFER"),
                           onpressed: () {
-                            if (countrylistController
-                                .finalCountryList
-                                .isNotEmpty) {
-                              // Find the country where the name is "Afghanistan"
-                              var afghanistan = countrylistController
-                                  .finalCountryList
-                                  .firstWhere(
-                                    (country) =>
-                                        country['country_name'] ==
-                                        "Afghanistan",
-                                    orElse: () =>
-                                        null, // Return null if not found
-                                  );
+                            // if (countrylistController
+                            //     .finalCountryList
+                            //     .isNotEmpty) {
+                            //   // Find the country where the name is "Afghanistan"
+                            //   var afghanistan = countrylistController
+                            //       .finalCountryList
+                            //       .firstWhere(
+                            //         (country) =>
+                            //             country['country_name'] ==
+                            //             "Afghanistan",
+                            //         orElse: () =>
+                            //             null, // Return null if not found
+                            //       );
 
-                              if (afghanistan != null) {
-                                print(
-                                  "The ID for Afghanistan is: ${afghanistan['id']}",
-                                );
-                                box.write("country_id", "${afghanistan['id']}");
-                                box.write("maxlength", "10");
-                              } else {
-                                print("Afghanistan not found in the list");
-                              }
-                            } else {
-                              print("Country list is empty.");
-                            }
-                            mypagecontroller.changePage(
-                              CreditTransfer(),
-                              isMainPage: false,
-                            );
+                            //   if (afghanistan != null) {
+                            //     print(
+                            //       "The ID for Afghanistan is: ${afghanistan['id']}",
+                            //     );
+                            //     box.write("country_id", "${afghanistan['id']}");
+                            //     box.write("maxlength", "10");
+                            //   } else {
+                            //     print("Afghanistan not found in the list");
+                            //   }
+                            // } else {
+                            //   print("Country list is empty.");
+                            // }
+
+                            mypagecontroller.openSubPage(CreditTransfer());
                           },
                         ),
                       ),

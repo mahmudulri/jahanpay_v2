@@ -58,8 +58,9 @@ class _SignInScreenState extends State<SignInScreen> {
 
   final Mypagecontroller mypagecontroller = Get.put(Mypagecontroller());
   Future<bool> showExitPopup() async {
-    final shouldExit = mypagecontroller.goBack();
-    if (shouldExit) {
+    final shouldExit = mypagecontroller.handleBack();
+
+    if (await shouldExit) {
       return await showDialog(
             context: context,
             builder: (context) => AlertDialog(

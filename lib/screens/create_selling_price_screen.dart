@@ -94,7 +94,8 @@ class _CreateSellingPriceScreenState extends State<CreateSellingPriceScreen> {
                     children: [
                       GestureDetector(
                         onTap: () {
-                          mypagecontroller.goBack();
+                          mypagecontroller.handleBack();
+                          ;
                         },
                         child: Container(
                           height: 45,
