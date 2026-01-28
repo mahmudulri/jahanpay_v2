@@ -287,6 +287,13 @@ class _HomepagesState extends State<Homepages> {
                     ),
                   ),
                 ),
+                SizedBox(height: 10),
+                GestureDetector(
+                  onTap: () {
+                    dashboardController.fetchDashboardData();
+                  },
+                  child: Icon(Icons.refresh, size: 35),
+                ),
               ],
             ),
           ),

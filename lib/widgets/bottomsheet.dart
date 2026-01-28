@@ -122,10 +122,7 @@ class _CustomFullScreenSheetState extends State<CustomFullScreenSheet> {
                     onTap: () {
                       Navigator.pop(context);
                       Future.delayed(Duration(milliseconds: 100), () {
-                        // mypagecontroller.changePage(
-                        //   Helpscreen(),
-                        //   isMainPage: false,
-                        // );
+                        mypagecontroller.openSubPage(Helpscreen());
                       });
                     },
                     child: Container(
@@ -315,10 +312,6 @@ class _CustomFullScreenSheetState extends State<CustomFullScreenSheet> {
                       Navigator.pop(context);
                       Future.delayed(Duration(milliseconds: 100), () {
                         mypagecontroller.openSubPage(ProfileScreen());
-                        // mypagecontroller.changePage(
-                        //   ProfileScreen(),
-                        //   isMainPage: false,
-                        // );
                       });
                     },
                     child: Container(
@@ -364,10 +357,7 @@ class _CustomFullScreenSheetState extends State<CustomFullScreenSheet> {
                     onTap: () {
                       Navigator.pop(context);
                       Future.delayed(Duration(milliseconds: 100), () {
-                        // mypagecontroller.changePage(
-                        //   ChangePinScreen(),
-                        //   isMainPage: false,
-                        // );
+                        mypagecontroller.openSubPage(ChangePinScreen());
                       });
                     },
                     child: Container(
@@ -402,10 +392,7 @@ class _CustomFullScreenSheetState extends State<CustomFullScreenSheet> {
                     onTap: () {
                       Navigator.pop(context);
                       Future.delayed(Duration(milliseconds: 100), () {
-                        // mypagecontroller.changePage(
-                        //   ChangePasswordScreen(),
-                        //   isMainPage: false,
-                        // );
+                        mypagecontroller.openSubPage(ChangePasswordScreen());
                       });
                     },
                     child: Container(
@@ -452,10 +439,7 @@ class _CustomFullScreenSheetState extends State<CustomFullScreenSheet> {
                     onTap: () {
                       Navigator.pop(context);
                       Future.delayed(Duration(milliseconds: 100), () {
-                        // mypagecontroller.changePage(
-                        //   SellingPriceScreen(),
-                        //   isMainPage: false,
-                        // );
+                        mypagecontroller.openSubPage(SellingPriceScreen());
                       });
                     },
                     child: Container(
@@ -490,10 +474,7 @@ class _CustomFullScreenSheetState extends State<CustomFullScreenSheet> {
                     onTap: () {
                       Navigator.pop(context);
                       Future.delayed(Duration(milliseconds: 100), () {
-                        // mypagecontroller.changePage(
-                        //   CommissionGroupScreen(),
-                        //   isMainPage: false,
-                        // );
+                        mypagecontroller.openSubPage(CommissionGroupScreen());
                       });
                     },
                     child: Container(
@@ -740,7 +721,9 @@ class ContactDialogBox extends StatelessWidget {
                   Expanded(
                     flex: 3,
                     child: GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        whatsapp();
+                      },
                       child: Container(
                         decoration: BoxDecoration(
                           color: Colors.green,

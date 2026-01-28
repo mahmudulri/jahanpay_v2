@@ -222,10 +222,9 @@ class _ServiceScreenState extends State<ServiceScreen> {
                                               bundleController
                                                   .fetchallbundles();
 
-                                              // mypagecontroller.changePage(
-                                              //   RechargeScreen(),
-                                              //   isMainPage: false,
-                                              // );
+                                              mypagecontroller.openSubPage(
+                                                RechargeScreen(),
+                                              );
                                             },
                                             child: Card(
                                               child: Container(
@@ -346,10 +345,9 @@ class _ServiceScreenState extends State<ServiceScreen> {
                                               );
                                               bundleController.initialpage = 1;
 
-                                              // mypagecontroller.changePage(
-                                              //   SocialBundles(),
-                                              //   isMainPage: false,
-                                              // );
+                                              mypagecontroller.openSubPage(
+                                                SocialBundles(),
+                                              );
                                             },
                                             child: Card(
                                               color: Colors.white,

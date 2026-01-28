@@ -76,10 +76,7 @@ class _HawalaListScreenState extends State<HawalaListScreen> {
                     children: [
                       GestureDetector(
                         onTap: () {
-                          // mypagecontroller.changePage(
-                          //   TransactionsType(),
-                          //   isMainPage: false,
-                          // );
+                          mypagecontroller.handleBack();
                         },
                         child: Container(
                           height: 45,
@@ -166,10 +163,7 @@ class _HawalaListScreenState extends State<HawalaListScreen> {
                       flex: 4,
                       child: GestureDetector(
                         onTap: () {
-                          // mypagecontroller.changePage(
-                          //   HawalaScreen(),
-                          //   isMainPage: false,
-                          // );
+                          mypagecontroller.openSubPage(HawalaScreen());
                         },
                         child: DefaultButton1(
                           width: double.maxFinite,
@@ -287,26 +281,47 @@ class _HawalaListScreenState extends State<HawalaListScreen> {
                                           mainAxisAlignment:
                                               MainAxisAlignment.spaceBetween,
                                           children: [
-                                            Text(
-                                              languagesController.tr(
-                                                    "HAWALA_NUMBER",
-                                                  ) +
-                                                  " - " +
-                                                  data.hawalaNumber.toString(),
-                                              style: TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 15,
-                                                fontWeight: FontWeight.bold,
-                                                fontFamily:
-                                                    box
-                                                            .read("language")
-                                                            .toString() ==
-                                                        "Fa"
-                                                    ? Get.find<FontController>()
-                                                          .currentFont
-                                                    : null,
-                                              ),
-                                            ),
+                                            data.hawalaCustomNumber == null
+                                                ? Text(
+                                                    languagesController.tr(
+                                                          "HAWALA_NUMBER",
+                                                        ) +
+                                                        " - " +
+                                                        data.hawalaNumber
+                                                            .toString(),
+                                                    style: TextStyle(
+                                                      color: Colors.white,
+                                                      fontSize: 15,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      fontFamily:
+                                                          box
+                                                                  .read(
+                                                                    "language",
+                                                                  )
+                                                                  .toString() ==
+                                                              "Fa"
+                                                          ? Get.find<
+                                                                  FontController
+                                                                >()
+                                                                .currentFont
+                                                          : null,
+                                                    ),
+                                                  )
+                                                : Text(
+                                                    languagesController.tr(
+                                                          "HAWALA_NUMBER",
+                                                        ) +
+                                                        " - " +
+                                                        data.hawalaCustomNumber
+                                                            .toString(),
+                                                    style: TextStyle(
+                                                      color: Colors.white,
+                                                      fontSize: 15,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                    ),
+                                                  ),
                                             Text(
                                               data.status.toString(),
                                               style: TextStyle(

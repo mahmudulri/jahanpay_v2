@@ -218,10 +218,9 @@ class _InternetPackState extends State<InternetPack> {
                                       box.write("validity_type", "");
                                       box.write("company_id", "");
                                       box.write("search_tag", "");
-                                      // mypagecontroller.changePage(
-                                      //   RechargeScreen(),
-                                      //   isMainPage: false,
-                                      // );
+                                      mypagecontroller.openSubPage(
+                                        RechargeScreen(),
+                                      );
                                     },
                                     child: Container(
                                       decoration: BoxDecoration(

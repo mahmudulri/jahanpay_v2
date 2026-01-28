@@ -233,7 +233,11 @@
     "TAP_TO_UPLOAD_EXTRA_PROOF": "اضغط لرفع الدليل الإضافي",
     "FROM": "من",
 "TO": "إلى",
-"UPDATE_NOW": "حدث الآن"
+"UPDATE_NOW": "حدث الآن",
+"ENTER_ID": "أدخل المعرف",
+"ENTER_YOUR_PIN": "أدخل الرقم السري الخاص بك"
+
+
 
 
 

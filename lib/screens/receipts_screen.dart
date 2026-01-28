@@ -151,10 +151,7 @@ class _ReceiptsScreenState extends State<ReceiptsScreen> {
                     children: [
                       GestureDetector(
                         onTap: () {
-                          // mypagecontroller.changePage(
-                          //   CreatePaymentsScreen(),
-                          //   isMainPage: false,
-                          // );
+                          mypagecontroller.openSubPage(CreatePaymentsScreen());
                         },
                         child: Container(
                           height: 50,

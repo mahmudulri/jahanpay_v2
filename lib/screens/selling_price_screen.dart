@@ -189,10 +189,9 @@ class _SellingPriceScreenState extends State<SellingPriceScreen> {
                         height: 50,
                         width: double.maxFinite,
                         onpressed: () {
-                          // mypagecontroller.changePage(
-                          //   CreateSellingPriceScreen(),
-                          //   isMainPage: false,
-                          // );
+                          mypagecontroller.openSubPage(
+                            CreateSellingPriceScreen(),
+                          );
                         },
                       ),
                     ),

@@ -184,10 +184,7 @@ class _CommissionTransferScreenState extends State<CommissionTransferScreen> {
                         height: 50,
                         width: double.maxFinite,
                         onpressed: () {
-                          // mypagecontroller.changePage(
-                          //   CreateTransferScreen(),
-                          //   isMainPage: false,
-                          // );
+                          mypagecontroller.openSubPage(CreateTransferScreen());
                         },
                       ),
                     ),

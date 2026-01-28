@@ -302,10 +302,6 @@ class _NetworkState extends State<Network> {
                         children: [
                           GestureDetector(
                             onTap: () {
-                              // mypagecontroller.changePage(
-                              //   AddNewUser(),
-                              //   isMainPage: false,
-                              // );
                               mypagecontroller.openSubPage(AddNewUser());
                             },
                             child: Container(
@@ -644,6 +640,14 @@ class _NetworkState extends State<Network> {
                                                           children: [
                                                             GestureDetector(
                                                               onTap: () {
+                                                                mypagecontroller
+                                                                    .openSubPage(
+                                                                      ChangeBalance(
+                                                                        subID: data
+                                                                            .id
+                                                                            .toString(),
+                                                                      ),
+                                                                    );
                                                                 // mypagecontroller.changePage(
                                                                 //   ChangeBalance(
                                                                 //     subID: data
@@ -685,6 +689,14 @@ class _NetworkState extends State<Network> {
                                                             ),
                                                             GestureDetector(
                                                               onTap: () {
+                                                                mypagecontroller
+                                                                    .openSubPage(
+                                                                      SetPassword(
+                                                                        subID: data
+                                                                            .id
+                                                                            .toString(),
+                                                                      ),
+                                                                    );
                                                                 // mypagecontroller
                                                                 //     .changePage(
                                                                 //       SetPassword(
@@ -833,6 +845,14 @@ class _NetworkState extends State<Network> {
                                                             ),
                                                             GestureDetector(
                                                               onTap: () {
+                                                                mypagecontroller
+                                                                    .openSubPage(
+                                                                      SetSubresellerPin(
+                                                                        subID: data
+                                                                            .id
+                                                                            .toString(),
+                                                                      ),
+                                                                    );
                                                                 // mypagecontroller.changePage(
                                                                 //   SetSubresellerPin(
                                                                 //     subID: data

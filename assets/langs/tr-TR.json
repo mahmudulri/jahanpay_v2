@@ -234,7 +234,11 @@
     "TAP_TO_UPLOAD_EXTRA_PROOF": "Ek Kanıt Yüklemek İçin Tıklayın",
     "FROM": "Kimden",
 "TO": "Kime",
-"UPDATE_NOW": "Şimdi Güncelle"
+"UPDATE_NOW": "Şimdi Güncelle",
+"ENTER_ID": "Kimlik girin",
+"ENTER_YOUR_PIN": "PIN'inizi girin"
+
+
 
 
 

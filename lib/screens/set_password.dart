@@ -78,7 +78,6 @@ class _SetPasswordState extends State<SetPassword> {
                       GestureDetector(
                         onTap: () {
                           mypagecontroller.handleBack();
-                          ;
                         },
                         child: Container(
                           height: 45,
