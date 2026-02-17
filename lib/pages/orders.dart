@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:jahanpay/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -100,6 +102,9 @@ class _OrdersState extends State<Orders> {
   final dashboardController = Get.find<DashboardController>();
 
   MyDrawerController drawerController = Get.put(MyDrawerController());
+
+  Timer? _debounce;
+
   @override
   void initState() {
     super.initState();
@@ -118,11 +123,13 @@ class _OrdersState extends State<Orders> {
       {"title": languagesController.tr("CONFIRMED"), "value": "order_status=1"},
       {"title": languagesController.tr("REJECTED"), "value": "order_status=2"},
     ];
-    box.write("orderstatus", "");
     box.write("date", "");
+    box.write("orderstatus", "");
+    box.write("search_target", "");
     orderlistController.finalList.clear();
     orderlistController.initialpage = 1;
     orderlistController.fetchOrderlistdata();
+    scrollController.addListener(refresh);
   }
 
   @override
@@ -141,7 +148,9 @@ class _OrdersState extends State<Orders> {
             ),
           ),
         );
-      } else if (dashboardController.myerror.value.trim().toLowerCase() ==
+      } else if (dashboardController.deactiveStatus.value
+              .trim()
+              .toLowerCase() ==
           "deactivated") {
         return Scaffold(
           body: Center(
@@ -149,7 +158,7 @@ class _OrdersState extends State<Orders> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  dashboardController.myerror.toString(),
+                  dashboardController.deactiveStatus.toString(),
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
                 SizedBox(height: 10),
@@ -467,6 +476,28 @@ class _OrdersState extends State<Orders> {
                                   Expanded(
                                     child: Obx(
                                       () => TextField(
+                                        keyboardType: TextInputType.phone,
+                                        onChanged: (value) {
+                                          // আগের timer থাকলে cancel
+                                          if (_debounce?.isActive ?? false)
+                                            _debounce!.cancel();
+
+                                          _debounce = Timer(
+                                            const Duration(seconds: 1),
+                                            () {
+                                              orderlistController.finalList
+                                                  .clear();
+                                              orderlistController.initialpage =
+                                                  1;
+
+                                              box.write("search_target", value);
+
+                                              orderlistController
+                                                  .fetchOrderlistdata();
+                                              print(value);
+                                            },
+                                          );
+                                        },
                                         decoration: InputDecoration(
                                           hintText: languagesController.tr(
                                             "SEARCH_BY_PHOENUMBER",
@@ -569,7 +600,9 @@ class _OrdersState extends State<Orders> {
                             : SizedBox(),
                       ),
                       Obx(
-                        () => orderlistController.isLoading.value == false
+                        () =>
+                            orderlistController.isLoading.value == false &&
+                                orderlistController.finalList.isEmpty
                             ? Container(
                                 child:
                                     orderlistController
@@ -610,12 +643,16 @@ class _OrdersState extends State<Orders> {
                                   ),
                                   child: RefreshIndicator(
                                     onRefresh: refresh,
+
                                     child: ListView.separated(
+                                      controller: scrollController,
+                                      physics: AlwaysScrollableScrollPhysics(),
+
                                       padding: EdgeInsets.all(0),
                                       separatorBuilder: (context, index) {
                                         return SizedBox(height: 10);
                                       },
-                                      physics: BouncingScrollPhysics(),
+
                                       shrinkWrap: true,
                                       itemCount:
                                           orderlistController.finalList.length,
@@ -1095,11 +1132,13 @@ class _OrdersState extends State<Orders> {
                                   child: RefreshIndicator(
                                     onRefresh: refresh,
                                     child: ListView.separated(
+                                      controller: scrollController,
+                                      physics: AlwaysScrollableScrollPhysics(),
                                       padding: EdgeInsets.all(0),
                                       separatorBuilder: (context, index) {
                                         return SizedBox(height: 10);
                                       },
-                                      physics: BouncingScrollPhysics(),
+
                                       shrinkWrap: true,
                                       itemCount:
                                           orderlistController.finalList.length,

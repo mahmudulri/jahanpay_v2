@@ -236,8 +236,19 @@
 "TO": "Kime",
 "UPDATE_NOW": "Şimdi Güncelle",
 "ENTER_ID": "Kimlik girin",
-"ENTER_YOUR_PIN": "PIN'inizi girin"
-
+"ENTER_YOUR_PIN": "PIN'inizi girin",
+"FILTER_TRANSACTION": "İşlemleri filtrele",
+"TYPE": "Tür",
+"SELECT_CATEGORY": "Kategori seç",
+"SELECT_PURPOSE": "Amaç seç",
+"START_DATE": "Başlangıç tarihi",
+"END_DATE": "Bitiş tarihi",
+"ADMIN_TO_RESELLER": "Yöneticiden bayiye",
+"RESELLER_TO_ADMIN": "Bayiden yöneticiye",
+"ORDER": "Sipariş",
+"MONEY_TRANSFER": "Para transferi",
+"WARNING": "Uyarı",
+"SELECT_START_DATE_FIRST": "Önce başlangıç tarihini seçin"
 
 
 

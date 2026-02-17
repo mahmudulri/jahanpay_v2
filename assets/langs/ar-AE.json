@@ -235,7 +235,19 @@
 "TO": "إلى",
 "UPDATE_NOW": "حدث الآن",
 "ENTER_ID": "أدخل المعرف",
-"ENTER_YOUR_PIN": "أدخل الرقم السري الخاص بك"
+"ENTER_YOUR_PIN": "أدخل الرقم السري الخاص بك",
+"FILTER_TRANSACTION": "تصفية المعاملات",
+"TYPE": "النوع",
+"SELECT_CATEGORY": "اختر الفئة",
+"SELECT_PURPOSE": "اختر الغرض",
+"START_DATE": "تاريخ البدء",
+"END_DATE": "تاريخ الانتهاء",
+"ADMIN_TO_RESELLER": "من المشرف إلى الموزع",
+"RESELLER_TO_ADMIN": "من الموزع إلى المشرف",
+"ORDER": "طلب",
+"MONEY_TRANSFER": "تحويل الأموال",
+"WARNING": "تحذير",
+"SELECT_START_DATE_FIRST": "يرجى اختيار تاريخ البدء أولاً"
 
 
 

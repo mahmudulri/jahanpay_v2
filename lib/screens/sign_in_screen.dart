@@ -114,23 +114,23 @@ class _SignInScreenState extends State<SignInScreen> {
                   children: [
                     Image.asset("assets/icons/logo.png", height: 230),
                     SizedBox(height: 65),
-                    SizedBox(width: 10),
-                    GestureDetector(
-                      onTap: () {
-                        signInController.usernameController.text =
-                            "01986072587";
-                        signInController.passwordController.text = "00000000";
-                      },
-                      child: Text("01986"),
-                    ),
-                    SizedBox(width: 10),
-                    GestureDetector(
-                      onTap: () {
-                        signInController.usernameController.text = "0796321768";
-                        signInController.passwordController.text = "00000000";
-                      },
-                      child: Text("0796321"),
-                    ),
+                    // SizedBox(width: 10),
+                    // GestureDetector(
+                    //   onTap: () {
+                    //     signInController.usernameController.text =
+                    //         "01986072587";
+                    //     signInController.passwordController.text = "00000000";
+                    //   },
+                    //   child: Text("01986"),
+                    // ),
+                    // SizedBox(width: 10),
+                    // GestureDetector(
+                    //   onTap: () {
+                    //     signInController.usernameController.text = "0796321768";
+                    //     signInController.passwordController.text = "00000000";
+                    //   },
+                    //   child: Text("0796321"),
+                    // ),
                     KText(
                       text: languagesController.tr("ENTER_YOUR_LOGIN_INFO"),
                       fontSize: 15,
@@ -171,46 +171,17 @@ class _SignInScreenState extends State<SignInScreen> {
                             ? languagesController.tr("LOGIN")
                             : languagesController.tr("PLEASE_WAIT"),
                         onpressed: () async {
-                          // Navigator.push(
-                          //   context,
-                          //   MaterialPageRoute(
-                          //     builder: (context) => BaseScreen(),
-                          //   ),
-                          // );
-                          if (signInController
-                                  .usernameController
-                                  .text
+                          if (signInController.usernameController.text
+                                  .trim()
                                   .isEmpty ||
-                              signInController
-                                  .passwordController
-                                  .text
+                              signInController.passwordController.text
+                                  .trim()
                                   .isEmpty) {
                             Get.snackbar("Oops!", "Fill the text fields");
-                          } else {
-                            print("Attempting login...");
-                            await signInController.signIn();
-
-                            if (signInController.loginsuccess.value == false) {
-                              dashboardController.fetchDashboardData();
-                              // Navigating to the BottomNavigationbar page
-                              // countryListController.fetchCountryData();
-                              Get.toNamed(basescreen);
-
-                              // if (box.read("direction") == "rtl") {
-                              //   setState(() {
-                              //     EasyLocalization.of(context)!
-                              //         .setLocale(Locale('ar', 'AE'));
-                              //   });
-                              // } else {
-                              //   setState(() {
-                              //     EasyLocalization.of(context)!
-                              //         .setLocale(Locale('en', 'US'));
-                              //   });
-                              // }
-                            } else {
-                              print("Navigation conditions not met.");
-                            }
+                            return;
                           }
+
+                          await signInController.signIn();
                         },
                       ),
                     ),

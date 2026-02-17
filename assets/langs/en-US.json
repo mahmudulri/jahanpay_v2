@@ -236,7 +236,19 @@
 "TO": "To",
 "UPDATE_NOW": "Update Now",
 "ENTER_ID": "Enter ID",
-"ENTER_YOUR_PIN": "Enter your PIN"
+"ENTER_YOUR_PIN": "Enter your PIN",
+"FILTER_TRANSACTION": "Filter transaction",
+"TYPE": "Type",
+"SELECT_CATEGORY": "Select category",
+"SELECT_PURPOSE": "Select purpose",
+"START_DATE": "Start date",
+"END_DATE": "End date",
+"ADMIN_TO_RESELLER": "Admin to reseller",
+"RESELLER_TO_ADMIN": "Reseller to admin",
+"ORDER": "Order",
+"MONEY_TRANSFER": "Money transfer",
+"WARNING": "Warning",
+"SELECT_START_DATE_FIRST": "Select start date first"
 
 
 

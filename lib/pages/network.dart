@@ -90,7 +90,9 @@ class _NetworkState extends State<Network> {
             ),
           ),
         );
-      } else if (dashboardController.myerror.value.trim().toLowerCase() ==
+      } else if (dashboardController.deactiveStatus.value
+              .trim()
+              .toLowerCase() ==
           "deactivated") {
         return Scaffold(
           body: Center(
@@ -98,7 +100,7 @@ class _NetworkState extends State<Network> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  dashboardController.myerror.toString(),
+                  dashboardController.deactiveStatus.toString(),
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
                 SizedBox(height: 10),

@@ -38,7 +38,6 @@ class _SplashScreenState extends State<SplashScreen> {
 
     languagesController.changeLanguage(languageShortName);
 
-    // Set EasyLocalization locale using proper region code
     Locale locale;
     switch (isoCode) {
       case "fa":

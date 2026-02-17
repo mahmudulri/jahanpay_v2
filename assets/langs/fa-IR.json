@@ -236,8 +236,19 @@
 "TO": "به",
 "UPDATE_NOW": "اکنون به‌روزرسانی کنید",
 "ENTER_ID": "شناسه را وارد کنید",
-"ENTER_YOUR_PIN": "پین خود را وارد کنید"
-
+"ENTER_YOUR_PIN": "پین خود را وارد کنید",
+"FILTER_TRANSACTION": "فیلتر تراکنش",
+"TYPE": "نوع",
+"SELECT_CATEGORY": "انتخاب دسته‌بندی",
+"SELECT_PURPOSE": "انتخاب هدف",
+"START_DATE": "تاریخ شروع",
+"END_DATE": "تاریخ پایان",
+"ADMIN_TO_RESELLER": "از مدیر به نماینده",
+"RESELLER_TO_ADMIN": "از نماینده به مدیر",
+"ORDER": "سفارش",
+"MONEY_TRANSFER": "انتقال پول",
+"WARNING": "هشدار",
+"SELECT_START_DATE_FIRST": "لطفاً ابتدا تاریخ شروع را انتخاب کنید"
 
 
 

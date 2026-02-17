@@ -9,6 +9,7 @@ import 'package:jahanpay/utils/api_endpoints.dart';
 
 import '../global_controller/balance_controller.dart';
 import '../models/dashboard_data_model.dart';
+import '../services/dashboard_service.dart';
 import 'company_controller.dart';
 
 final box = GetStorage();
@@ -21,9 +22,14 @@ class DashboardController extends GetxController {
     companyController.fetchCompany();
   }
 
-  RxString message = "".obs;
-  RxString myerror = "".obs;
+  void setDeactivated(String status, String message) {
+    deactiveStatus.value = status;
+    deactivateMessage.value = message;
+  }
+
   var isLoading = false.obs;
+  final deactiveStatus = ''.obs;
+  final deactivateMessage = ''.obs;
 
   var alldashboardData = DashboardDataModel().obs;
 
@@ -31,96 +37,21 @@ class DashboardController extends GetxController {
     UserBalanceController(),
   );
 
-  @override
-  void onInit() {
-    super.onInit();
-    fetchDashboardData();
-  }
-
-  /// Wrapper method
-  void fetchDashboardData() async {
+  Future<void> fetchDashboardData() async {
     try {
       isLoading.value = true;
-
-      final data = await fetchDashbordApi();
-      if (data != null) {
-        alldashboardData.value = data;
-
-        // Update balance safely
-        userBalanceController.balance.value =
-            data.data?.balance?.toString() ?? "0";
-
-        myerror.value = "";
-        message.value = "";
-      }
+      await DashboardApi().fetchDashboard().then((value) {
+        alldashboardData.value = value;
+        userBalanceController.balance.value = alldashboardData
+            .value
+            .data!
+            .balance
+            .toString();
+      });
     } catch (e) {
-      print("Dashboard fetch error: $e");
-      myerror.value = e.toString();
+      print("Error: $e");
     } finally {
       isLoading.value = false;
-    }
-  }
-
-  /// API call with error handling
-  Future<DashboardDataModel?> fetchDashbordApi() async {
-    final url = Uri.parse(
-      ApiEndPoints.baseUrl + ApiEndPoints.otherendpoints.dashboard,
-    );
-
-    try {
-      final response = await http.get(
-        url,
-        headers: {'Authorization': 'Bearer ${box.read("userToken")}'},
-      );
-
-      final results = jsonDecode(response.body);
-
-      if (response.statusCode == 200) {
-        // ✅ Success
-        myerror.value = "";
-        message.value = "";
-        return DashboardDataModel.fromJson(results);
-      } else if (response.statusCode == 403) {
-        // ❌ Account Deactivated / Forbidden
-        myerror.value = results["errors"] ?? "Deactivated";
-        message.value = results["message"] ?? "Access forbidden";
-
-        Fluttertoast.showToast(
-          msg: message.value,
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.TOP,
-          backgroundColor: Colors.red,
-          textColor: Colors.white,
-        );
-
-        return null; // ⚠️ no crash
-      } else {
-        // ❌ Other errors
-        message.value = "Failed to fetch dashboard [${response.statusCode}]";
-
-        Fluttertoast.showToast(
-          msg: message.value,
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.TOP,
-          backgroundColor: Colors.red,
-          textColor: Colors.white,
-        );
-
-        return null;
-      }
-    } catch (e) {
-      print("Dashboard API exception: $e");
-
-      message.value = "Network error! Please try again.";
-      Fluttertoast.showToast(
-        msg: message.value,
-        toastLength: Toast.LENGTH_SHORT,
-        gravity: ToastGravity.TOP,
-        backgroundColor: Colors.red,
-        textColor: Colors.white,
-      );
-
-      return null;
     }
   }
 }
