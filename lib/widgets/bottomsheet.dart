@@ -16,6 +16,7 @@ import 'package:jahanpay/global_controller/page_controller.dart';
 import 'package:jahanpay/screens/helpscreen.dart';
 import 'package:jahanpay/screens/termscondition.dart';
 import 'package:jahanpay/utils/colors.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../controllers/dashboard_controller.dart';
@@ -49,6 +50,22 @@ class _CustomFullScreenSheetState extends State<CustomFullScreenSheet> {
 
   final box = GetStorage();
   final Mypagecontroller mypagecontroller = Get.find();
+
+  String _version = '';
+
+  Future<void> _loadVersion() async {
+    PackageInfo packageInfo = await PackageInfo.fromPlatform();
+    setState(() {
+      _version = packageInfo.version;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _loadVersion();
+  }
+
   @override
   Widget build(BuildContext context) {
     var screenHeight = MediaQuery.of(context).size.height;
@@ -88,7 +105,7 @@ class _CustomFullScreenSheetState extends State<CustomFullScreenSheet> {
               );
             },
             child: Container(
-              height: 100,
+              height: 90,
               width: screenWidth,
               decoration: BoxDecoration(
                 color: AppColors.primaryColor,
@@ -98,8 +115,8 @@ class _CustomFullScreenSheetState extends State<CustomFullScreenSheet> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Image.asset("assets/icons/drawerwhatsapp.png", height: 45),
-                  SizedBox(height: 10),
+                  Image.asset("assets/icons/drawerwhatsapp.png", height: 35),
+                  SizedBox(height: 5),
                   KText(
                     text: languagesController.tr("CONTACTUS"),
                     fontSize: 14,
@@ -111,6 +128,7 @@ class _CustomFullScreenSheetState extends State<CustomFullScreenSheet> {
             ),
           ),
           SizedBox(height: 10),
+
           Container(
             height: 120,
             width: screenWidth,
@@ -345,7 +363,7 @@ class _CustomFullScreenSheetState extends State<CustomFullScreenSheet> {
               ],
             ),
           ),
-          SizedBox(height: 10),
+          SizedBox(height: 5),
           Container(
             height: 100,
             width: screenWidth,
@@ -427,7 +445,7 @@ class _CustomFullScreenSheetState extends State<CustomFullScreenSheet> {
               ],
             ),
           ),
-          SizedBox(height: 10),
+          SizedBox(height: 5),
           Container(
             height: 100,
             width: screenWidth,
@@ -510,7 +528,7 @@ class _CustomFullScreenSheetState extends State<CustomFullScreenSheet> {
               ],
             ),
           ),
-          SizedBox(height: 10),
+          SizedBox(height: 5),
           GestureDetector(
             onTap: () {
               Navigator.pop(context);
@@ -528,7 +546,7 @@ class _CustomFullScreenSheetState extends State<CustomFullScreenSheet> {
               );
             },
             child: Container(
-              height: 90,
+              height: 80,
               width: screenWidth,
               decoration: BoxDecoration(
                 color: AppColors.primaryColor,
@@ -538,8 +556,8 @@ class _CustomFullScreenSheetState extends State<CustomFullScreenSheet> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Image.asset("assets/icons/logout.png", height: 40),
-                  SizedBox(height: 10),
+                  Image.asset("assets/icons/logout.png", height: 35),
+                  SizedBox(height: 5),
                   KText(
                     text: languagesController.tr("LOGOUT"),
                     fontSize: 14,
@@ -549,6 +567,11 @@ class _CustomFullScreenSheetState extends State<CustomFullScreenSheet> {
                 ],
               ),
             ),
+          ),
+          SizedBox(height: 5),
+          Text(
+            "${languagesController.tr("VERSION")} ${_version.isEmpty ? 'Loading...' : ': $_version'}",
+            style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
           ),
         ],
       ),

@@ -70,6 +70,11 @@ class SignInController extends GetxController {
           results["data"]["user_info"]["currency"]["symbol"],
         );
         box.write(
+          "currencyName",
+          results["data"]["user_info"]["currency"]["name"],
+        );
+
+        box.write(
           "countryID",
           results["data"]["user_info"]["reseller"]["country_id"],
         );

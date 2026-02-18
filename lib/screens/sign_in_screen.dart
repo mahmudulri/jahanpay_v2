@@ -114,23 +114,23 @@ class _SignInScreenState extends State<SignInScreen> {
                   children: [
                     Image.asset("assets/icons/logo.png", height: 230),
                     SizedBox(height: 65),
-                    // SizedBox(width: 10),
-                    // GestureDetector(
-                    //   onTap: () {
-                    //     signInController.usernameController.text =
-                    //         "01986072587";
-                    //     signInController.passwordController.text = "00000000";
-                    //   },
-                    //   child: Text("01986"),
-                    // ),
-                    // SizedBox(width: 10),
-                    // GestureDetector(
-                    //   onTap: () {
-                    //     signInController.usernameController.text = "0796321768";
-                    //     signInController.passwordController.text = "00000000";
-                    //   },
-                    //   child: Text("0796321"),
-                    // ),
+                    SizedBox(width: 10),
+                    GestureDetector(
+                      onTap: () {
+                        signInController.usernameController.text =
+                            "01986072587";
+                        signInController.passwordController.text = "00000000";
+                      },
+                      child: Text("01986"),
+                    ),
+                    SizedBox(width: 10),
+                    GestureDetector(
+                      onTap: () {
+                        signInController.usernameController.text = "0796321768";
+                        signInController.passwordController.text = "00000000";
+                      },
+                      child: Text("0796321"),
+                    ),
                     KText(
                       text: languagesController.tr("ENTER_YOUR_LOGIN_INFO"),
                       fontSize: 15,

@@ -26,8 +26,8 @@ if (keystorePropertiesFile.exists()) {
 
 android {
     namespace = "com.jahanpay.woosat"
-    compileSdk = flutter.compileSdkVersion
-    ndkVersion = flutter.ndkVersion
+    compileSdk = 36
+    ndkVersion = "27.0.12077973"
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
@@ -41,7 +41,7 @@ android {
     defaultConfig {
         applicationId = "com.jahanpay.woosat"
         minSdk = flutter.minSdkVersion
-        targetSdk = 35
+        targetSdk = 36
         versionCode = flutter.versionCode
         versionName = flutter.versionName
         multiDexEnabled = true

@@ -248,7 +248,8 @@
 "ORDER": "سفارش",
 "MONEY_TRANSFER": "انتقال پول",
 "WARNING": "هشدار",
-"SELECT_START_DATE_FIRST": "لطفاً ابتدا تاریخ شروع را انتخاب کنید"
+"SELECT_START_DATE_FIRST": "لطفاً ابتدا تاریخ شروع را انتخاب کنید",
+"VERSION": "نسخه"
 
 
 
