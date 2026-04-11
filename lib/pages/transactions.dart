@@ -129,831 +129,414 @@ class _TransactionsState extends State<Transactions> {
   Widget build(BuildContext context) {
     var screenHeight = MediaQuery.of(context).size.height;
     var screenWidth = MediaQuery.of(context).size.width;
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      key: _scaffoldKey,
-      backgroundColor: Colors.white,
-      body: Container(
-        height: screenHeight,
-        width: screenWidth,
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage('assets/images/back.webp'),
-            fit: BoxFit.fill,
+    return SafeArea(
+      top: false,
+      child: Scaffold(
+        resizeToAvoidBottomInset: false,
+        key: _scaffoldKey,
+        backgroundColor: Colors.white,
+        body: Container(
+          height: screenHeight,
+          width: screenWidth,
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('assets/images/back.webp'),
+              fit: BoxFit.fill,
+            ),
           ),
-        ),
-        child: Column(
-          children: [
-            Padding(
-              padding: EdgeInsets.only(left: 15, right: 15, top: 40),
-              child: Center(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 0),
-                  child: Row(
-                    children: [
-                      GestureDetector(
-                        onTap: () {
-                          mypagecontroller.handleBack();
-                          ;
-                        },
-                        child: Container(
-                          height: 45,
-                          width: 45,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                          child: Center(
-                            child: Icon(FontAwesomeIcons.chevronLeft),
-                          ),
-                        ),
-                      ),
-                      Spacer(),
-                      Obx(
-                        () => KText(
-                          text: languagesController.tr("TRANSACTIONS"),
-                          fontWeight: FontWeight.bold,
-                          fontSize: screenWidth * 0.045,
-                          color: Colors.white,
-                        ),
-                      ),
-                      Spacer(),
-                      GestureDetector(
-                        onTap: () {
-                          CustomFullScreenSheet.show(context);
-                        },
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Icon(
-                            Icons.menu,
-                            color: Colors.white,
-                            size: 30,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-            SizedBox(height: 10),
-
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 15),
-              child: Container(
-                height: 50,
-                width: screenWidth,
-                decoration: BoxDecoration(
-                  color: AppColors.primaryColor,
-                  borderRadius: BorderRadius.circular(10),
-                  border: Border.all(width: 1, color: Colors.white),
-                ),
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 10),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        languagesController.tr("FILTER_TRANSACTION"),
-                        style: TextStyle(color: Colors.white, fontSize: 17),
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            isFilterOpen = !isFilterOpen;
-                          });
-                        },
-                        child: CircleAvatar(
-                          backgroundColor: Colors.transparent,
-                          child: Icon(
-                            isFilterOpen
-                                ? FontAwesomeIcons.chevronUp
-                                : FontAwesomeIcons.chevronDown,
-                            size: 20,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-            Visibility(
-              visible: isFilterOpen,
-              child: AnimatedContainer(
-                duration: Duration(milliseconds: 300),
-                curve: Curves.easeInOut,
-
-                width: screenWidth,
-                margin: EdgeInsets.symmetric(horizontal: 15, vertical: 8),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(10),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.1),
-                      blurRadius: 10,
-                    ),
-                  ],
-                ),
-                child: isFilterOpen
-                    ? Column(
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.symmetric(
-                              horizontal: 10,
-                              vertical: 10,
+          child: Column(
+            children: [
+              Padding(
+                padding: EdgeInsets.only(left: 15, right: 15, top: 40),
+                child: Center(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 0),
+                    child: Row(
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            mypagecontroller.handleBack();
+                            ;
+                          },
+                          child: Container(
+                            height: 45,
+                            width: 45,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(8),
                             ),
-                            child: Column(
-                              children: [
-                                //............................Type............//
-                                Row(
-                                  children: [
-                                    Text(
-                                      languagesController.tr("TYPE"),
-                                      style: TextStyle(fontSize: 14),
-                                    ),
-                                  ],
-                                ),
-                                SizedBox(height: 5),
-                                Container(
-                                  height: 50,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(8),
-                                    border: Border.all(
-                                      width: 1,
-                                      color: Colors.grey.shade300,
-                                    ),
-                                  ),
-                                  child: Padding(
-                                    padding: EdgeInsets.symmetric(
-                                      horizontal: 8,
-                                    ),
-                                    child: DropdownButtonHideUnderline(
-                                      child: Obx(
-                                        () => DropdownButton<String>(
-                                          value:
-                                              selectedOrderStatus.value.isEmpty
-                                              ? null
-                                              : selectedOrderStatus.value,
-                                          isExpanded: true,
-                                          hint: KText(
-                                            text: languagesController.tr("ALL"),
-                                            fontSize: screenWidth * 0.040,
-                                          ),
-                                          items: [
-                                            // ALL option
-                                            DropdownMenuItem<String>(
-                                              value: "",
-                                              child: KText(
-                                                text: languagesController.tr(
-                                                  "ALL",
-                                                ),
-                                                fontSize: screenWidth * 0.040,
-                                              ),
-                                            ),
+                            child: Center(
+                              child: Icon(FontAwesomeIcons.chevronLeft),
+                            ),
+                          ),
+                        ),
+                        Spacer(),
+                        Obx(
+                          () => KText(
+                            text: languagesController.tr("TRANSACTIONS"),
+                            fontWeight: FontWeight.bold,
+                            fontSize: screenWidth * 0.045,
+                            color: Colors.white,
+                          ),
+                        ),
+                        Spacer(),
+                        GestureDetector(
+                          onTap: () {
+                            CustomFullScreenSheet.show(context);
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Icon(
+                              Icons.menu,
+                              color: Colors.white,
+                              size: 30,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(height: 10),
 
-                                            // Order status options
-                                            ...orderStatus.map<
-                                              DropdownMenuItem<String>
-                                            >((data) {
-                                              return DropdownMenuItem<String>(
-                                                value: data['value'],
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 15),
+                child: Container(
+                  height: 50,
+                  width: screenWidth,
+                  decoration: BoxDecoration(
+                    color: AppColors.primaryColor,
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(width: 1, color: Colors.white),
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 10),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          languagesController.tr("FILTER_TRANSACTION"),
+                          style: TextStyle(color: Colors.white, fontSize: 17),
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              isFilterOpen = !isFilterOpen;
+                            });
+                          },
+                          child: CircleAvatar(
+                            backgroundColor: Colors.transparent,
+                            child: Icon(
+                              isFilterOpen
+                                  ? FontAwesomeIcons.chevronUp
+                                  : FontAwesomeIcons.chevronDown,
+                              size: 20,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              Visibility(
+                visible: isFilterOpen,
+                child: AnimatedContainer(
+                  duration: Duration(milliseconds: 300),
+                  curve: Curves.easeInOut,
+
+                  width: screenWidth,
+                  margin: EdgeInsets.symmetric(horizontal: 15, vertical: 8),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.1),
+                        blurRadius: 10,
+                      ),
+                    ],
+                  ),
+                  child: isFilterOpen
+                      ? Column(
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.symmetric(
+                                horizontal: 10,
+                                vertical: 10,
+                              ),
+                              child: Column(
+                                children: [
+                                  //............................Type............//
+                                  Row(
+                                    children: [
+                                      Text(
+                                        languagesController.tr("TYPE"),
+                                        style: TextStyle(fontSize: 14),
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(height: 5),
+                                  Container(
+                                    height: 50,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(8),
+                                      border: Border.all(
+                                        width: 1,
+                                        color: Colors.grey.shade300,
+                                      ),
+                                    ),
+                                    child: Padding(
+                                      padding: EdgeInsets.symmetric(
+                                        horizontal: 8,
+                                      ),
+                                      child: DropdownButtonHideUnderline(
+                                        child: Obx(
+                                          () => DropdownButton<String>(
+                                            value:
+                                                selectedOrderStatus
+                                                    .value
+                                                    .isEmpty
+                                                ? null
+                                                : selectedOrderStatus.value,
+                                            isExpanded: true,
+                                            hint: KText(
+                                              text: languagesController.tr(
+                                                "ALL",
+                                              ),
+                                              fontSize: screenWidth * 0.040,
+                                            ),
+                                            items: [
+                                              // ALL option
+                                              DropdownMenuItem<String>(
+                                                value: "",
                                                 child: KText(
                                                   text: languagesController.tr(
-                                                    data['titleKey']!,
+                                                    "ALL",
                                                   ),
                                                   fontSize: screenWidth * 0.040,
                                                 ),
-                                              );
-                                            }).toList(),
-                                          ],
-                                          onChanged: (value) {
-                                            selectedOrderStatus.value =
-                                                value ?? "";
-
-                                            print(value.toString());
-                                            box.write(
-                                              "transactiontype",
-                                              "&filter_transactiontype=$value",
-                                            );
-                                          },
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                SizedBox(height: 5),
-                                //............................Category............//
-                                Row(
-                                  children: [
-                                    Text(
-                                      languagesController.tr("SELECT_CATEGORY"),
-                                      style: TextStyle(fontSize: 14),
-                                    ),
-                                  ],
-                                ),
-                                SizedBox(height: 5),
-                                Container(
-                                  height: 50,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(8),
-                                    border: Border.all(
-                                      width: 1,
-                                      color: Colors.grey.shade300,
-                                    ),
-                                  ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                      horizontal: 8,
-                                    ),
-                                    child: DropdownButtonHideUnderline(
-                                      child: Obx(
-                                        () => DropdownButton<String>(
-                                          value:
-                                              selectedCategoryType.value.isEmpty
-                                              ? null
-                                              : selectedCategoryType.value,
-                                          isExpanded: true,
-                                          hint: KText(
-                                            text: languagesController.tr("ALL"),
-                                            fontSize: screenWidth * 0.040,
-                                          ),
-                                          items: [
-                                            // ALL
-                                            DropdownMenuItem<String>(
-                                              value: "",
-                                              child: KText(
-                                                text: languagesController.tr(
-                                                  "ALL",
-                                                ),
-                                                fontSize: screenWidth * 0.040,
                                               ),
-                                            ),
 
-                                            // Category Type items
-                                            ...categoryType.map<
-                                              DropdownMenuItem<String>
-                                            >((data) {
-                                              return DropdownMenuItem<String>(
-                                                value: data['value'],
-                                                child: KText(
-                                                  text: languagesController.tr(
-                                                    data['titleKey']!,
-                                                  ),
-                                                  fontSize: screenWidth * 0.040,
-                                                ),
-                                              );
-                                            }).toList(),
-                                          ],
-                                          onChanged: (value) {
-                                            selectedCategoryType.value =
-                                                value ?? "";
-                                            print(value.toString());
-                                            box.write(
-                                              "category",
-                                              "&filter_transactioncategory=$value",
-                                            );
-                                          },
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                SizedBox(height: 5),
-                                //............................Purpose............//
-                                Row(
-                                  children: [
-                                    Text(
-                                      languagesController.tr("SELECT_PURPOSE"),
-                                      style: TextStyle(fontSize: 14),
-                                    ),
-                                  ],
-                                ),
-                                SizedBox(height: 5),
-                                Container(
-                                  height: 50,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(8),
-                                    border: Border.all(
-                                      width: 1,
-                                      color: Colors.grey.shade300,
-                                    ),
-                                  ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                      horizontal: 8,
-                                    ),
-                                    child: DropdownButtonHideUnderline(
-                                      child: Obx(
-                                        () => DropdownButton<String>(
-                                          value:
-                                              selectedPurposeType.value.isEmpty
-                                              ? null
-                                              : selectedPurposeType.value,
-                                          isExpanded: true,
-                                          hint: KText(
-                                            text: languagesController.tr("ALL"),
-                                            fontSize: screenWidth * 0.040,
-                                          ),
-                                          items: [
-                                            // ALL
-                                            DropdownMenuItem<String>(
-                                              value: "",
-                                              child: KText(
-                                                text: languagesController.tr(
-                                                  "ALL",
-                                                ),
-                                                fontSize: screenWidth * 0.040,
-                                              ),
-                                            ),
-
-                                            // Purpose Type options
-                                            ...purposeType.map<
-                                              DropdownMenuItem<String>
-                                            >((data) {
-                                              return DropdownMenuItem<String>(
-                                                value: data['value'],
-                                                child: KText(
-                                                  text: languagesController.tr(
-                                                    data['titleKey']!,
-                                                  ),
-                                                  fontSize: screenWidth * 0.040,
-                                                ),
-                                              );
-                                            }).toList(),
-                                          ],
-                                          onChanged: (value) {
-                                            selectedPurposeType.value =
-                                                value ?? "";
-
-                                            print(value.toString());
-                                            box.write(
-                                              "purpose",
-                                              "&filter_transactionpurpose=$value",
-                                            );
-                                          },
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                SizedBox(height: 10),
-                                Row(
-                                  children: [
-                                    /// START DATE
-                                    Expanded(
-                                      child: GestureDetector(
-                                        onTap: () {
-                                          // open start date picker
-                                        },
-                                        child: Container(
-                                          height: 50,
-                                          decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.circular(
-                                              8,
-                                            ),
-                                            border: Border.all(
-                                              width: 1,
-                                              color: Colors.grey.shade300,
-                                            ),
-                                          ),
-                                          child: Padding(
-                                            padding: const EdgeInsets.symmetric(
-                                              horizontal: 10,
-                                            ),
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              children: [
-                                                Obx(
-                                                  () => KText(
-                                                    text:
-                                                        startDate.value == null
-                                                        ? languagesController
-                                                              .tr("START_DATE")
-                                                        : DateFormat(
-                                                            'yyyy/MM/dd',
-                                                          ).format(
-                                                            startDate.value!,
-                                                          ),
-
+                                              // Order status options
+                                              ...orderStatus.map<
+                                                DropdownMenuItem<String>
+                                              >((data) {
+                                                return DropdownMenuItem<String>(
+                                                  value: data['value'],
+                                                  child: KText(
+                                                    text: languagesController
+                                                        .tr(data['titleKey']!),
                                                     fontSize:
                                                         screenWidth * 0.040,
                                                   ),
-                                                ),
-                                                GestureDetector(
-                                                  onTap: () =>
-                                                      pickStartDate(context),
+                                                );
+                                              }).toList(),
+                                            ],
+                                            onChanged: (value) {
+                                              selectedOrderStatus.value =
+                                                  value ?? "";
 
-                                                  child: Icon(
-                                                    Icons.calendar_month,
-                                                    color: Colors.grey,
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-
-                                    const SizedBox(width: 10),
-
-                                    /// END DATE
-                                    Expanded(
-                                      child: GestureDetector(
-                                        onTap: () {
-                                          // open end date picker
-                                        },
-                                        child: Container(
-                                          height: 50,
-                                          decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.circular(
-                                              8,
-                                            ),
-                                            border: Border.all(
-                                              width: 1,
-                                              color: Colors.grey.shade300,
-                                            ),
-                                          ),
-                                          child: Padding(
-                                            padding: const EdgeInsets.symmetric(
-                                              horizontal: 10,
-                                            ),
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              children: [
-                                                Obx(
-                                                  () => KText(
-                                                    text: endDate.value == null
-                                                        ? languagesController
-                                                              .tr("END_DATE")
-                                                        : DateFormat(
-                                                            'yyyy/MM/dd',
-                                                          ).format(
-                                                            endDate.value!,
-                                                          ),
-                                                  ),
-                                                ),
-                                                GestureDetector(
-                                                  onTap: () =>
-                                                      pickEndDate(context),
-                                                  child: Icon(
-                                                    Icons.calendar_month,
-                                                    color: Colors.grey,
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                SizedBox(height: 10),
-                                // Container(
-                                //   height: 50,
-                                //   decoration: BoxDecoration(
-                                //     borderRadius: BorderRadius.circular(
-                                //       8,
-                                //     ),
-                                //     border: Border.all(
-                                //       width: 1,
-                                //       color: Colors.grey.shade300,
-                                //     ),
-                                //   ),
-                                //   child: Padding(
-                                //     padding: EdgeInsets.symmetric(
-                                //       horizontal: 10,
-                                //     ),
-                                //     child: Row(
-                                //       mainAxisAlignment:
-                                //           MainAxisAlignment
-                                //               .spaceBetween,
-                                //       children: [
-                                //         Icon(
-                                //           Icons.search_sharp,
-                                //           color: Colors.grey,
-                                //           size: screenHeight * 0.040,
-                                //         ),
-                                //         SizedBox(width: 10),
-                                //         Expanded(
-                                //           child: Obx(
-                                //             () => TextField(
-                                //               decoration: InputDecoration(
-                                //                 hintText:
-                                //                     languagesController.tr(
-                                //                       "SEARCH_BY_PHOENUMBER",
-                                //                     ),
-                                //                 border:
-                                //                     InputBorder.none,
-                                //                 hintStyle: TextStyle(
-                                //                   color: Colors.grey,
-                                //                   fontSize:
-                                //                       screenWidth *
-                                //                       0.040,
-                                //                   fontFamily:
-                                //                       box
-                                //                               .read(
-                                //                                 "language",
-                                //                               )
-                                //                               .toString() ==
-                                //                           "Fa"
-                                //                       ? Get.find<
-                                //                               FontController
-                                //                             >()
-                                //                             .currentFont
-                                //                       : null,
-                                //                 ),
-                                //               ),
-                                //             ),
-                                //           ),
-                                //         ),
-                                //       ],
-                                //     ),
-                                //   ),
-                                // ),
-                                SizedBox(height: 10),
-                                Obx(
-                                  () => Container(
-                                    height: 45,
-                                    width: screenWidth,
-                                    child: Row(
-                                      children: [
-                                        Expanded(
-                                          flex: 5,
-                                          child: GestureDetector(
-                                            onTap: () {
-                                              transactionController
-                                                  .fetchTransactionData();
+                                              print(value.toString());
+                                              box.write(
+                                                "transactiontype",
+                                                "&filter_transactiontype=$value",
+                                              );
                                             },
-                                            child: Container(
-                                              decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(10),
-                                                border: Border.all(
-                                                  width: 1,
-                                                  color: Color(0xffFF6A60),
-                                                ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(height: 5),
+                                  //............................Category............//
+                                  Row(
+                                    children: [
+                                      Text(
+                                        languagesController.tr(
+                                          "SELECT_CATEGORY",
+                                        ),
+                                        style: TextStyle(fontSize: 14),
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(height: 5),
+                                  Container(
+                                    height: 50,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(8),
+                                      border: Border.all(
+                                        width: 1,
+                                        color: Colors.grey.shade300,
+                                      ),
+                                    ),
+                                    child: Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                        horizontal: 8,
+                                      ),
+                                      child: DropdownButtonHideUnderline(
+                                        child: Obx(
+                                          () => DropdownButton<String>(
+                                            value:
+                                                selectedCategoryType
+                                                    .value
+                                                    .isEmpty
+                                                ? null
+                                                : selectedCategoryType.value,
+                                            isExpanded: true,
+                                            hint: KText(
+                                              text: languagesController.tr(
+                                                "ALL",
                                               ),
-                                              child: Center(
+                                              fontSize: screenWidth * 0.040,
+                                            ),
+                                            items: [
+                                              // ALL
+                                              DropdownMenuItem<String>(
+                                                value: "",
                                                 child: KText(
                                                   text: languagesController.tr(
-                                                    "APPLY_FILTER",
+                                                    "ALL",
                                                   ),
-                                                  color: Color(0xffFF6A60),
-                                                  fontWeight: FontWeight.w600,
-                                                  fontSize: screenWidth * 0.035,
+                                                  fontSize: screenWidth * 0.040,
                                                 ),
                                               ),
-                                            ),
-                                          ),
-                                        ),
-                                        SizedBox(width: 10),
-                                        Expanded(
-                                          flex: 4,
-                                          child: DefaultButton(
-                                            buttonName: languagesController.tr(
-                                              "REMOVE_FILTER",
-                                            ),
-                                            onpressed: () {
-                                              selectedOrderStatus.value = "";
-                                              selectedCategoryType.value = "";
-                                              selectedPurposeType.value = "";
-                                              startDate.value = null;
-                                              endDate.value = null;
-                                              box.write("transactiontype", "");
-                                              box.write("category", "");
-                                              box.write("purpose", "");
-                                              box.write("startdate", "");
-                                              box.write("enddate", "");
-                                              transactionController
-                                                  .fetchTransactionData();
-                                            },
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      )
-                    : SizedBox(),
-              ),
-            ),
-            SizedBox(height: 10),
 
-            Obx(() {
-              if (transactionController.isLoading.value) {
-                return const Center(child: CircularProgressIndicator());
-              }
-
-              final transactions = transactionController
-                  .alltransactionlist
-                  .value
-                  .data
-                  ?.resellerBalanceTransactions;
-
-              if (transactions == null || transactions.isEmpty) {
-                return Center(
-                  child: Text(
-                    languagesController.tr("NO_DATA_FOUND"),
-
-                    style: TextStyle(fontSize: 16, color: Colors.grey),
-                  ),
-                );
-              }
-
-              // If data exists but you don't want to show a list
-              return const SizedBox();
-            }),
-
-            SizedBox(height: 10),
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 15),
-                child: Container(
-                  // color: Colors.cyan,
-                  child: Obx(
-                    () => transactionController.isLoading.value == false
-                        ? ListView.separated(
-                            padding: EdgeInsets.all(0),
-                            separatorBuilder: (context, index) {
-                              return SizedBox(height: 5);
-                            },
-                            physics: BouncingScrollPhysics(),
-                            shrinkWrap: true,
-                            itemCount: transactionController
-                                .alltransactionlist
-                                .value
-                                .data!
-                                .resellerBalanceTransactions
-                                .length,
-                            itemBuilder: (context, index) {
-                              final data = transactionController
-                                  .alltransactionlist
-                                  .value
-                                  .data!
-                                  .resellerBalanceTransactions[index];
-                              return Container(
-                                height: 120,
-                                width: screenWidth,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
-                                  border: Border.all(
-                                    width: 1,
-                                    color: data.status.toString() == "debit"
-                                        ? Colors.red.withOpacity(0.4)
-                                        : Colors.green.withOpacity(0.4),
-                                  ),
-                                ),
-                                child: Column(
-                                  children: [
-                                    Expanded(
-                                      flex: 1,
-                                      child: Container(
-                                        decoration: BoxDecoration(
-                                          color:
-                                              data.status.toString() == "debit"
-                                              ? Colors.red.withOpacity(0.12)
-                                              : Colors.green.withOpacity(0.12),
-                                          borderRadius: BorderRadius.only(
-                                            topRight: Radius.circular(10),
-                                            topLeft: Radius.circular(10),
-                                          ),
-                                        ),
-                                        child: Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                            horizontal: 10,
-                                          ),
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              KText(
-                                                text: data
-                                                    .reseller!
-                                                    .resellerName
-                                                    .toString(),
-                                                color: Colors.black,
-                                                fontWeight: FontWeight.w400,
-                                                fontSize: screenHeight * 0.020,
-                                              ),
-                                              KText(
-                                                text: DateFormat("dd-MM-yyyy")
-                                                    .format(
-                                                      DateTime.parse(
-                                                        data.createdAt
-                                                            .toString(),
-                                                      ),
-                                                    ),
-                                                color: Colors.black,
-                                                fontWeight: FontWeight.w400,
-                                                fontSize: screenHeight * 0.020,
-                                              ),
+                                              // Category Type items
+                                              ...categoryType.map<
+                                                DropdownMenuItem<String>
+                                              >((data) {
+                                                return DropdownMenuItem<String>(
+                                                  value: data['value'],
+                                                  child: KText(
+                                                    text: languagesController
+                                                        .tr(data['titleKey']!),
+                                                    fontSize:
+                                                        screenWidth * 0.040,
+                                                  ),
+                                                );
+                                              }).toList(),
                                             ],
+                                            onChanged: (value) {
+                                              selectedCategoryType.value =
+                                                  value ?? "";
+                                              print(value.toString());
+                                              box.write(
+                                                "category",
+                                                "&filter_transactioncategory=$value",
+                                              );
+                                            },
                                           ),
                                         ),
                                       ),
                                     ),
-                                    Expanded(
-                                      flex: 2,
-                                      child: Container(
-                                        decoration: BoxDecoration(
-                                          color: Colors.white,
-                                          borderRadius: BorderRadius.only(
-                                            bottomLeft: Radius.circular(10),
-                                            bottomRight: Radius.circular(10),
+                                  ),
+                                  SizedBox(height: 5),
+                                  //............................Purpose............//
+                                  Row(
+                                    children: [
+                                      Text(
+                                        languagesController.tr(
+                                          "SELECT_PURPOSE",
+                                        ),
+                                        style: TextStyle(fontSize: 14),
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(height: 5),
+                                  Container(
+                                    height: 50,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(8),
+                                      border: Border.all(
+                                        width: 1,
+                                        color: Colors.grey.shade300,
+                                      ),
+                                    ),
+                                    child: Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                        horizontal: 8,
+                                      ),
+                                      child: DropdownButtonHideUnderline(
+                                        child: Obx(
+                                          () => DropdownButton<String>(
+                                            value:
+                                                selectedPurposeType
+                                                    .value
+                                                    .isEmpty
+                                                ? null
+                                                : selectedPurposeType.value,
+                                            isExpanded: true,
+                                            hint: KText(
+                                              text: languagesController.tr(
+                                                "ALL",
+                                              ),
+                                              fontSize: screenWidth * 0.040,
+                                            ),
+                                            items: [
+                                              // ALL
+                                              DropdownMenuItem<String>(
+                                                value: "",
+                                                child: KText(
+                                                  text: languagesController.tr(
+                                                    "ALL",
+                                                  ),
+                                                  fontSize: screenWidth * 0.040,
+                                                ),
+                                              ),
+
+                                              // Purpose Type options
+                                              ...purposeType.map<
+                                                DropdownMenuItem<String>
+                                              >((data) {
+                                                return DropdownMenuItem<String>(
+                                                  value: data['value'],
+                                                  child: KText(
+                                                    text: languagesController
+                                                        .tr(data['titleKey']!),
+                                                    fontSize:
+                                                        screenWidth * 0.040,
+                                                  ),
+                                                );
+                                              }).toList(),
+                                            ],
+                                            onChanged: (value) {
+                                              selectedPurposeType.value =
+                                                  value ?? "";
+
+                                              print(value.toString());
+                                              box.write(
+                                                "purpose",
+                                                "&filter_transactionpurpose=$value",
+                                              );
+                                            },
                                           ),
                                         ),
-                                        child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            Padding(
-                                              padding:
-                                                  const EdgeInsets.symmetric(
-                                                    horizontal: 10,
-                                                  ),
-                                              child: Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                children: [
-                                                  KText(
-                                                    text: languagesController
-                                                        .tr("TRANSACTION_TYPE"),
-                                                    color: Colors.grey.shade700,
-                                                    fontWeight: FontWeight.w400,
-                                                    fontSize:
-                                                        screenHeight * 0.020,
-                                                  ),
-                                                  Obx(
-                                                    () => Container(
-                                                      decoration: BoxDecoration(
-                                                        color:
-                                                            data.status
-                                                                    .toString() ==
-                                                                "debit"
-                                                            ? Colors.red
-                                                                  .withOpacity(
-                                                                    0.12,
-                                                                  )
-                                                            : Colors.green
-                                                                  .withOpacity(
-                                                                    0.12,
-                                                                  ),
-                                                        borderRadius:
-                                                            BorderRadius.circular(
-                                                              6,
-                                                            ),
-                                                      ),
-                                                      child: Padding(
-                                                        padding:
-                                                            const EdgeInsets.symmetric(
-                                                              horizontal: 10,
-                                                              vertical: 6,
-                                                            ),
-                                                        child: KText(
-                                                          text:
-                                                              data.status
-                                                                      .toString() ==
-                                                                  "debit"
-                                                              ? languagesController
-                                                                    .tr("DEBIT")
-                                                              : languagesController
-                                                                    .tr(
-                                                                      "CREDIT",
-                                                                    ),
-                                                          color:
-                                                              data.status
-                                                                      .toString() ==
-                                                                  "debit"
-                                                              ? Colors.red
-                                                              : Colors.green,
-                                                          fontWeight:
-                                                              FontWeight.bold,
-                                                          fontSize:
-                                                              screenHeight *
-                                                              0.020,
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ],
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(height: 10),
+                                  Row(
+                                    children: [
+                                      /// START DATE
+                                      Expanded(
+                                        child: GestureDetector(
+                                          onTap: () {
+                                            // open start date picker
+                                          },
+                                          child: Container(
+                                            height: 50,
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(8),
+                                              border: Border.all(
+                                                width: 1,
+                                                color: Colors.grey.shade300,
                                               ),
                                             ),
-                                            SizedBox(height: 8),
-                                            Padding(
+                                            child: Padding(
                                               padding:
                                                   const EdgeInsets.symmetric(
                                                     horizontal: 10,
@@ -965,8 +548,382 @@ class _TransactionsState extends State<Transactions> {
                                                 children: [
                                                   Obx(
                                                     () => KText(
+                                                      text:
+                                                          startDate.value ==
+                                                              null
+                                                          ? languagesController
+                                                                .tr(
+                                                                  "START_DATE",
+                                                                )
+                                                          : DateFormat(
+                                                              'yyyy/MM/dd',
+                                                            ).format(
+                                                              startDate.value!,
+                                                            ),
+
+                                                      fontSize:
+                                                          screenWidth * 0.040,
+                                                    ),
+                                                  ),
+                                                  GestureDetector(
+                                                    onTap: () =>
+                                                        pickStartDate(context),
+
+                                                    child: Icon(
+                                                      Icons.calendar_month,
+                                                      color: Colors.grey,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+
+                                      const SizedBox(width: 10),
+
+                                      /// END DATE
+                                      Expanded(
+                                        child: GestureDetector(
+                                          onTap: () {
+                                            // open end date picker
+                                          },
+                                          child: Container(
+                                            height: 50,
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(8),
+                                              border: Border.all(
+                                                width: 1,
+                                                color: Colors.grey.shade300,
+                                              ),
+                                            ),
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                    horizontal: 10,
+                                                  ),
+                                              child: Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: [
+                                                  Obx(
+                                                    () => KText(
+                                                      text:
+                                                          endDate.value == null
+                                                          ? languagesController
+                                                                .tr("END_DATE")
+                                                          : DateFormat(
+                                                              'yyyy/MM/dd',
+                                                            ).format(
+                                                              endDate.value!,
+                                                            ),
+                                                    ),
+                                                  ),
+                                                  GestureDetector(
+                                                    onTap: () =>
+                                                        pickEndDate(context),
+                                                    child: Icon(
+                                                      Icons.calendar_month,
+                                                      color: Colors.grey,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(height: 10),
+                                  // Container(
+                                  //   height: 50,
+                                  //   decoration: BoxDecoration(
+                                  //     borderRadius: BorderRadius.circular(
+                                  //       8,
+                                  //     ),
+                                  //     border: Border.all(
+                                  //       width: 1,
+                                  //       color: Colors.grey.shade300,
+                                  //     ),
+                                  //   ),
+                                  //   child: Padding(
+                                  //     padding: EdgeInsets.symmetric(
+                                  //       horizontal: 10,
+                                  //     ),
+                                  //     child: Row(
+                                  //       mainAxisAlignment:
+                                  //           MainAxisAlignment
+                                  //               .spaceBetween,
+                                  //       children: [
+                                  //         Icon(
+                                  //           Icons.search_sharp,
+                                  //           color: Colors.grey,
+                                  //           size: screenHeight * 0.040,
+                                  //         ),
+                                  //         SizedBox(width: 10),
+                                  //         Expanded(
+                                  //           child: Obx(
+                                  //             () => TextField(
+                                  //               decoration: InputDecoration(
+                                  //                 hintText:
+                                  //                     languagesController.tr(
+                                  //                       "SEARCH_BY_PHOENUMBER",
+                                  //                     ),
+                                  //                 border:
+                                  //                     InputBorder.none,
+                                  //                 hintStyle: TextStyle(
+                                  //                   color: Colors.grey,
+                                  //                   fontSize:
+                                  //                       screenWidth *
+                                  //                       0.040,
+                                  //                   fontFamily:
+                                  //                       box
+                                  //                               .read(
+                                  //                                 "language",
+                                  //                               )
+                                  //                               .toString() ==
+                                  //                           "Fa"
+                                  //                       ? Get.find<
+                                  //                               FontController
+                                  //                             >()
+                                  //                             .currentFont
+                                  //                       : null,
+                                  //                 ),
+                                  //               ),
+                                  //             ),
+                                  //           ),
+                                  //         ),
+                                  //       ],
+                                  //     ),
+                                  //   ),
+                                  // ),
+                                  SizedBox(height: 10),
+                                  Obx(
+                                    () => Container(
+                                      height: 45,
+                                      width: screenWidth,
+                                      child: Row(
+                                        children: [
+                                          Expanded(
+                                            flex: 5,
+                                            child: GestureDetector(
+                                              onTap: () {
+                                                transactionController
+                                                    .fetchTransactionData();
+                                              },
+                                              child: Container(
+                                                decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(10),
+                                                  border: Border.all(
+                                                    width: 1,
+                                                    color: Color(0xffFF6A60),
+                                                  ),
+                                                ),
+                                                child: Center(
+                                                  child: KText(
+                                                    text: languagesController
+                                                        .tr("APPLY_FILTER"),
+                                                    color: Color(0xffFF6A60),
+                                                    fontWeight: FontWeight.w600,
+                                                    fontSize:
+                                                        screenWidth * 0.035,
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          SizedBox(width: 10),
+                                          Expanded(
+                                            flex: 4,
+                                            child: DefaultButton(
+                                              buttonName: languagesController
+                                                  .tr("REMOVE_FILTER"),
+                                              onpressed: () {
+                                                selectedOrderStatus.value = "";
+                                                selectedCategoryType.value = "";
+                                                selectedPurposeType.value = "";
+                                                startDate.value = null;
+                                                endDate.value = null;
+                                                box.write(
+                                                  "transactiontype",
+                                                  "",
+                                                );
+                                                box.write("category", "");
+                                                box.write("purpose", "");
+                                                box.write("startdate", "");
+                                                box.write("enddate", "");
+                                                transactionController
+                                                    .fetchTransactionData();
+                                              },
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        )
+                      : SizedBox(),
+                ),
+              ),
+              SizedBox(height: 10),
+
+              Obx(() {
+                if (transactionController.isLoading.value) {
+                  return const Center(child: CircularProgressIndicator());
+                }
+
+                final transactions = transactionController
+                    .alltransactionlist
+                    .value
+                    .data
+                    ?.resellerBalanceTransactions;
+
+                if (transactions == null || transactions.isEmpty) {
+                  return Center(
+                    child: Text(
+                      languagesController.tr("NO_DATA_FOUND"),
+
+                      style: TextStyle(fontSize: 16, color: Colors.grey),
+                    ),
+                  );
+                }
+
+                // If data exists but you don't want to show a list
+                return const SizedBox();
+              }),
+
+              SizedBox(height: 10),
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 15),
+                  child: Container(
+                    // color: Colors.cyan,
+                    child: Obx(
+                      () => transactionController.isLoading.value == false
+                          ? ListView.separated(
+                              padding: EdgeInsets.all(0),
+                              separatorBuilder: (context, index) {
+                                return SizedBox(height: 5);
+                              },
+                              physics: BouncingScrollPhysics(),
+                              shrinkWrap: true,
+                              itemCount: transactionController
+                                  .alltransactionlist
+                                  .value
+                                  .data!
+                                  .resellerBalanceTransactions
+                                  .length,
+                              itemBuilder: (context, index) {
+                                final data = transactionController
+                                    .alltransactionlist
+                                    .value
+                                    .data!
+                                    .resellerBalanceTransactions[index];
+                                return Container(
+                                  height: 120,
+                                  width: screenWidth,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10),
+                                    border: Border.all(
+                                      width: 1,
+                                      color: data.status.toString() == "debit"
+                                          ? Colors.red.withOpacity(0.4)
+                                          : Colors.green.withOpacity(0.4),
+                                    ),
+                                  ),
+                                  child: Column(
+                                    children: [
+                                      Expanded(
+                                        flex: 1,
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                            color:
+                                                data.status.toString() ==
+                                                    "debit"
+                                                ? Colors.red.withOpacity(0.12)
+                                                : Colors.green.withOpacity(
+                                                    0.12,
+                                                  ),
+                                            borderRadius: BorderRadius.only(
+                                              topRight: Radius.circular(10),
+                                              topLeft: Radius.circular(10),
+                                            ),
+                                          ),
+                                          child: Padding(
+                                            padding: const EdgeInsets.symmetric(
+                                              horizontal: 10,
+                                            ),
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                KText(
+                                                  text: data
+                                                      .reseller!
+                                                      .resellerName
+                                                      .toString(),
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.w400,
+                                                  fontSize:
+                                                      screenHeight * 0.020,
+                                                ),
+                                                KText(
+                                                  text: DateFormat("dd-MM-yyyy")
+                                                      .format(
+                                                        DateTime.parse(
+                                                          data.createdAt
+                                                              .toString(),
+                                                        ),
+                                                      ),
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.w400,
+                                                  fontSize:
+                                                      screenHeight * 0.020,
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      Expanded(
+                                        flex: 2,
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                            color: Colors.white,
+                                            borderRadius: BorderRadius.only(
+                                              bottomLeft: Radius.circular(10),
+                                              bottomRight: Radius.circular(10),
+                                            ),
+                                          ),
+                                          child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              Padding(
+                                                padding:
+                                                    const EdgeInsets.symmetric(
+                                                      horizontal: 10,
+                                                    ),
+                                                child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    KText(
                                                       text: languagesController
-                                                          .tr("AMOUNT"),
+                                                          .tr(
+                                                            "TRANSACTION_TYPE",
+                                                          ),
                                                       color:
                                                           Colors.grey.shade700,
                                                       fontWeight:
@@ -974,70 +931,154 @@ class _TransactionsState extends State<Transactions> {
                                                       fontSize:
                                                           screenHeight * 0.020,
                                                     ),
-                                                  ),
-                                                  Row(
-                                                    children: [
-                                                      KText(
-                                                        text:
-                                                            NumberFormat.currency(
-                                                              locale: 'en_US',
-                                                              symbol: '',
-                                                              decimalDigits: 2,
-                                                            ).format(
-                                                              double.parse(
-                                                                data.amount
-                                                                    .toString(),
+                                                    Obx(
+                                                      () => Container(
+                                                        decoration: BoxDecoration(
+                                                          color:
+                                                              data.status
+                                                                      .toString() ==
+                                                                  "debit"
+                                                              ? Colors.red
+                                                                    .withOpacity(
+                                                                      0.12,
+                                                                    )
+                                                              : Colors.green
+                                                                    .withOpacity(
+                                                                      0.12,
+                                                                    ),
+                                                          borderRadius:
+                                                              BorderRadius.circular(
+                                                                6,
                                                               ),
-                                                            ),
+                                                        ),
+                                                        child: Padding(
+                                                          padding:
+                                                              const EdgeInsets.symmetric(
+                                                                horizontal: 10,
+                                                                vertical: 6,
+                                                              ),
+                                                          child: KText(
+                                                            text:
+                                                                data.status
+                                                                        .toString() ==
+                                                                    "debit"
+                                                                ? languagesController
+                                                                      .tr(
+                                                                        "DEBIT",
+                                                                      )
+                                                                : languagesController
+                                                                      .tr(
+                                                                        "CREDIT",
+                                                                      ),
+                                                            color:
+                                                                data.status
+                                                                        .toString() ==
+                                                                    "debit"
+                                                                ? Colors.red
+                                                                : Colors.green,
+                                                            fontWeight:
+                                                                FontWeight.bold,
+                                                            fontSize:
+                                                                screenHeight *
+                                                                0.020,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                              SizedBox(height: 8),
+                                              Padding(
+                                                padding:
+                                                    const EdgeInsets.symmetric(
+                                                      horizontal: 10,
+                                                    ),
+                                                child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    Obx(
+                                                      () => KText(
+                                                        text:
+                                                            languagesController
+                                                                .tr("AMOUNT"),
+                                                        color: Colors
+                                                            .grey
+                                                            .shade700,
+                                                        fontWeight:
+                                                            FontWeight.w400,
                                                         fontSize:
                                                             screenHeight *
-                                                            0.015,
-                                                        fontWeight:
-                                                            FontWeight.w700,
-                                                        color:
-                                                            data.status
-                                                                    .toString() ==
-                                                                "debit"
-                                                            ? Colors.black
-                                                            : Colors.black,
+                                                            0.020,
                                                       ),
-                                                      SizedBox(width: 5),
-                                                      Text(
-                                                        "${box.read("currency_code")} ",
-                                                        style: TextStyle(
+                                                    ),
+                                                    Row(
+                                                      children: [
+                                                        KText(
+                                                          text:
+                                                              NumberFormat.currency(
+                                                                locale: 'en_US',
+                                                                symbol: '',
+                                                                decimalDigits:
+                                                                    2,
+                                                              ).format(
+                                                                double.parse(
+                                                                  data.amount
+                                                                      .toString(),
+                                                                ),
+                                                              ),
                                                           fontSize:
                                                               screenHeight *
                                                               0.015,
+                                                          fontWeight:
+                                                              FontWeight.w700,
                                                           color:
                                                               data.status
                                                                       .toString() ==
                                                                   "debit"
                                                               ? Colors.black
                                                               : Colors.black,
-                                                          fontWeight:
-                                                              FontWeight.w600,
                                                         ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ],
+                                                        SizedBox(width: 5),
+                                                        Text(
+                                                          "${box.read("currency_code")} ",
+                                                          style: TextStyle(
+                                                            fontSize:
+                                                                screenHeight *
+                                                                0.015,
+                                                            color:
+                                                                data.status
+                                                                        .toString() ==
+                                                                    "debit"
+                                                                ? Colors.black
+                                                                : Colors.black,
+                                                            fontWeight:
+                                                                FontWeight.w600,
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ],
+                                                ),
                                               ),
-                                            ),
-                                          ],
+                                            ],
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                  ],
-                                ),
-                              );
-                            },
-                          )
-                        : Center(child: SizedBox()),
+                                    ],
+                                  ),
+                                );
+                              },
+                            )
+                          : Center(child: SizedBox()),
+                    ),
                   ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

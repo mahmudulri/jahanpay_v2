@@ -124,651 +124,974 @@ class _CreditTransferState extends State<CreditTransfer> {
     var screenHeight = MediaQuery.of(context).size.height;
     var screenWidth = MediaQuery.of(context).size.width;
     // ignore: deprecated_member_use
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      key: _scaffoldKey,
-      body: Container(
-        height: screenHeight,
-        width: screenWidth,
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage('assets/images/back.webp'),
-            fit: BoxFit.fill,
+    return SafeArea(
+      top: false,
+      child: Scaffold(
+        resizeToAvoidBottomInset: false,
+        key: _scaffoldKey,
+        body: Container(
+          height: screenHeight,
+          width: screenWidth,
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('assets/images/back.webp'),
+              fit: BoxFit.fill,
+            ),
           ),
-        ),
-        child: Column(
-          children: [
-            Padding(
-              padding: EdgeInsets.only(left: 15, right: 15, top: 40),
-              child: Center(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 0),
-                  child: Row(
-                    children: [
-                      GestureDetector(
-                        onTap: () {
-                          mypagecontroller.handleBack();
-                        },
-                        child: Container(
-                          height: 45,
-                          width: 45,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                          child: Center(
-                            child: Icon(FontAwesomeIcons.chevronLeft),
-                          ),
-                        ),
-                      ),
-                      Spacer(),
-                      Obx(
-                        () => GestureDetector(
+          child: Column(
+            children: [
+              Padding(
+                padding: EdgeInsets.only(left: 15, right: 15, top: 40),
+                child: Center(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 0),
+                    child: Row(
+                      children: [
+                        GestureDetector(
                           onTap: () {
-                            companyController.fetchCompany();
-                            // customhistoryController.finalList.clear();
-                            // customhistoryController.initialpage = 1;
-                            // customhistoryController.fetchHistory();
-                            // countryListController.fetchCountryData();
-                            print(box.read("countryID"));
+                            mypagecontroller.handleBack();
                           },
-                          child: Text(
-                            languagesController.tr("CREDIT_TRANSFER"),
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: screenWidth * 0.045,
+                          child: Container(
+                            height: 45,
+                            width: 45,
+                            decoration: BoxDecoration(
                               color: Colors.white,
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            child: Center(
+                              child: Icon(FontAwesomeIcons.chevronLeft),
                             ),
                           ),
                         ),
-                      ),
-                      Spacer(),
-                      GestureDetector(
-                        onTap: () {
-                          CustomFullScreenSheet.show(context);
-                        },
-                        child: Container(
-                          height: 42,
-                          width: 42,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Icon(Icons.menu, color: Colors.black),
+                        Spacer(),
+                        Obx(
+                          () => GestureDetector(
+                            onTap: () {
+                              companyController.fetchCompany();
+                              // customhistoryController.finalList.clear();
+                              // customhistoryController.initialpage = 1;
+                              // customhistoryController.fetchHistory();
+                              // countryListController.fetchCountryData();
+                              print(box.read("countryID"));
+                            },
+                            child: Text(
+                              languagesController.tr("CREDIT_TRANSFER"),
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: screenWidth * 0.045,
+                                color: Colors.white,
+                              ),
+                            ),
                           ),
                         ),
-                      ),
-                    ],
+                        Spacer(),
+                        GestureDetector(
+                          onTap: () {
+                            CustomFullScreenSheet.show(context);
+                          },
+                          child: Container(
+                            height: 42,
+                            width: 42,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Icon(Icons.menu, color: Colors.black),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
-            ),
-            SizedBox(height: 10),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 15),
-              child: Container(
-                width: screenWidth,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey.withOpacity(0.2),
-                      spreadRadius: 2,
-                      blurRadius: 2,
-                      offset: Offset(0, 0),
-                    ),
-                  ],
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: Padding(
-                  padding: EdgeInsets.all(12.0),
-                  child: Column(
-                    children: [
-                      Row(
-                        children: [
-                          Container(
-                            height: 40,
-                            width: 70,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              color: Colors.grey,
-                              image: DecorationImage(
-                                fit: BoxFit.cover,
-                                image: NetworkImage(
-                                  box.read("afghanistan_flag").toString(),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
+              SizedBox(height: 10),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 15),
+                child: Container(
+                  width: screenWidth,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.withOpacity(0.2),
+                        spreadRadius: 2,
+                        blurRadius: 2,
+                        offset: Offset(0, 0),
                       ),
-
-                      SizedBox(height: 8),
-                      Container(
-                        height: 55,
-                        decoration: BoxDecoration(
-                          color: AppColors.secondaryColor.withOpacity(0.2),
-                          borderRadius: BorderRadius.circular(10),
-                          border: Border.all(
-                            width: 1,
-                            color: Colors.grey.shade300,
-                          ),
-                        ),
-                        child: Row(
+                    ],
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.all(12.0),
+                    child: Column(
+                      children: [
+                        Row(
                           children: [
-                            SizedBox(width: 10),
-                            Expanded(
-                              flex: 5,
-                              child: Container(
-                                child: Padding(
-                                  padding: EdgeInsets.symmetric(horizontal: 0),
-                                  child: TextField(
-                                    maxLength: 10,
-                                    keyboardType: TextInputType.number,
-                                    controller: customRechargeController
-                                        .numberController,
-                                    style: TextStyle(fontSize: 18),
-                                    decoration: InputDecoration(
-                                      counterText: '',
-                                      border: InputBorder.none,
-                                      hintText: languagesController.tr(
-                                        "PHONENUMBER",
-                                      ),
-                                      hintStyle: TextStyle(
-                                        color: Colors.grey.shade600,
-                                      ),
-                                    ),
+                            Container(
+                              height: 40,
+                              width: 70,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: Colors.grey,
+                                image: DecorationImage(
+                                  fit: BoxFit.cover,
+                                  image: NetworkImage(
+                                    box.read("afghanistan_flag").toString(),
                                   ),
                                 ),
                               ),
                             ),
-                            Obx(() {
-                              final company =
-                                  companyController.matchedCompany.value;
-                              return Container(
-                                width: 50,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
-                                  color: company == null
-                                      ? Colors.transparent
-                                      : null,
-                                  image: company != null
-                                      ? DecorationImage(
-                                          image: NetworkImage(
-                                            company.companyLogo ?? '',
-                                          ),
-                                          fit: BoxFit.contain,
-                                        )
-                                      : null,
-                                ),
-                                child: company == null
-                                    ? Center(
-                                        child: Icon(
-                                          Icons.image_not_supported,
-                                          color: Colors.transparent,
-                                        ),
-                                      )
-                                    : null,
-                              );
-                            }),
                           ],
                         ),
-                      ),
-                      SizedBox(height: 8),
-                      Container(
-                        height: 55,
-                        width: screenWidth,
-                        decoration: BoxDecoration(
-                          color: AppColors.secondaryColor.withOpacity(0.2),
-                          borderRadius: BorderRadius.circular(10),
-                          border: Border.all(
-                            width: 1,
-                            color: Colors.grey.shade300,
+
+                        SizedBox(height: 8),
+                        Container(
+                          height: 55,
+                          decoration: BoxDecoration(
+                            color: AppColors.secondaryColor.withOpacity(0.2),
+                            borderRadius: BorderRadius.circular(10),
+                            border: Border.all(
+                              width: 1,
+                              color: Colors.grey.shade300,
+                            ),
                           ),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 10),
                           child: Row(
                             children: [
+                              SizedBox(width: 10),
                               Expanded(
-                                child: TextField(
-                                  keyboardType: TextInputType.phone,
-                                  onChanged: (value) {
-                                    conversationController.inputAmount.value =
-                                        double.tryParse(value) ?? 0.0;
-                                  },
-                                  controller:
-                                      customRechargeController.amountController,
-                                  decoration: InputDecoration(
-                                    border: InputBorder.none,
-                                    hintText: languagesController.tr("AMOUNT"),
-                                    hintStyle: TextStyle(
-                                      color: Colors.grey.shade600,
-                                      fontSize: 18,
+                                flex: 5,
+                                child: Container(
+                                  child: Padding(
+                                    padding: EdgeInsets.symmetric(
+                                      horizontal: 0,
+                                    ),
+                                    child: TextField(
+                                      maxLength: 10,
+                                      keyboardType: TextInputType.number,
+                                      controller: customRechargeController
+                                          .numberController,
+                                      style: TextStyle(fontSize: 18),
+                                      decoration: InputDecoration(
+                                        counterText: '',
+                                        border: InputBorder.none,
+                                        hintText: languagesController.tr(
+                                          "PHONENUMBER",
+                                        ),
+                                        hintStyle: TextStyle(
+                                          color: Colors.grey.shade600,
+                                        ),
+                                      ),
                                     ),
                                   ),
                                 ),
                               ),
-                              // Text(
-                              //   "IRR",
-                              //   style: TextStyle(
-                              //     color: Colors.grey.shade600,
-                              //     fontWeight: FontWeight.w600,
-                              //   ),
-                              // ),
+                              Obx(() {
+                                final company =
+                                    companyController.matchedCompany.value;
+                                return Container(
+                                  width: 50,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10),
+                                    color: company == null
+                                        ? Colors.transparent
+                                        : null,
+                                    image: company != null
+                                        ? DecorationImage(
+                                            image: NetworkImage(
+                                              company.companyLogo ?? '',
+                                            ),
+                                            fit: BoxFit.contain,
+                                          )
+                                        : null,
+                                  ),
+                                  child: company == null
+                                      ? Center(
+                                          child: Icon(
+                                            Icons.image_not_supported,
+                                            color: Colors.transparent,
+                                          ),
+                                        )
+                                      : null,
+                                );
+                              }),
                             ],
                           ),
                         ),
-                      ),
-                      SizedBox(height: 8),
-                      Container(
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        height: 80,
-                        child: Obx(() {
-                          final convertedList = conversationController
-                              .getConvertedValues();
-
-                          double buyingPrice = 0.0;
-                          double sellingPrice = 0.0;
-                          String symbol = "";
-
-                          if (convertedList.isNotEmpty) {
-                            final item = convertedList.first;
-                            symbol = item['symbol'];
-                            double baseValue = item['value'];
-
-                            final configData =
-                                configController.allsettings.value.data;
-
-                            double adjustPercent =
-                                double.tryParse(
-                                  configData?.adjustValue ?? "0",
-                                ) ??
-                                0;
-
-                            bool isIncrease =
-                                configData?.adjustType == "increase";
-
-                            buyingPrice = baseValue;
-
-                            double adjustedPrice = isIncrease
-                                ? baseValue + (baseValue * adjustPercent / 100)
-                                : baseValue - (baseValue * adjustPercent / 100);
-
-                            final sellingType = configData?.sellingAdjustType;
-                            final sellingValueStr =
-                                configData?.sellingAdjustValue;
-
-                            if (sellingValueStr == null ||
-                                sellingValueStr.isEmpty) {
-                              sellingPrice =
-                                  adjustedPrice + (adjustedPrice * 5 / 100);
-                            } else {
-                              double sellingPercent =
-                                  double.tryParse(sellingValueStr) ?? 0;
-                              bool sellingIncrease = sellingType == "increase";
-
-                              sellingPrice = sellingIncrease
-                                  ? adjustedPrice +
-                                        (adjustedPrice * sellingPercent / 100)
-                                  : adjustedPrice -
-                                        (adjustedPrice * sellingPercent / 100);
-                            }
-                          }
-
-                          return Padding(
-                            padding: EdgeInsets.symmetric(
-                              horizontal: 8,
-                              vertical: 5,
+                        SizedBox(height: 8),
+                        Container(
+                          height: 55,
+                          width: screenWidth,
+                          decoration: BoxDecoration(
+                            color: AppColors.secondaryColor.withOpacity(0.2),
+                            borderRadius: BorderRadius.circular(10),
+                            border: Border.all(
+                              width: 1,
+                              color: Colors.grey.shade300,
                             ),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 10),
                             child: Row(
                               children: [
-                                // Buying Price
                                 Expanded(
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(12),
-                                      border: Border.all(
-                                        color: AppColors.primaryColor,
-                                        width: 1.5,
+                                  child: TextField(
+                                    keyboardType: TextInputType.phone,
+                                    onChanged: (value) {
+                                      conversationController.inputAmount.value =
+                                          double.tryParse(value) ?? 0.0;
+                                    },
+                                    controller: customRechargeController
+                                        .amountController,
+                                    decoration: InputDecoration(
+                                      border: InputBorder.none,
+                                      hintText: languagesController.tr(
+                                        "AMOUNT",
                                       ),
-                                    ),
-                                    padding: EdgeInsets.all(10),
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            Container(
-                                              padding: EdgeInsets.all(4),
-                                              decoration: BoxDecoration(
-                                                color: Colors.orange[100],
-                                                borderRadius:
-                                                    BorderRadius.circular(6),
-                                              ),
-                                              child: Icon(
-                                                Icons.arrow_downward_rounded,
-                                                size: 12,
-                                                color: Colors.orange[700],
-                                              ),
-                                            ),
-                                            SizedBox(width: 6),
-                                            Text(
-                                              "Buying",
-                                              style: TextStyle(
-                                                fontSize: 11,
-                                                color: Colors.orange[700],
-                                                fontWeight: FontWeight.w600,
-                                                letterSpacing: 0.5,
-                                              ),
-                                            ),
-                                            SizedBox(width: 4),
-                                            Text(
-                                              "${symbol}",
-                                              style: TextStyle(
-                                                fontSize: 9,
-                                                color: Colors.orange[400],
-                                                fontWeight: FontWeight.w600,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-
-                                        Text(
-                                          buyingPrice.toStringAsFixed(2),
-                                          style: TextStyle(
-                                            fontSize: 17,
-                                            fontWeight: FontWeight.w800,
-                                            color: Colors.orange[800],
-                                            letterSpacing: 0.5,
-                                          ),
-                                        ),
-                                      ],
+                                      hintStyle: TextStyle(
+                                        color: Colors.grey.shade600,
+                                        fontSize: 18,
+                                      ),
                                     ),
                                   ),
                                 ),
-
-                                SizedBox(width: 12),
-
-                                // Selling Price
-                                Expanded(
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(12),
-                                      border: Border.all(
-                                        color: AppColors.primaryColor,
-                                        width: 1.5,
-                                      ),
-                                    ),
-                                    padding: EdgeInsets.all(10),
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            Container(
-                                              padding: EdgeInsets.all(4),
-                                              decoration: BoxDecoration(
-                                                color: Colors.green[100],
-                                                borderRadius:
-                                                    BorderRadius.circular(6),
-                                              ),
-                                              child: Icon(
-                                                Icons.arrow_upward_rounded,
-                                                size: 12,
-                                                color: Colors.green[700],
-                                              ),
-                                            ),
-                                            SizedBox(width: 6),
-                                            Text(
-                                              "Selling",
-                                              style: TextStyle(
-                                                fontSize: 11,
-                                                color: Colors.green[700],
-                                                fontWeight: FontWeight.w600,
-                                                letterSpacing: 0.5,
-                                              ),
-                                            ),
-                                            SizedBox(width: 4),
-                                            Text(
-                                              "${symbol}",
-                                              style: TextStyle(
-                                                fontSize: 9,
-                                                color: Colors.green[400],
-                                                fontWeight: FontWeight.w600,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-
-                                        Text(
-                                          sellingPrice.toStringAsFixed(2),
-                                          style: TextStyle(
-                                            fontSize: 17,
-                                            fontWeight: FontWeight.w800,
-                                            color: Colors.green[800],
-                                            letterSpacing: 0.5,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
+                                // Text(
+                                //   "IRR",
+                                //   style: TextStyle(
+                                //     color: Colors.grey.shade600,
+                                //     fontWeight: FontWeight.w600,
+                                //   ),
+                                // ),
                               ],
                             ),
-                          );
-                        }),
-                      ),
-
-                      SizedBox(height: 10),
-                      DefaultButton2(
-                        height: 50,
-                        width: screenWidth,
-                        buttonName: languagesController.tr(
-                          "SEND_TO_DESTINATION",
+                          ),
                         ),
-                        onpressed: () {
-                          if (customRechargeController
-                                  .numberController
-                                  .text
-                                  .isEmpty ||
-                              customRechargeController
-                                  .amountController
-                                  .text
-                                  .isEmpty) {
-                            Fluttertoast.showToast(
-                              msg: "Enter required data",
-                              toastLength: Toast.LENGTH_SHORT,
-                              gravity: ToastGravity.BOTTOM,
-                              timeInSecForIosWeb: 1,
-                              backgroundColor: Colors.black,
-                              textColor: Colors.white,
-                              fontSize: 16.0,
-                            );
-                          } else {
-                            showDialog(
-                              context: context,
-                              builder: (context) {
-                                return AlertDialog(
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(17),
-                                  ),
-                                  contentPadding: EdgeInsets.zero,
-                                  content: StatefulBuilder(
-                                    builder: (context, setState) {
-                                      return Container(
-                                        decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(
-                                            17,
-                                          ),
-                                          color: Colors.white,
-                                        ),
-                                        height: 220,
-                                        width: screenWidth,
-                                        child: Padding(
-                                          padding: EdgeInsets.all(15.0),
-                                          child: Obx(
-                                            () =>
-                                                customRechargeController
-                                                        .isLoading
-                                                        .value ==
-                                                    false
-                                                ? Column(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    children: [
-                                                      SizedBox(height: 8),
+                        SizedBox(height: 8),
+                        Container(
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          height: 80,
+                          child: Obx(() {
+                            final convertedList = conversationController
+                                .getConvertedValues();
 
-                                                      Text(
-                                                        languagesController.tr(
-                                                          "ARE_YOU_SURE_TO_TRANSFER",
-                                                        ),
-                                                        style: TextStyle(
-                                                          fontSize: 18,
-                                                        ),
-                                                      ),
-                                                      SizedBox(
-                                                        height: 50,
-                                                        width: screenWidth,
-                                                        child: Row(
-                                                          children: [
-                                                            Expanded(
-                                                              flex: 3,
-                                                              child: GestureDetector(
-                                                                onTap: () {
-                                                                  customRechargeController
-                                                                      .placeOrder(
-                                                                        context,
-                                                                      );
-                                                                },
-                                                                child: Container(
-                                                                  decoration: BoxDecoration(
-                                                                    color: Colors
-                                                                        .green,
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                          6,
-                                                                        ),
-                                                                  ),
-                                                                  child: Center(
-                                                                    child: Text(
-                                                                      languagesController.tr(
-                                                                        "CONFIRMATION",
-                                                                      ),
-                                                                      style: TextStyle(
-                                                                        color: Colors
-                                                                            .white,
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                            ),
-                                                            SizedBox(width: 8),
-                                                            Expanded(
-                                                              flex: 2,
-                                                              child: GestureDetector(
-                                                                onTap: () {
-                                                                  Navigator.pop(
-                                                                    context,
-                                                                  );
-                                                                },
-                                                                child: Container(
-                                                                  decoration: BoxDecoration(
-                                                                    color: Colors
-                                                                        .white,
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                          6,
-                                                                        ),
-                                                                    border: Border.all(
-                                                                      width: 1,
-                                                                      color: Colors
-                                                                          .grey
-                                                                          .shade300,
-                                                                    ),
-                                                                  ),
-                                                                  child: Center(
-                                                                    child: Text(
-                                                                      languagesController.tr(
-                                                                        "CANCEL",
-                                                                      ),
-                                                                      style: TextStyle(
-                                                                        color: Colors
-                                                                            .black,
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  )
-                                                : Container(
-                                                    height: 250,
-                                                    width: 250,
-                                                    child: Lottie.asset(
-                                                      'assets/loties/recharge.json',
-                                                    ),
-                                                  ),
-                                          ),
+                            double buyingPrice = 0.0;
+                            double sellingPrice = 0.0;
+                            String symbol = "";
+
+                            if (convertedList.isNotEmpty) {
+                              final item = convertedList.first;
+                              symbol = item['symbol'];
+                              double baseValue = item['value'];
+
+                              final configData =
+                                  configController.allsettings.value.data;
+
+                              double adjustPercent =
+                                  double.tryParse(
+                                    configData?.adjustValue ?? "0",
+                                  ) ??
+                                  0;
+
+                              bool isIncrease =
+                                  configData?.adjustType == "increase";
+
+                              buyingPrice = baseValue;
+
+                              double adjustedPrice = isIncrease
+                                  ? baseValue +
+                                        (baseValue * adjustPercent / 100)
+                                  : baseValue -
+                                        (baseValue * adjustPercent / 100);
+
+                              final sellingType = configData?.sellingAdjustType;
+                              final sellingValueStr =
+                                  configData?.sellingAdjustValue;
+
+                              if (sellingValueStr == null ||
+                                  sellingValueStr.isEmpty) {
+                                sellingPrice =
+                                    adjustedPrice + (adjustedPrice * 5 / 100);
+                              } else {
+                                double sellingPercent =
+                                    double.tryParse(sellingValueStr) ?? 0;
+                                bool sellingIncrease =
+                                    sellingType == "increase";
+
+                                sellingPrice = sellingIncrease
+                                    ? adjustedPrice +
+                                          (adjustedPrice * sellingPercent / 100)
+                                    : adjustedPrice -
+                                          (adjustedPrice *
+                                              sellingPercent /
+                                              100);
+                              }
+                            }
+
+                            return Padding(
+                              padding: EdgeInsets.symmetric(
+                                horizontal: 8,
+                                vertical: 5,
+                              ),
+                              child: Row(
+                                children: [
+                                  // Buying Price
+                                  Expanded(
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(12),
+                                        border: Border.all(
+                                          color: AppColors.primaryColor,
+                                          width: 1.5,
                                         ),
-                                      );
-                                    },
+                                      ),
+                                      padding: EdgeInsets.all(10),
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: [
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              Container(
+                                                padding: EdgeInsets.all(4),
+                                                decoration: BoxDecoration(
+                                                  color: Colors.orange[100],
+                                                  borderRadius:
+                                                      BorderRadius.circular(6),
+                                                ),
+                                                child: Icon(
+                                                  Icons.arrow_downward_rounded,
+                                                  size: 12,
+                                                  color: Colors.orange[700],
+                                                ),
+                                              ),
+                                              SizedBox(width: 6),
+                                              Text(
+                                                "Buying",
+                                                style: TextStyle(
+                                                  fontSize: 11,
+                                                  color: Colors.orange[700],
+                                                  fontWeight: FontWeight.w600,
+                                                  letterSpacing: 0.5,
+                                                ),
+                                              ),
+                                              SizedBox(width: 4),
+                                              Text(
+                                                "${symbol}",
+                                                style: TextStyle(
+                                                  fontSize: 9,
+                                                  color: Colors.orange[400],
+                                                  fontWeight: FontWeight.w600,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+
+                                          Text(
+                                            buyingPrice.toStringAsFixed(2),
+                                            style: TextStyle(
+                                              fontSize: 17,
+                                              fontWeight: FontWeight.w800,
+                                              color: Colors.orange[800],
+                                              letterSpacing: 0.5,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
                                   ),
-                                );
-                              },
+
+                                  SizedBox(width: 12),
+
+                                  // Selling Price
+                                  Expanded(
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(12),
+                                        border: Border.all(
+                                          color: AppColors.primaryColor,
+                                          width: 1.5,
+                                        ),
+                                      ),
+                                      padding: EdgeInsets.all(10),
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: [
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              Container(
+                                                padding: EdgeInsets.all(4),
+                                                decoration: BoxDecoration(
+                                                  color: Colors.green[100],
+                                                  borderRadius:
+                                                      BorderRadius.circular(6),
+                                                ),
+                                                child: Icon(
+                                                  Icons.arrow_upward_rounded,
+                                                  size: 12,
+                                                  color: Colors.green[700],
+                                                ),
+                                              ),
+                                              SizedBox(width: 6),
+                                              Text(
+                                                "Selling",
+                                                style: TextStyle(
+                                                  fontSize: 11,
+                                                  color: Colors.green[700],
+                                                  fontWeight: FontWeight.w600,
+                                                  letterSpacing: 0.5,
+                                                ),
+                                              ),
+                                              SizedBox(width: 4),
+                                              Text(
+                                                "${symbol}",
+                                                style: TextStyle(
+                                                  fontSize: 9,
+                                                  color: Colors.green[400],
+                                                  fontWeight: FontWeight.w600,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+
+                                          Text(
+                                            sellingPrice.toStringAsFixed(2),
+                                            style: TextStyle(
+                                              fontSize: 17,
+                                              fontWeight: FontWeight.w800,
+                                              color: Colors.green[800],
+                                              letterSpacing: 0.5,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
                             );
-                          }
-                        },
-                      ),
-                    ],
+                          }),
+                        ),
+
+                        SizedBox(height: 10),
+                        DefaultButton2(
+                          height: 50,
+                          width: screenWidth,
+                          buttonName: languagesController.tr(
+                            "SEND_TO_DESTINATION",
+                          ),
+                          onpressed: () {
+                            if (customRechargeController
+                                    .numberController
+                                    .text
+                                    .isEmpty ||
+                                customRechargeController
+                                    .amountController
+                                    .text
+                                    .isEmpty) {
+                              Fluttertoast.showToast(
+                                msg: "Enter required data",
+                                toastLength: Toast.LENGTH_SHORT,
+                                gravity: ToastGravity.BOTTOM,
+                                timeInSecForIosWeb: 1,
+                                backgroundColor: Colors.black,
+                                textColor: Colors.white,
+                                fontSize: 16.0,
+                              );
+                            } else {
+                              showDialog(
+                                context: context,
+                                builder: (context) {
+                                  return AlertDialog(
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(17),
+                                    ),
+                                    contentPadding: EdgeInsets.zero,
+                                    content: StatefulBuilder(
+                                      builder: (context, setState) {
+                                        return Container(
+                                          decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(
+                                              17,
+                                            ),
+                                            color: Colors.white,
+                                          ),
+                                          height: 220,
+                                          width: screenWidth,
+                                          child: Padding(
+                                            padding: EdgeInsets.all(15.0),
+                                            child: Obx(
+                                              () =>
+                                                  customRechargeController
+                                                          .isLoading
+                                                          .value ==
+                                                      false
+                                                  ? Column(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
+                                                      children: [
+                                                        SizedBox(height: 8),
+
+                                                        Text(
+                                                          languagesController.tr(
+                                                            "ARE_YOU_SURE_TO_TRANSFER",
+                                                          ),
+                                                          style: TextStyle(
+                                                            fontSize: 18,
+                                                          ),
+                                                        ),
+                                                        SizedBox(
+                                                          height: 50,
+                                                          width: screenWidth,
+                                                          child: Row(
+                                                            children: [
+                                                              Expanded(
+                                                                flex: 3,
+                                                                child: GestureDetector(
+                                                                  onTap: () {
+                                                                    customRechargeController
+                                                                        .placeOrder(
+                                                                          context,
+                                                                        );
+                                                                  },
+                                                                  child: Container(
+                                                                    decoration: BoxDecoration(
+                                                                      color: Colors
+                                                                          .green,
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
+                                                                            6,
+                                                                          ),
+                                                                    ),
+                                                                    child: Center(
+                                                                      child: Text(
+                                                                        languagesController.tr(
+                                                                          "CONFIRMATION",
+                                                                        ),
+                                                                        style: TextStyle(
+                                                                          color:
+                                                                              Colors.white,
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                              SizedBox(
+                                                                width: 8,
+                                                              ),
+                                                              Expanded(
+                                                                flex: 2,
+                                                                child: GestureDetector(
+                                                                  onTap: () {
+                                                                    Navigator.pop(
+                                                                      context,
+                                                                    );
+                                                                  },
+                                                                  child: Container(
+                                                                    decoration: BoxDecoration(
+                                                                      color: Colors
+                                                                          .white,
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
+                                                                            6,
+                                                                          ),
+                                                                      border: Border.all(
+                                                                        width:
+                                                                            1,
+                                                                        color: Colors
+                                                                            .grey
+                                                                            .shade300,
+                                                                      ),
+                                                                    ),
+                                                                    child: Center(
+                                                                      child: Text(
+                                                                        languagesController.tr(
+                                                                          "CANCEL",
+                                                                        ),
+                                                                        style: TextStyle(
+                                                                          color:
+                                                                              Colors.black,
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    )
+                                                  : Container(
+                                                      height: 250,
+                                                      width: 250,
+                                                      child: Lottie.asset(
+                                                        'assets/loties/recharge.json',
+                                                      ),
+                                                    ),
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                    ),
+                                  );
+                                },
+                              );
+                            }
+                          },
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
-            ),
 
-            SizedBox(height: 8),
-            Expanded(
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 15),
-                child: Obx(() {
-                  // Ensure expandedIndices matches the length of finalList
-                  if (expandedIndices.length !=
-                      customhistoryController.finalList.length) {
-                    expandedIndices.assignAll(
-                      List.generate(
-                        customhistoryController.finalList.length,
-                        (index) => false,
-                      ),
-                    );
-                  }
+              SizedBox(height: 8),
+              Expanded(
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 15),
+                  child: Obx(() {
+                    // Ensure expandedIndices matches the length of finalList
+                    if (expandedIndices.length !=
+                        customhistoryController.finalList.length) {
+                      expandedIndices.assignAll(
+                        List.generate(
+                          customhistoryController.finalList.length,
+                          (index) => false,
+                        ),
+                      );
+                    }
 
-                  return customhistoryController.isLoading.value == false &&
-                          customhistoryController.finalList.isNotEmpty
-                      ? RefreshIndicator(
-                          onRefresh: refresh,
-                          child: ListView.builder(
-                            padding: EdgeInsets.all(0),
+                    return customhistoryController.isLoading.value == false &&
+                            customhistoryController.finalList.isNotEmpty
+                        ? RefreshIndicator(
+                            onRefresh: refresh,
+                            child: ListView.builder(
+                              padding: EdgeInsets.all(0),
+                              shrinkWrap: true,
+                              physics: BouncingScrollPhysics(),
+                              itemCount:
+                                  customhistoryController.finalList.length,
+                              itemBuilder: (context, index) {
+                                final data =
+                                    customhistoryController.finalList[index];
+
+                                return Container(
+                                  margin: EdgeInsets.only(bottom: 5),
+                                  width: screenWidth,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10),
+                                    color: Colors.white,
+                                  ),
+                                  child: Column(
+                                    children: [
+                                      ExpansionTile(
+                                        key: Key(
+                                          index.toString(),
+                                        ), // Ensure state retention
+                                        initiallyExpanded:
+                                            expandedIndices[index],
+                                        onExpansionChanged: (isExpanded) {
+                                          expandedIndices[index] = isExpanded;
+                                        },
+                                        tilePadding: EdgeInsets.symmetric(
+                                          horizontal: 10,
+                                          vertical: 5,
+                                        ),
+                                        title: Row(
+                                          children: [
+                                            Container(
+                                              height: 45,
+                                              width: 45,
+                                              decoration: BoxDecoration(
+                                                image: DecorationImage(
+                                                  image: NetworkImage(
+                                                    data
+                                                        .bundle!
+                                                        .service!
+                                                        .company!
+                                                        .companyLogo
+                                                        .toString(),
+                                                  ),
+                                                  fit: BoxFit.fill,
+                                                ),
+                                                shape: BoxShape.circle,
+                                              ),
+                                            ),
+                                            SizedBox(width: 8),
+                                            Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  data.bundle!.bundleTitle
+                                                      .toString(),
+                                                  style: TextStyle(
+                                                    fontWeight: FontWeight.w500,
+                                                    fontSize: 14,
+                                                    fontFamily:
+                                                        box
+                                                                .read(
+                                                                  "language",
+                                                                )
+                                                                .toString() ==
+                                                            "Fa"
+                                                        ? Get.find<
+                                                                FontController
+                                                              >()
+                                                              .currentFont
+                                                        : null,
+                                                  ),
+                                                ),
+                                                Text(
+                                                  data.rechargebleAccount
+                                                      .toString(),
+                                                  style: TextStyle(
+                                                    fontWeight: FontWeight.w500,
+                                                    fontSize: 12,
+                                                    color: Colors.grey,
+                                                    fontFamily:
+                                                        box
+                                                                .read(
+                                                                  "language",
+                                                                )
+                                                                .toString() ==
+                                                            "Fa"
+                                                        ? Get.find<
+                                                                FontController
+                                                              >()
+                                                              .currentFont
+                                                        : null,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                        trailing: expandedIndices[index]
+                                            ? null
+                                            : GestureDetector(
+                                                onTap: () {
+                                                  expandedIndices[index] = true;
+                                                },
+                                                child: Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.min,
+                                                  children: [
+                                                    SizedBox(width: 5),
+                                                    Icon(
+                                                      FontAwesomeIcons
+                                                          .chevronDown,
+                                                      size:
+                                                          screenHeight * 0.022,
+                                                      color: Color(0xff1890FF),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                        children: [
+                                          Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    Text(
+                                                      languagesController.tr(
+                                                        "TRANSFER_STATUS",
+                                                      ),
+                                                    ),
+                                                    Text(
+                                                      data.status.toString() ==
+                                                              "0"
+                                                          ? languagesController
+                                                                .tr("PENDING")
+                                                          : data.status
+                                                                    .toString() ==
+                                                                "1"
+                                                          ? languagesController
+                                                                .tr("SUCCESS")
+                                                          : languagesController
+                                                                .tr("REJECTED"),
+                                                      style: TextStyle(
+                                                        fontFamily:
+                                                            box
+                                                                    .read(
+                                                                      "language",
+                                                                    )
+                                                                    .toString() ==
+                                                                "Fa"
+                                                            ? Get.find<
+                                                                    FontController
+                                                                  >()
+                                                                  .currentFont
+                                                            : null,
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                                SizedBox(height: 5),
+                                                Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    Text(
+                                                      languagesController.tr(
+                                                        "AMOUNT",
+                                                      ),
+                                                    ),
+                                                    Text(
+                                                      "${data.bundle.amount} ${box.read("currency_code")}",
+                                                      style: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.w500,
+                                                        fontFamily:
+                                                            box
+                                                                    .read(
+                                                                      "language",
+                                                                    )
+                                                                    .toString() ==
+                                                                "Fa"
+                                                            ? Get.find<
+                                                                    FontController
+                                                                  >()
+                                                                  .currentFont
+                                                            : null,
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                                SizedBox(height: 5),
+                                                Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    Text(
+                                                      languagesController.tr(
+                                                        "DATE",
+                                                      ),
+                                                      style: TextStyle(
+                                                        fontFamily:
+                                                            box
+                                                                    .read(
+                                                                      "language",
+                                                                    )
+                                                                    .toString() ==
+                                                                "Fa"
+                                                            ? Get.find<
+                                                                    FontController
+                                                                  >()
+                                                                  .currentFont
+                                                            : null,
+                                                      ),
+                                                    ),
+                                                    Text(
+                                                      DateFormat(
+                                                        'yyyy-MM-dd',
+                                                      ).format(
+                                                        DateTime.parse(
+                                                          data.createdAt
+                                                              .toString(),
+                                                        ),
+                                                      ),
+                                                      style: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.w500,
+                                                        fontFamily:
+                                                            box
+                                                                    .read(
+                                                                      "language",
+                                                                    )
+                                                                    .toString() ==
+                                                                "Fa"
+                                                            ? Get.find<
+                                                                    FontController
+                                                                  >()
+                                                                  .currentFont
+                                                            : null,
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                                SizedBox(height: 5),
+                                                Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    Text(
+                                                      languagesController.tr(
+                                                        "TIME",
+                                                      ),
+                                                      style: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.w500,
+                                                        fontFamily:
+                                                            box
+                                                                    .read(
+                                                                      "language",
+                                                                    )
+                                                                    .toString() ==
+                                                                "Fa"
+                                                            ? Get.find<
+                                                                    FontController
+                                                                  >()
+                                                                  .currentFont
+                                                            : null,
+                                                      ),
+                                                    ),
+                                                    Text(
+                                                      DateFormat(
+                                                        'hh:mm a',
+                                                      ).format(
+                                                        DateTime.parse(
+                                                          data.createdAt
+                                                              .toString(),
+                                                        ),
+                                                      ),
+                                                      style: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.w500,
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                );
+                              },
+                            ),
+                          )
+                        : customhistoryController.finalList.isEmpty
+                        ? SizedBox()
+                        : ListView.builder(
                             shrinkWrap: true,
                             physics: BouncingScrollPhysics(),
                             itemCount: customhistoryController.finalList.length,
@@ -828,16 +1151,6 @@ class _CreditTransferState extends State<CreditTransfer> {
                                                 style: TextStyle(
                                                   fontWeight: FontWeight.w500,
                                                   fontSize: 14,
-                                                  fontFamily:
-                                                      box
-                                                              .read("language")
-                                                              .toString() ==
-                                                          "Fa"
-                                                      ? Get.find<
-                                                              FontController
-                                                            >()
-                                                            .currentFont
-                                                      : null,
                                                 ),
                                               ),
                                               Text(
@@ -847,16 +1160,6 @@ class _CreditTransferState extends State<CreditTransfer> {
                                                   fontWeight: FontWeight.w500,
                                                   fontSize: 12,
                                                   color: Colors.grey,
-                                                  fontFamily:
-                                                      box
-                                                              .read("language")
-                                                              .toString() ==
-                                                          "Fa"
-                                                      ? Get.find<
-                                                              FontController
-                                                            >()
-                                                            .currentFont
-                                                      : null,
                                                 ),
                                               ),
                                             ],
@@ -911,20 +1214,6 @@ class _CreditTransferState extends State<CreditTransfer> {
                                                               .tr("SUCCESS")
                                                         : languagesController
                                                               .tr("REJECTED"),
-                                                    style: TextStyle(
-                                                      fontFamily:
-                                                          box
-                                                                  .read(
-                                                                    "language",
-                                                                  )
-                                                                  .toString() ==
-                                                              "Fa"
-                                                          ? Get.find<
-                                                                  FontController
-                                                                >()
-                                                                .currentFont
-                                                          : null,
-                                                    ),
                                                   ),
                                                 ],
                                               ),
@@ -944,18 +1233,6 @@ class _CreditTransferState extends State<CreditTransfer> {
                                                     style: TextStyle(
                                                       fontWeight:
                                                           FontWeight.w500,
-                                                      fontFamily:
-                                                          box
-                                                                  .read(
-                                                                    "language",
-                                                                  )
-                                                                  .toString() ==
-                                                              "Fa"
-                                                          ? Get.find<
-                                                                  FontController
-                                                                >()
-                                                                .currentFont
-                                                          : null,
                                                     ),
                                                   ),
                                                 ],
@@ -970,20 +1247,6 @@ class _CreditTransferState extends State<CreditTransfer> {
                                                     languagesController.tr(
                                                       "DATE",
                                                     ),
-                                                    style: TextStyle(
-                                                      fontFamily:
-                                                          box
-                                                                  .read(
-                                                                    "language",
-                                                                  )
-                                                                  .toString() ==
-                                                              "Fa"
-                                                          ? Get.find<
-                                                                  FontController
-                                                                >()
-                                                                .currentFont
-                                                          : null,
-                                                    ),
                                                   ),
                                                   Text(
                                                     DateFormat(
@@ -997,18 +1260,6 @@ class _CreditTransferState extends State<CreditTransfer> {
                                                     style: TextStyle(
                                                       fontWeight:
                                                           FontWeight.w500,
-                                                      fontFamily:
-                                                          box
-                                                                  .read(
-                                                                    "language",
-                                                                  )
-                                                                  .toString() ==
-                                                              "Fa"
-                                                          ? Get.find<
-                                                                  FontController
-                                                                >()
-                                                                .currentFont
-                                                          : null,
                                                     ),
                                                   ),
                                                 ],
@@ -1026,18 +1277,6 @@ class _CreditTransferState extends State<CreditTransfer> {
                                                     style: TextStyle(
                                                       fontWeight:
                                                           FontWeight.w500,
-                                                      fontFamily:
-                                                          box
-                                                                  .read(
-                                                                    "language",
-                                                                  )
-                                                                  .toString() ==
-                                                              "Fa"
-                                                          ? Get.find<
-                                                                  FontController
-                                                                >()
-                                                                .currentFont
-                                                          : null,
                                                     ),
                                                   ),
                                                   Text(
@@ -1065,221 +1304,12 @@ class _CreditTransferState extends State<CreditTransfer> {
                                 ),
                               );
                             },
-                          ),
-                        )
-                      : customhistoryController.finalList.isEmpty
-                      ? SizedBox()
-                      : ListView.builder(
-                          shrinkWrap: true,
-                          physics: BouncingScrollPhysics(),
-                          itemCount: customhistoryController.finalList.length,
-                          itemBuilder: (context, index) {
-                            final data =
-                                customhistoryController.finalList[index];
-
-                            return Container(
-                              margin: EdgeInsets.only(bottom: 5),
-                              width: screenWidth,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                color: Colors.white,
-                              ),
-                              child: Column(
-                                children: [
-                                  ExpansionTile(
-                                    key: Key(
-                                      index.toString(),
-                                    ), // Ensure state retention
-                                    initiallyExpanded: expandedIndices[index],
-                                    onExpansionChanged: (isExpanded) {
-                                      expandedIndices[index] = isExpanded;
-                                    },
-                                    tilePadding: EdgeInsets.symmetric(
-                                      horizontal: 10,
-                                      vertical: 5,
-                                    ),
-                                    title: Row(
-                                      children: [
-                                        Container(
-                                          height: 45,
-                                          width: 45,
-                                          decoration: BoxDecoration(
-                                            image: DecorationImage(
-                                              image: NetworkImage(
-                                                data
-                                                    .bundle!
-                                                    .service!
-                                                    .company!
-                                                    .companyLogo
-                                                    .toString(),
-                                              ),
-                                              fit: BoxFit.fill,
-                                            ),
-                                            shape: BoxShape.circle,
-                                          ),
-                                        ),
-                                        SizedBox(width: 8),
-                                        Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              data.bundle!.bundleTitle
-                                                  .toString(),
-                                              style: TextStyle(
-                                                fontWeight: FontWeight.w500,
-                                                fontSize: 14,
-                                              ),
-                                            ),
-                                            Text(
-                                              data.rechargebleAccount
-                                                  .toString(),
-                                              style: TextStyle(
-                                                fontWeight: FontWeight.w500,
-                                                fontSize: 12,
-                                                color: Colors.grey,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ],
-                                    ),
-                                    trailing: expandedIndices[index]
-                                        ? null
-                                        : GestureDetector(
-                                            onTap: () {
-                                              expandedIndices[index] = true;
-                                            },
-                                            child: Row(
-                                              mainAxisSize: MainAxisSize.min,
-                                              children: [
-                                                SizedBox(width: 5),
-                                                Icon(
-                                                  FontAwesomeIcons.chevronDown,
-                                                  size: screenHeight * 0.022,
-                                                  color: Color(0xff1890FF),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                    children: [
-                                      Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              children: [
-                                                Text(
-                                                  languagesController.tr(
-                                                    "TRANSFER_STATUS",
-                                                  ),
-                                                ),
-                                                Text(
-                                                  data.status.toString() == "0"
-                                                      ? languagesController.tr(
-                                                          "PENDING",
-                                                        )
-                                                      : data.status
-                                                                .toString() ==
-                                                            "1"
-                                                      ? languagesController.tr(
-                                                          "SUCCESS",
-                                                        )
-                                                      : languagesController.tr(
-                                                          "REJECTED",
-                                                        ),
-                                                ),
-                                              ],
-                                            ),
-                                            SizedBox(height: 5),
-                                            Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              children: [
-                                                Text(
-                                                  languagesController.tr(
-                                                    "AMOUNT",
-                                                  ),
-                                                ),
-                                                Text(
-                                                  "${data.bundle.amount} ${box.read("currency_code")}",
-                                                  style: TextStyle(
-                                                    fontWeight: FontWeight.w500,
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                            SizedBox(height: 5),
-                                            Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              children: [
-                                                Text(
-                                                  languagesController.tr(
-                                                    "DATE",
-                                                  ),
-                                                ),
-                                                Text(
-                                                  DateFormat(
-                                                    'yyyy-MM-dd',
-                                                  ).format(
-                                                    DateTime.parse(
-                                                      data.createdAt.toString(),
-                                                    ),
-                                                  ),
-                                                  style: TextStyle(
-                                                    fontWeight: FontWeight.w500,
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                            SizedBox(height: 5),
-                                            Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              children: [
-                                                Text(
-                                                  languagesController.tr(
-                                                    "TIME",
-                                                  ),
-                                                  style: TextStyle(
-                                                    fontWeight: FontWeight.w500,
-                                                  ),
-                                                ),
-                                                Text(
-                                                  DateFormat('hh:mm a').format(
-                                                    DateTime.parse(
-                                                      data.createdAt.toString(),
-                                                    ),
-                                                  ),
-                                                  style: TextStyle(
-                                                    fontWeight: FontWeight.w500,
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            );
-                          },
-                        );
-                }),
+                          );
+                  }),
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

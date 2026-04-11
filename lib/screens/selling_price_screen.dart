@@ -776,6 +776,7 @@ class _SellingPriceScreenState extends State<SellingPriceScreen> {
                                           },
                                           child: Icon(Icons.edit),
                                         ),
+
                                         GestureDetector(
                                           onTap: () {
                                             showDialog(

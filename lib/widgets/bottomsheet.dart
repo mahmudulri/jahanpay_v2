@@ -118,7 +118,7 @@ class _CustomFullScreenSheetState extends State<CustomFullScreenSheet> {
                   Image.asset("assets/icons/drawerwhatsapp.png", height: 35),
                   SizedBox(height: 5),
                   KText(
-                    text: languagesController.tr("CONTACTUS"),
+                    text: languagesController.tr("SUPPORT"),
                     fontSize: 14,
                     fontWeight: FontWeight.w400,
                     color: Colors.white,

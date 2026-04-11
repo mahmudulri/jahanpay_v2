@@ -112,31 +112,32 @@ class _SignInScreenState extends State<SignInScreen> {
               child: Container(
                 child: Column(
                   children: [
+                    SizedBox(height: 20),
                     Image.asset("assets/icons/logo.png", height: 230),
-                    SizedBox(height: 65),
-                    SizedBox(width: 10),
-                    GestureDetector(
-                      onTap: () {
-                        signInController.usernameController.text =
-                            "01986072587";
-                        signInController.passwordController.text = "00000000";
-                      },
-                      child: Text("01986"),
-                    ),
-                    SizedBox(width: 10),
-                    GestureDetector(
-                      onTap: () {
-                        signInController.usernameController.text = "0796321768";
-                        signInController.passwordController.text = "00000000";
-                      },
-                      child: Text("0796321"),
-                    ),
-                    KText(
-                      text: languagesController.tr("ENTER_YOUR_LOGIN_INFO"),
-                      fontSize: 15,
-                      color: Color(0xffF4F6F8),
-                    ),
-                    SizedBox(height: 10),
+                    SizedBox(height: 45),
+
+                    // GestureDetector(
+                    //   onTap: () {
+                    //     signInController.usernameController.text =
+                    //         "01986072587";
+                    //     signInController.passwordController.text = "00000000";
+                    //   },
+                    //   child: Text("01986"),
+                    // ),
+
+                    // GestureDetector(
+                    //   onTap: () {
+                    //     signInController.usernameController.text = "0796321768";
+                    //     signInController.passwordController.text = "00000000";
+                    //   },
+                    //   child: Text("0796321"),
+                    // ),
+                    // KText(
+                    //   text: languagesController.tr("ENTER_YOUR_LOGIN_INFO"),
+                    //   fontSize: 15,
+                    //   color: Color(0xffF4F6F8),
+                    // ),
+                    SizedBox(height: 45),
                     Authtextfield(
                       hinttext: languagesController.tr("USERNAME"),
                       controller: signInController.usernameController,
@@ -162,7 +163,7 @@ class _SignInScreenState extends State<SignInScreen> {
                         ),
                       ],
                     ),
-                    SizedBox(height: 20),
+                    SizedBox(height: 10),
                     Obx(
                       () => SinInbutton(
                         width: screenWidth,
@@ -185,7 +186,7 @@ class _SignInScreenState extends State<SignInScreen> {
                         },
                       ),
                     ),
-                    SizedBox(height: 20),
+                    SizedBox(height: 10),
                     Container(
                       height: 60,
                       width: screenWidth,
@@ -218,7 +219,7 @@ class _SignInScreenState extends State<SignInScreen> {
                         ],
                       ),
                     ),
-                    SizedBox(height: 30),
+                    SizedBox(height: 10),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [

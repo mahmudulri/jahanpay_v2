@@ -433,7 +433,9 @@ class _OrdersState extends State<Orders> {
                                 children: [
                                   Obx(
                                     () => KText(
-                                      text: languagesController.tr("DATE"),
+                                      text: selectedDate.value == ""
+                                          ? languagesController.tr("DATE")
+                                          : selectedDate.value.toString(),
                                       fontSize: screenWidth * 0.040,
                                     ),
                                   ),
