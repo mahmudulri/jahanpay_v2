@@ -21,16 +21,15 @@ class _SplashScreenState extends State<SplashScreen> {
   LanguagesController languagesController = Get.put(LanguagesController());
 
   checkData() async {
-    // Default language is now English
     String languageShortName = box.read("language") ?? "En";
 
-    // Find selected language details from the list
     final matchedLang = languagesController.alllanguagedata.firstWhere(
       (lang) => lang["name"] == languageShortName,
       orElse: () => {"isoCode": "en", "direction": "ltr"},
     );
 
     final isoCode = matchedLang["isoCode"] ?? "en";
+
     final direction = matchedLang["direction"] ?? "ltr";
 
     box.write("language", languageShortName);
@@ -39,49 +38,51 @@ class _SplashScreenState extends State<SplashScreen> {
     languagesController.changeLanguage(languageShortName);
 
     Locale locale;
+
     switch (isoCode) {
       case "fa":
-        locale = Locale("fa", "IR");
+        locale = const Locale("fa", "IR");
         break;
-      case "en":
-        locale = Locale("en", "US");
-        break;
+
       case "ar":
-        locale = Locale("ar", "AE");
+        locale = const Locale("ar", "AE");
         break;
+
       case "ps":
-        locale = Locale("ps", "AF");
+        locale = const Locale("ps", "AF");
         break;
+
       case "tr":
-        locale = Locale("tr", "TR");
+        locale = const Locale("tr", "TR");
         break;
+
       case "bn":
-        locale = Locale("bn", "BD");
+        locale = const Locale("bn", "BD");
         break;
+
       default:
-        locale = Locale("fa", "IR");
+        locale = const Locale("en", "US");
     }
 
-    setState(() {
-      EasyLocalization.of(context)!.setLocale(locale);
-    });
+    await context.setLocale(locale);
 
-    // If no token, go to onboarding
+    if (!mounted) return;
+
     if (box.read('userToken') == null) {
-      Get.toNamed(signinscreen);
+      Get.offNamed(signinscreen);
     } else {
-      // Fetch initial data
       dashboardController.fetchDashboardData();
-
-      Get.toNamed(basescreen);
+      Get.offNamed(basescreen);
     }
   }
 
   @override
   void initState() {
-    Future.delayed(Duration(seconds: 2), () => checkData());
-
     super.initState();
+    Future.delayed(const Duration(seconds: 2), () async {
+      if (!mounted) return;
+      await checkData();
+    });
   }
 
   @override

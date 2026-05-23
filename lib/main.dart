@@ -1,12 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_timezone/flutter_timezone.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:jahanpay/dependency_injection.dart';
 import 'package:jahanpay/routes/routes.dart';
-
-import 'controllers/currency_controller.dart';
 import 'global_controller/time_zone_controller.dart';
 
 void main() async {

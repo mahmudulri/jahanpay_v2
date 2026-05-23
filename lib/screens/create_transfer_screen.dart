@@ -197,12 +197,12 @@ class _CreateTransferScreenState extends State<CreateTransferScreen> {
                                       border: InputBorder.none,
                                     ),
                                     style: TextStyle(
-                                      fontFamily:
-                                          box.read("language").toString() ==
-                                              "Fa"
-                                          ? Get.find<FontController>()
-                                                .currentFont
-                                          : null,
+                                      // fontFamily:
+                                      //     box.read("language").toString() ==
+                                      //         "Fa"
+                                      //     ? Get.find<FontController>()
+                                      //           .currentFont
+                                      //     : null,
                                     ),
                                   ),
                                 ),
@@ -220,15 +220,15 @@ class _CreateTransferScreenState extends State<CreateTransferScreen> {
                                   child: Center(
                                     child: Row(
                                       children: [
-                                        KText(
-                                          text: dashboardController
+                                        Text(
+                                          dashboardController
                                               .alldashboardData
                                               .value
                                               .data!
                                               .userInfo!
                                               .totalearning
                                               .toString(),
-                                          fontSize: 16,
+                                          style: TextStyle(fontSize: 16),
                                         ),
                                         Text(" / "),
                                         GestureDetector(

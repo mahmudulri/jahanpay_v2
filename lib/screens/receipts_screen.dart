@@ -415,9 +415,11 @@ class _ReceiptsScreenState extends State<ReceiptsScreen> {
                                                   fontWeight: FontWeight.w700,
                                                 ),
                                                 Spacer(),
-                                                KText(
-                                                  text: data.amount.toString(),
-                                                  fontWeight: FontWeight.w700,
+                                                Text(
+                                                  data.amount.toString(),
+                                                  style: TextStyle(
+                                                    fontWeight: FontWeight.w700,
+                                                  ),
                                                 ),
                                                 SizedBox(width: 4),
                                                 KText(
@@ -554,17 +556,18 @@ class _ReceiptsScreenState extends State<ReceiptsScreen> {
                                                     text: languagesController
                                                         .tr("DATE"),
                                                   ),
-                                                  KText(
-                                                    text:
-                                                        DateFormat(
-                                                          'dd MMM yyyy',
-                                                        ).format(
-                                                          DateTime.parse(
-                                                            data.paymentDate
-                                                                .toString(),
-                                                          ),
-                                                        ),
-                                                    fontSize: 13,
+                                                  Text(
+                                                    DateFormat(
+                                                      'dd MMM yyyy',
+                                                    ).format(
+                                                      DateTime.parse(
+                                                        data.paymentDate
+                                                            .toString(),
+                                                      ),
+                                                    ),
+                                                    style: TextStyle(
+                                                      fontSize: 13,
+                                                    ),
                                                   ),
                                                 ],
                                               ),
@@ -957,10 +960,12 @@ class PaymentDialog extends StatelessWidget {
                             fontSize: 15,
                           ),
                           Spacer(),
-                          KText(
-                            text: amount.toString(),
-                            color: Color(0xff637381),
-                            fontSize: 15,
+                          Text(
+                            amount.toString(),
+                            style: TextStyle(
+                              color: Color(0xff637381),
+                              fontSize: 15,
+                            ),
                           ),
                           SizedBox(width: 4),
                           KText(
@@ -1038,12 +1043,10 @@ class PaymentDialog extends StatelessWidget {
                                 text: languagesController.tr("DATE"),
                                 fontWeight: FontWeight.w600,
                               ),
-                              KText(
-                                text: DateFormat(
+                              Text(
+                                DateFormat(
                                   'dd MMM yyyy',
                                 ).format(DateTime.parse(date.toString())),
-                                fontWeight: FontWeight.w600,
-                                fontSize: 13,
                               ),
                             ],
                           ),

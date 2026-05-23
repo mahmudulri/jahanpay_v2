@@ -238,7 +238,7 @@ class _CommissionTransferScreenState extends State<CommissionTransferScreen> {
                                               "AMOUNT",
                                             ),
                                           ),
-                                          KText(text: data.amount.toString()),
+                                          Text(data.amount.toString()),
                                         ],
                                       ),
                                       Row(

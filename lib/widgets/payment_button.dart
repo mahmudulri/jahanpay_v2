@@ -51,7 +51,10 @@ class PaymentButton extends StatelessWidget {
                   ),
                   child: Center(
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 15),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 15,
+                        vertical: 5,
+                      ),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
@@ -60,14 +63,19 @@ class PaymentButton extends StatelessWidget {
                             height: 30,
                             color: Colors.white,
                           ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          KText(
-                            text: buttonName.toString(),
-                            color: Colors.white,
-                            fontSize: 14,
-                            fontWeight: FontWeight.bold,
+                          SizedBox(width: 10),
+                          Expanded(
+                            child: Text(
+                              maxLines: 2,
+                              buttonName.toString(),
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ),
                           ),
                         ],
                       ),

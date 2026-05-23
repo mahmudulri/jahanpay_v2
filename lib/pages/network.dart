@@ -587,11 +587,14 @@ class _NetworkState extends State<Network> {
                                                     fontSize:
                                                         screenHeight * 0.020,
                                                   ),
-                                                  KText(
-                                                    text: data.phone.toString(),
-                                                    color: Colors.grey.shade800,
-                                                    fontSize:
-                                                        screenHeight * 0.020,
+                                                  Text(
+                                                    data.phone.toString(),
+                                                    style: TextStyle(
+                                                      color:
+                                                          Colors.grey.shade800,
+                                                      fontSize:
+                                                          screenHeight * 0.020,
+                                                    ),
                                                   ),
                                                 ],
                                               ),
@@ -1071,15 +1074,16 @@ class _NetworkState extends State<Network> {
                                                                                   horizontal: 8,
                                                                                   vertical: 8,
                                                                                 ),
-                                                                                child: KText(
-                                                                                  text:
-                                                                                      detailsController.allsubresellerDetailsData.value.data!.reseller!.todayOrders
+                                                                                child: Text(
+                                                                                  detailsController.allsubresellerDetailsData.value.data!.reseller!.todayOrders
                                                                                           .toString() +
                                                                                       "  " +
                                                                                       box.read(
                                                                                         "currency_code",
                                                                                       ),
-                                                                                  fontSize: 12,
+                                                                                  style: TextStyle(
+                                                                                    fontSize: 12,
+                                                                                  ),
                                                                                 ),
                                                                               ),
                                                                             ),
@@ -1106,15 +1110,16 @@ class _NetworkState extends State<Network> {
                                                                                   horizontal: 8,
                                                                                   vertical: 8,
                                                                                 ),
-                                                                                child: KText(
-                                                                                  text:
-                                                                                      detailsController.allsubresellerDetailsData.value.data!.reseller!.totalOrders
+                                                                                child: Text(
+                                                                                  detailsController.allsubresellerDetailsData.value.data!.reseller!.totalOrders
                                                                                           .toString() +
                                                                                       "  " +
                                                                                       box.read(
                                                                                         "currency_code",
                                                                                       ),
-                                                                                  fontSize: 12,
+                                                                                  style: TextStyle(
+                                                                                    fontSize: 12,
+                                                                                  ),
                                                                                 ),
                                                                               ),
                                                                             ),
@@ -1150,15 +1155,16 @@ class _NetworkState extends State<Network> {
                                                                                   horizontal: 8,
                                                                                   vertical: 8,
                                                                                 ),
-                                                                                child: KText(
-                                                                                  text:
-                                                                                      detailsController.allsubresellerDetailsData.value.data!.reseller!.totalSale
+                                                                                child: Text(
+                                                                                  detailsController.allsubresellerDetailsData.value.data!.reseller!.totalSale
                                                                                           .toString() +
                                                                                       "  " +
                                                                                       box.read(
                                                                                         "currency_code",
                                                                                       ),
-                                                                                  fontSize: 12,
+                                                                                  style: TextStyle(
+                                                                                    fontSize: 12,
+                                                                                  ),
                                                                                 ),
                                                                               ),
                                                                             ),
@@ -1185,15 +1191,16 @@ class _NetworkState extends State<Network> {
                                                                                   horizontal: 8,
                                                                                   vertical: 8,
                                                                                 ),
-                                                                                child: KText(
-                                                                                  text:
-                                                                                      detailsController.allsubresellerDetailsData.value.data!.reseller!.totalProfit
+                                                                                child: Text(
+                                                                                  detailsController.allsubresellerDetailsData.value.data!.reseller!.totalProfit
                                                                                           .toString() +
                                                                                       "  " +
                                                                                       box.read(
                                                                                         "currency_code",
                                                                                       ),
-                                                                                  fontSize: 12,
+                                                                                  style: TextStyle(
+                                                                                    fontSize: 12,
+                                                                                  ),
                                                                                 ),
                                                                               ),
                                                                             ),
@@ -1229,15 +1236,16 @@ class _NetworkState extends State<Network> {
                                                                                   horizontal: 8,
                                                                                   vertical: 8,
                                                                                 ),
-                                                                                child: KText(
-                                                                                  text:
-                                                                                      detailsController.allsubresellerDetailsData.value.data!.reseller!.todaySale
+                                                                                child: Text(
+                                                                                  detailsController.allsubresellerDetailsData.value.data!.reseller!.todaySale
                                                                                           .toString() +
                                                                                       "  " +
                                                                                       box.read(
                                                                                         "currency_code",
                                                                                       ),
-                                                                                  fontSize: 12,
+                                                                                  style: TextStyle(
+                                                                                    fontSize: 12,
+                                                                                  ),
                                                                                 ),
                                                                               ),
                                                                             ),
@@ -1264,15 +1272,16 @@ class _NetworkState extends State<Network> {
                                                                                   horizontal: 8,
                                                                                   vertical: 8,
                                                                                 ),
-                                                                                child: KText(
-                                                                                  text:
-                                                                                      detailsController.allsubresellerDetailsData.value.data!.reseller!.todayProfit
+                                                                                child: Text(
+                                                                                  detailsController.allsubresellerDetailsData.value.data!.reseller!.todayProfit
                                                                                           .toString() +
                                                                                       "  " +
                                                                                       box.read(
                                                                                         "currency_code",
                                                                                       ),
-                                                                                  fontSize: 12,
+                                                                                  style: TextStyle(
+                                                                                    fontSize: 12,
+                                                                                  ),
                                                                                 ),
                                                                               ),
                                                                             ),
@@ -1320,9 +1329,8 @@ class _NetworkState extends State<Network> {
                                                                           screenHeight *
                                                                           0.020,
                                                                     ),
-                                                                    KText(
-                                                                      text:
-                                                                          detailsController
+                                                                    Text(
+                                                                      detailsController
                                                                               .allsubresellerDetailsData
                                                                               .value
                                                                               .data!

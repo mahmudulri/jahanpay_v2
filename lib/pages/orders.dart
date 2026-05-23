@@ -432,11 +432,13 @@ class _OrdersState extends State<Orders> {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   Obx(
-                                    () => KText(
-                                      text: selectedDate.value == ""
+                                    () => Text(
+                                      selectedDate.value == ""
                                           ? languagesController.tr("DATE")
                                           : selectedDate.value.toString(),
-                                      fontSize: screenWidth * 0.040,
+                                      style: TextStyle(
+                                        fontSize: screenWidth * 0.040,
+                                      ),
                                     ),
                                   ),
                                   GestureDetector(
@@ -791,36 +793,40 @@ class _OrdersState extends State<Orders> {
                                                             MainAxisAlignment
                                                                 .spaceBetween,
                                                         children: [
-                                                          KText(
-                                                            text:
-                                                                "${languagesController.tr("ORDER_ID")} (# ${data.id})",
-                                                            color: Color(
-                                                              0xff637381,
+                                                          Text(
+                                                            "${languagesController.tr("ORDER_ID")} (# ${data.id})",
+                                                            style: TextStyle(
+                                                              color: Color(
+                                                                0xff637381,
+                                                              ),
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w400,
+                                                              fontSize:
+                                                                  screenHeight *
+                                                                  0.018,
                                                             ),
-                                                            fontWeight:
-                                                                FontWeight.w400,
-                                                            fontSize:
-                                                                screenHeight *
-                                                                0.018,
                                                           ),
-                                                          KText(
-                                                            text:
-                                                                DateFormat(
-                                                                  'dd MMM yyyy',
-                                                                ).format(
-                                                                  DateTime.parse(
-                                                                    data.createdAt
-                                                                        .toString(),
-                                                                  ),
-                                                                ),
-                                                            color: Color(
-                                                              0xff637381,
+                                                          Text(
+                                                            DateFormat(
+                                                              'dd MMM yyyy',
+                                                            ).format(
+                                                              DateTime.parse(
+                                                                data.createdAt
+                                                                    .toString(),
+                                                              ),
                                                             ),
-                                                            fontWeight:
-                                                                FontWeight.w400,
-                                                            fontSize:
-                                                                screenHeight *
-                                                                0.018,
+                                                            style: TextStyle(
+                                                              color: Color(
+                                                                0xff637381,
+                                                              ),
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w400,
+                                                              fontSize:
+                                                                  screenHeight *
+                                                                  0.018,
+                                                            ),
                                                           ),
                                                         ],
                                                       ),
@@ -875,16 +881,17 @@ class _OrdersState extends State<Orders> {
                                                                       0.018,
                                                                 ),
                                                               ),
-                                                              KText(
-                                                                text: data
-                                                                    .rechargebleAccount
+                                                              Text(
+                                                                data.rechargebleAccount
                                                                     .toString(),
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold,
-                                                                fontSize:
-                                                                    screenHeight *
-                                                                    0.016,
+                                                                style: TextStyle(
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
+                                                                  fontSize:
+                                                                      screenHeight *
+                                                                      0.016,
+                                                                ),
                                                               ),
                                                             ],
                                                           ),
@@ -1010,29 +1017,33 @@ class _OrdersState extends State<Orders> {
                                                                         0.018,
                                                                   ),
                                                                   Text(" : "),
-                                                                  KText(
-                                                                    text:
-                                                                        NumberFormat.currency(
-                                                                          locale:
-                                                                              'en_US',
-                                                                          symbol:
-                                                                              '',
-                                                                          decimalDigits:
-                                                                              2,
-                                                                        ).format(
-                                                                          double.parse(
-                                                                            data.bundle!.buyingPrice.toString(),
-                                                                          ),
-                                                                        ),
-                                                                    color: Colors
-                                                                        .grey
-                                                                        .shade700,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w400,
-                                                                    fontSize:
-                                                                        screenHeight *
-                                                                        0.018,
+                                                                  Text(
+                                                                    NumberFormat.currency(
+                                                                      locale:
+                                                                          'en_US',
+                                                                      symbol:
+                                                                          '',
+                                                                      decimalDigits:
+                                                                          2,
+                                                                    ).format(
+                                                                      double.parse(
+                                                                        data
+                                                                            .bundle!
+                                                                            .buyingPrice
+                                                                            .toString(),
+                                                                      ),
+                                                                    ),
+                                                                    style: TextStyle(
+                                                                      color: Colors
+                                                                          .grey
+                                                                          .shade700,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w400,
+                                                                      fontSize:
+                                                                          screenHeight *
+                                                                          0.018,
+                                                                    ),
                                                                   ),
                                                                   SizedBox(
                                                                     width: 5,
@@ -1069,29 +1080,33 @@ class _OrdersState extends State<Orders> {
                                                                         0.018,
                                                                   ),
                                                                   Text(" : "),
-                                                                  KText(
-                                                                    text:
-                                                                        NumberFormat.currency(
-                                                                          locale:
-                                                                              'en_US',
-                                                                          symbol:
-                                                                              '',
-                                                                          decimalDigits:
-                                                                              2,
-                                                                        ).format(
-                                                                          double.parse(
-                                                                            data.bundle!.sellingPrice.toString(),
-                                                                          ),
-                                                                        ),
-                                                                    color: Colors
-                                                                        .grey
-                                                                        .shade700,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w400,
-                                                                    fontSize:
-                                                                        screenHeight *
-                                                                        0.018,
+                                                                  Text(
+                                                                    NumberFormat.currency(
+                                                                      locale:
+                                                                          'en_US',
+                                                                      symbol:
+                                                                          '',
+                                                                      decimalDigits:
+                                                                          2,
+                                                                    ).format(
+                                                                      double.parse(
+                                                                        data
+                                                                            .bundle!
+                                                                            .sellingPrice
+                                                                            .toString(),
+                                                                      ),
+                                                                    ),
+                                                                    style: TextStyle(
+                                                                      color: Colors
+                                                                          .grey
+                                                                          .shade700,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w400,
+                                                                      fontSize:
+                                                                          screenHeight *
+                                                                          0.018,
+                                                                    ),
                                                                   ),
                                                                   SizedBox(
                                                                     width: 5,
@@ -1133,9 +1148,11 @@ class _OrdersState extends State<Orders> {
                                   ),
                                   child: RefreshIndicator(
                                     onRefresh: refresh,
+
                                     child: ListView.separated(
                                       controller: scrollController,
                                       physics: AlwaysScrollableScrollPhysics(),
+
                                       padding: EdgeInsets.all(0),
                                       separatorBuilder: (context, index) {
                                         return SizedBox(height: 10);
@@ -1277,36 +1294,40 @@ class _OrdersState extends State<Orders> {
                                                             MainAxisAlignment
                                                                 .spaceBetween,
                                                         children: [
-                                                          KText(
-                                                            text:
-                                                                "${languagesController.tr("ORDER_ID")} (# ${data.id})",
-                                                            color: Color(
-                                                              0xff637381,
+                                                          Text(
+                                                            "${languagesController.tr("ORDER_ID")} (# ${data.id})",
+                                                            style: TextStyle(
+                                                              color: Color(
+                                                                0xff637381,
+                                                              ),
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w400,
+                                                              fontSize:
+                                                                  screenHeight *
+                                                                  0.018,
                                                             ),
-                                                            fontWeight:
-                                                                FontWeight.w400,
-                                                            fontSize:
-                                                                screenHeight *
-                                                                0.018,
                                                           ),
-                                                          KText(
-                                                            text:
-                                                                DateFormat(
-                                                                  'dd MMM yyyy',
-                                                                ).format(
-                                                                  DateTime.parse(
-                                                                    data.createdAt
-                                                                        .toString(),
-                                                                  ),
-                                                                ),
-                                                            color: Color(
-                                                              0xff637381,
+                                                          Text(
+                                                            DateFormat(
+                                                              'dd MMM yyyy',
+                                                            ).format(
+                                                              DateTime.parse(
+                                                                data.createdAt
+                                                                    .toString(),
+                                                              ),
                                                             ),
-                                                            fontWeight:
-                                                                FontWeight.w400,
-                                                            fontSize:
-                                                                screenHeight *
-                                                                0.018,
+                                                            style: TextStyle(
+                                                              color: Color(
+                                                                0xff637381,
+                                                              ),
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w400,
+                                                              fontSize:
+                                                                  screenHeight *
+                                                                  0.018,
+                                                            ),
                                                           ),
                                                         ],
                                                       ),
@@ -1361,16 +1382,17 @@ class _OrdersState extends State<Orders> {
                                                                       0.018,
                                                                 ),
                                                               ),
-                                                              KText(
-                                                                text: data
-                                                                    .rechargebleAccount
+                                                              Text(
+                                                                data.rechargebleAccount
                                                                     .toString(),
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold,
-                                                                fontSize:
-                                                                    screenHeight *
-                                                                    0.016,
+                                                                style: TextStyle(
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
+                                                                  fontSize:
+                                                                      screenHeight *
+                                                                      0.016,
+                                                                ),
                                                               ),
                                                             ],
                                                           ),
@@ -1496,29 +1518,33 @@ class _OrdersState extends State<Orders> {
                                                                         0.018,
                                                                   ),
                                                                   Text(" : "),
-                                                                  KText(
-                                                                    text:
-                                                                        NumberFormat.currency(
-                                                                          locale:
-                                                                              'en_US',
-                                                                          symbol:
-                                                                              '',
-                                                                          decimalDigits:
-                                                                              2,
-                                                                        ).format(
-                                                                          double.parse(
-                                                                            data.bundle!.buyingPrice.toString(),
-                                                                          ),
-                                                                        ),
-                                                                    color: Colors
-                                                                        .grey
-                                                                        .shade700,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w400,
-                                                                    fontSize:
-                                                                        screenHeight *
-                                                                        0.018,
+                                                                  Text(
+                                                                    NumberFormat.currency(
+                                                                      locale:
+                                                                          'en_US',
+                                                                      symbol:
+                                                                          '',
+                                                                      decimalDigits:
+                                                                          2,
+                                                                    ).format(
+                                                                      double.parse(
+                                                                        data
+                                                                            .bundle!
+                                                                            .buyingPrice
+                                                                            .toString(),
+                                                                      ),
+                                                                    ),
+                                                                    style: TextStyle(
+                                                                      color: Colors
+                                                                          .grey
+                                                                          .shade700,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w400,
+                                                                      fontSize:
+                                                                          screenHeight *
+                                                                          0.018,
+                                                                    ),
                                                                   ),
                                                                   SizedBox(
                                                                     width: 5,
@@ -1555,29 +1581,33 @@ class _OrdersState extends State<Orders> {
                                                                         0.018,
                                                                   ),
                                                                   Text(" : "),
-                                                                  KText(
-                                                                    text:
-                                                                        NumberFormat.currency(
-                                                                          locale:
-                                                                              'en_US',
-                                                                          symbol:
-                                                                              '',
-                                                                          decimalDigits:
-                                                                              2,
-                                                                        ).format(
-                                                                          double.parse(
-                                                                            data.bundle!.sellingPrice.toString(),
-                                                                          ),
-                                                                        ),
-                                                                    color: Colors
-                                                                        .grey
-                                                                        .shade700,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w400,
-                                                                    fontSize:
-                                                                        screenHeight *
-                                                                        0.018,
+                                                                  Text(
+                                                                    NumberFormat.currency(
+                                                                      locale:
+                                                                          'en_US',
+                                                                      symbol:
+                                                                          '',
+                                                                      decimalDigits:
+                                                                          2,
+                                                                    ).format(
+                                                                      double.parse(
+                                                                        data
+                                                                            .bundle!
+                                                                            .sellingPrice
+                                                                            .toString(),
+                                                                      ),
+                                                                    ),
+                                                                    style: TextStyle(
+                                                                      color: Colors
+                                                                          .grey
+                                                                          .shade700,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w400,
+                                                                      fontSize:
+                                                                          screenHeight *
+                                                                          0.018,
+                                                                    ),
                                                                   ),
                                                                   SizedBox(
                                                                     width: 5,

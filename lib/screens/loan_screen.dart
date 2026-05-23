@@ -198,20 +198,7 @@ class _RequestLoanScreenState extends State<RequestLoanScreen> {
                                             children: [
                                               Expanded(
                                                 child: TextField(
-                                                  style: TextStyle(
-                                                    fontFamily:
-                                                        box
-                                                                .read(
-                                                                  "language",
-                                                                )
-                                                                .toString() ==
-                                                            "Fa"
-                                                        ? Get.find<
-                                                                FontController
-                                                              >()
-                                                              .currentFont
-                                                        : null,
-                                                  ),
+                                                  style: TextStyle(),
                                                   controller:
                                                       requestLoanController
                                                           .amountController,
@@ -492,9 +479,11 @@ class _RequestLoanScreenState extends State<RequestLoanScreen> {
                                                   fontWeight: FontWeight.w700,
                                                 ),
                                                 Spacer(),
-                                                KText(
-                                                  text: data.amount.toString(),
-                                                  fontWeight: FontWeight.w700,
+                                                Text(
+                                                  data.amount.toString(),
+                                                  style: TextStyle(
+                                                    fontWeight: FontWeight.w700,
+                                                  ),
                                                 ),
                                                 SizedBox(width: 4),
                                                 KText(
@@ -545,6 +534,7 @@ class _RequestLoanScreenState extends State<RequestLoanScreen> {
                                                   KText(
                                                     text: data.remainingBalance
                                                         .toString(),
+                                                    isCustomFont: false,
                                                   ),
                                                   SizedBox(width: 4),
                                                   KText(
@@ -678,6 +668,7 @@ class _RequestLoanScreenState extends State<RequestLoanScreen> {
                                                           ),
                                                         ),
                                                     fontSize: 13,
+                                                    isCustomFont: false,
                                                   ),
                                                 ],
                                               ),

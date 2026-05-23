@@ -46,9 +46,9 @@ Text convertToDate(String utcTimeString) {
     style: TextStyle(
       fontSize: 12,
       fontWeight: FontWeight.w500,
-      fontFamily: box.read("language").toString() == "Fa"
-          ? Get.find<FontController>().currentFont
-          : null,
+      // fontFamily: box.read("language").toString() == "Fa"
+      //     ? Get.find<FontController>().currentFont
+      //     : null,
     ),
   );
 }
@@ -85,9 +85,9 @@ Text convertToLocalTime(String utcTimeString) {
     style: TextStyle(
       fontSize: 12,
       fontWeight: FontWeight.w500,
-      fontFamily: box.read("language").toString() == "Fa"
-          ? Get.find<FontController>().currentFont
-          : null,
+      // fontFamily: box.read("language").toString() == "Fa"
+      //     ? Get.find<FontController>().currentFont
+      //     : null,
     ),
   );
 }

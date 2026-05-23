@@ -320,63 +320,39 @@ class _HawalaListScreenState extends State<HawalaListScreen> {
                                                 MainAxisAlignment.spaceBetween,
                                             children: [
                                               data.hawalaCustomNumber == null
-                                                  ? Text(
-                                                      languagesController.tr(
-                                                            "HAWALA_NUMBER",
-                                                          ) +
+                                                  ? KText(
+                                                      text:
+                                                          languagesController
+                                                              .tr(
+                                                                "HAWALA_NUMBER",
+                                                              ) +
                                                           " - " +
                                                           data.hawalaNumber
                                                               .toString(),
-                                                      style: TextStyle(
-                                                        color: Colors.white,
-                                                        fontSize: 15,
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                        fontFamily:
-                                                            box
-                                                                    .read(
-                                                                      "language",
-                                                                    )
-                                                                    .toString() ==
-                                                                "Fa"
-                                                            ? Get.find<
-                                                                    FontController
-                                                                  >()
-                                                                  .currentFont
-                                                            : null,
-                                                      ),
+                                                      color: Colors.white,
+                                                      fontSize: 15,
+                                                      fontWeight:
+                                                          FontWeight.bold,
                                                     )
-                                                  : Text(
-                                                      languagesController.tr(
-                                                            "HAWALA_NUMBER",
-                                                          ) +
+                                                  : KText(
+                                                      text:
+                                                          languagesController
+                                                              .tr(
+                                                                "HAWALA_NUMBER",
+                                                              ) +
                                                           " - " +
                                                           data.hawalaCustomNumber
                                                               .toString(),
-                                                      style: TextStyle(
-                                                        color: Colors.white,
-                                                        fontSize: 15,
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                      ),
+                                                      color: Colors.white,
+                                                      fontSize: 15,
+                                                      fontWeight:
+                                                          FontWeight.bold,
                                                     ),
-                                              Text(
-                                                data.status.toString(),
-                                                style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 14,
-                                                  fontWeight: FontWeight.bold,
-                                                  fontFamily:
-                                                      box
-                                                              .read("language")
-                                                              .toString() ==
-                                                          "Fa"
-                                                      ? Get.find<
-                                                              FontController
-                                                            >()
-                                                            .currentFont
-                                                      : null,
-                                                ),
+                                              KText(
+                                                text: data.status.toString(),
+                                                color: Colors.white,
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.bold,
                                               ),
                                             ],
                                           ),

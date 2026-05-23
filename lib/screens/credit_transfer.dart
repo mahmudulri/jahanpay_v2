@@ -19,6 +19,7 @@ import '../controllers/company_controller.dart';
 import '../controllers/conversation_controller.dart';
 import '../controllers/recharge_config_controller.dart';
 import '../global_controller/font_controller.dart';
+import '../widgets/custom_text.dart';
 import '../widgets/default_button1.dart';
 
 class CreditTransfer extends StatefulWidget {
@@ -167,12 +168,7 @@ class _CreditTransferState extends State<CreditTransfer> {
                         Obx(
                           () => GestureDetector(
                             onTap: () {
-                              companyController.fetchCompany();
-                              // customhistoryController.finalList.clear();
-                              // customhistoryController.initialpage = 1;
-                              // customhistoryController.fetchHistory();
-                              // countryListController.fetchCountryData();
-                              print(box.read("countryID"));
+                              print(box.read("afghanistan_id"));
                             },
                             child: Text(
                               languagesController.tr("CREDIT_TRANSFER"),
@@ -238,12 +234,26 @@ class _CreditTransferState extends State<CreditTransfer> {
                                 color: Colors.grey,
                                 image: DecorationImage(
                                   fit: BoxFit.cover,
-                                  image: NetworkImage(
-                                    box.read("afghanistan_flag").toString(),
+                                  image: AssetImage(
+                                    "assets/images/afnflag.jpg",
                                   ),
                                 ),
                               ),
                             ),
+                            // Container(
+                            //   height: 40,
+                            //   width: 70,
+                            //   decoration: BoxDecoration(
+                            //     borderRadius: BorderRadius.circular(10),
+                            //     color: Colors.grey,
+                            //     image: DecorationImage(
+                            //       fit: BoxFit.cover,
+                            //       image: NetworkImage(
+                            //         box.read("afghanistan_flag").toString(),
+                            //       ),
+                            //     ),
+                            //   ),
+                            // ),
                           ],
                         ),
 
@@ -357,13 +367,11 @@ class _CreditTransferState extends State<CreditTransfer> {
                                     ),
                                   ),
                                 ),
-                                // Text(
-                                //   "IRR",
-                                //   style: TextStyle(
-                                //     color: Colors.grey.shade600,
-                                //     fontWeight: FontWeight.w600,
-                                //   ),
-                                // ),
+                                KText(
+                                  text: "AFN",
+                                  color: Colors.grey.shade600,
+                                  fontWeight: FontWeight.w500,
+                                ),
                               ],
                             ),
                           ),
@@ -844,18 +852,6 @@ class _CreditTransferState extends State<CreditTransfer> {
                                                   style: TextStyle(
                                                     fontWeight: FontWeight.w500,
                                                     fontSize: 14,
-                                                    fontFamily:
-                                                        box
-                                                                .read(
-                                                                  "language",
-                                                                )
-                                                                .toString() ==
-                                                            "Fa"
-                                                        ? Get.find<
-                                                                FontController
-                                                              >()
-                                                              .currentFont
-                                                        : null,
                                                   ),
                                                 ),
                                                 Text(
@@ -865,18 +861,6 @@ class _CreditTransferState extends State<CreditTransfer> {
                                                     fontWeight: FontWeight.w500,
                                                     fontSize: 12,
                                                     color: Colors.grey,
-                                                    fontFamily:
-                                                        box
-                                                                .read(
-                                                                  "language",
-                                                                )
-                                                                .toString() ==
-                                                            "Fa"
-                                                        ? Get.find<
-                                                                FontController
-                                                              >()
-                                                              .currentFont
-                                                        : null,
                                                   ),
                                                 ),
                                               ],
@@ -966,18 +950,6 @@ class _CreditTransferState extends State<CreditTransfer> {
                                                       style: TextStyle(
                                                         fontWeight:
                                                             FontWeight.w500,
-                                                        fontFamily:
-                                                            box
-                                                                    .read(
-                                                                      "language",
-                                                                    )
-                                                                    .toString() ==
-                                                                "Fa"
-                                                            ? Get.find<
-                                                                    FontController
-                                                                  >()
-                                                                  .currentFont
-                                                            : null,
                                                       ),
                                                     ),
                                                   ],
@@ -1019,18 +991,6 @@ class _CreditTransferState extends State<CreditTransfer> {
                                                       style: TextStyle(
                                                         fontWeight:
                                                             FontWeight.w500,
-                                                        fontFamily:
-                                                            box
-                                                                    .read(
-                                                                      "language",
-                                                                    )
-                                                                    .toString() ==
-                                                                "Fa"
-                                                            ? Get.find<
-                                                                    FontController
-                                                                  >()
-                                                                  .currentFont
-                                                            : null,
                                                       ),
                                                     ),
                                                   ],
@@ -1092,6 +1052,7 @@ class _CreditTransferState extends State<CreditTransfer> {
                         : customhistoryController.finalList.isEmpty
                         ? SizedBox()
                         : ListView.builder(
+                            padding: EdgeInsets.all(0),
                             shrinkWrap: true,
                             physics: BouncingScrollPhysics(),
                             itemCount: customhistoryController.finalList.length,
@@ -1214,6 +1175,20 @@ class _CreditTransferState extends State<CreditTransfer> {
                                                               .tr("SUCCESS")
                                                         : languagesController
                                                               .tr("REJECTED"),
+                                                    style: TextStyle(
+                                                      fontFamily:
+                                                          box
+                                                                  .read(
+                                                                    "language",
+                                                                  )
+                                                                  .toString() ==
+                                                              "Fa"
+                                                          ? Get.find<
+                                                                  FontController
+                                                                >()
+                                                                .currentFont
+                                                          : null,
+                                                    ),
                                                   ),
                                                 ],
                                               ),
@@ -1247,6 +1222,20 @@ class _CreditTransferState extends State<CreditTransfer> {
                                                     languagesController.tr(
                                                       "DATE",
                                                     ),
+                                                    style: TextStyle(
+                                                      fontFamily:
+                                                          box
+                                                                  .read(
+                                                                    "language",
+                                                                  )
+                                                                  .toString() ==
+                                                              "Fa"
+                                                          ? Get.find<
+                                                                  FontController
+                                                                >()
+                                                                .currentFont
+                                                          : null,
+                                                    ),
                                                   ),
                                                   Text(
                                                     DateFormat(
@@ -1277,6 +1266,18 @@ class _CreditTransferState extends State<CreditTransfer> {
                                                     style: TextStyle(
                                                       fontWeight:
                                                           FontWeight.w500,
+                                                      fontFamily:
+                                                          box
+                                                                  .read(
+                                                                    "language",
+                                                                  )
+                                                                  .toString() ==
+                                                              "Fa"
+                                                          ? Get.find<
+                                                                  FontController
+                                                                >()
+                                                                .currentFont
+                                                          : null,
                                                     ),
                                                   ),
                                                   Text(

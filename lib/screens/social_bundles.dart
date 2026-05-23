@@ -247,12 +247,12 @@ class _SocialBundlesState extends State<SocialBundles> {
                                 child: Obx(
                                   () => TextField(
                                     style: TextStyle(
-                                      fontFamily:
-                                          box.read("language").toString() ==
-                                              "Fa"
-                                          ? Get.find<FontController>()
-                                                .currentFont
-                                          : null,
+                                      // fontFamily:
+                                      //     box.read("language").toString() ==
+                                      //         "Fa"
+                                      //     ? Get.find<FontController>()
+                                      //           .currentFont
+                                      //     : null,
                                     ),
                                     decoration: InputDecoration(
                                       hintText: languagesController.tr(
@@ -511,13 +511,17 @@ class _SocialBundlesState extends State<SocialBundles> {
                                                       MainAxisAlignment
                                                           .spaceEvenly,
                                                   children: [
-                                                    KText(
-                                                      text: data.bundleTitle
+                                                    Text(
+                                                      data.bundleTitle
                                                           .toString(),
-                                                      color:
-                                                          Colors.grey.shade600,
-                                                      fontSize:
-                                                          screenHeight * 0.014,
+                                                      style: TextStyle(
+                                                        color: Colors
+                                                            .grey
+                                                            .shade600,
+                                                        fontSize:
+                                                            screenHeight *
+                                                            0.014,
+                                                      ),
                                                     ),
                                                     // Text(
                                                     //   data.validityType
@@ -555,18 +559,6 @@ class _SocialBundlesState extends State<SocialBundles> {
                                                               .toString(),
                                                           textStyle: TextStyle(
                                                             fontSize: 10,
-                                                            fontFamily:
-                                                                box
-                                                                        .read(
-                                                                          "language",
-                                                                        )
-                                                                        .toString() ==
-                                                                    "Fa"
-                                                                ? Get.find<
-                                                                        FontController
-                                                                      >()
-                                                                      .currentFont
-                                                                : null,
                                                           ),
                                                         ),
                                                         SizedBox(width: 2),
@@ -692,13 +684,17 @@ class _SocialBundlesState extends State<SocialBundles> {
                                                       MainAxisAlignment
                                                           .spaceEvenly,
                                                   children: [
-                                                    KText(
-                                                      text: data.bundleTitle
+                                                    Text(
+                                                      data.bundleTitle
                                                           .toString(),
-                                                      color:
-                                                          Colors.grey.shade600,
-                                                      fontSize:
-                                                          screenHeight * 0.014,
+                                                      style: TextStyle(
+                                                        color: Colors
+                                                            .grey
+                                                            .shade600,
+                                                        fontSize:
+                                                            screenHeight *
+                                                            0.014,
+                                                      ),
                                                     ),
                                                     // Text(
                                                     //   data.validityType
@@ -736,18 +732,6 @@ class _SocialBundlesState extends State<SocialBundles> {
                                                               .toString(),
                                                           textStyle: TextStyle(
                                                             fontSize: 10,
-                                                            fontFamily:
-                                                                box
-                                                                        .read(
-                                                                          "language",
-                                                                        )
-                                                                        .toString() ==
-                                                                    "Fa"
-                                                                ? Get.find<
-                                                                        FontController
-                                                                      >()
-                                                                      .currentFont
-                                                                : null,
                                                           ),
                                                         ),
                                                         SizedBox(width: 2),

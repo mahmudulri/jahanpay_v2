@@ -492,35 +492,10 @@ class _HomepagesState extends State<Homepages> {
                                       fit: BoxFit.cover,
                                     ),
                                   ),
-                                  // child: Align(
-                                  //   alignment: Alignment.bottomLeft,
-                                  //   child: Container(
-                                  //     width: double.infinity,
-                                  //     padding:
-                                  //         EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                                  //     decoration: BoxDecoration(
-                                  //       color: Colors.black.withOpacity(0.5),
-                                  //       borderRadius: BorderRadius.only(
-                                  //         bottomLeft: Radius.circular(10),
-                                  //         bottomRight: Radius.circular(10),
-                                  //       ),
-                                  //     ),
-                                  //     child: Text(
-                                  //       item.advertisementTitle ?? '',
-                                  //       style: TextStyle(
-                                  //         color: Colors.white,
-                                  //         fontSize: 14,
-                                  //         fontWeight: FontWeight.w500,
-                                  //       ),
-                                  //       maxLines: 1,
-                                  //       overflow: TextOverflow.ellipsis,
-                                  //     ),
-                                  //   ),
-                                  // ),
                                 );
                               },
                               options: CarouselOptions(
-                                height: 130,
+                                height: 150,
                                 autoPlay: true,
                                 autoPlayInterval: Duration(seconds: 3),
                                 enlargeCenterPage: true,
@@ -586,20 +561,22 @@ class _HomepagesState extends State<Homepages> {
                                                           fontSize: 20,
                                                           color:
                                                               userBalanceController
-                                                                          .selectedIndex ==
-                                                                      0 ||
-                                                                  userBalanceController
-                                                                          .selectedIndex ==
-                                                                      2 ||
-                                                                  userBalanceController
-                                                                          .selectedIndex ==
-                                                                      3
-                                                              ? Colors.green
+                                                                      .selectedIndex ==
+                                                                  1
+                                                              ? Colors
+                                                                    .red // Debit
                                                               : userBalanceController
                                                                         .selectedIndex ==
-                                                                    1
-                                                              ? Colors.red
-                                                              : Colors.black,
+                                                                    2
+                                                              ? Colors
+                                                                    .blue // Profit
+                                                              : userBalanceController
+                                                                        .selectedIndex ==
+                                                                    3
+                                                              ? Colors
+                                                                    .amber // Sale
+                                                              : AppColors
+                                                                    .primaryColor,
                                                           fontWeight:
                                                               FontWeight.bold,
                                                         ),
@@ -627,33 +604,28 @@ class _HomepagesState extends State<Homepages> {
                                                       ),
                                               ),
                                               SizedBox(width: 10),
-                                              GestureDetector(
-                                                onTap: () {
-                                                  dashboardController
-                                                      .fetchDashboardData();
-                                                },
-                                                child: Text(
-                                                  box.read("currency_code"),
-                                                  style: TextStyle(
-                                                    fontSize: 20,
-                                                    color:
-                                                        userBalanceController
-                                                                    .selectedIndex ==
-                                                                0 ||
-                                                            userBalanceController
-                                                                    .selectedIndex ==
-                                                                2 ||
-                                                            userBalanceController
-                                                                    .selectedIndex ==
-                                                                3
-                                                        ? Colors.green
-                                                        : userBalanceController
-                                                                  .selectedIndex ==
-                                                              1
-                                                        ? Colors.red
-                                                        : Colors.black,
-                                                    fontWeight: FontWeight.bold,
-                                                  ),
+                                              Text(
+                                                box.read("currency_code"),
+                                                style: TextStyle(
+                                                  fontSize: 20,
+                                                  color:
+                                                      userBalanceController
+                                                              .selectedIndex ==
+                                                          1
+                                                      ? Colors
+                                                            .red // Debit
+                                                      : userBalanceController
+                                                                .selectedIndex ==
+                                                            2
+                                                      ? Colors
+                                                            .blue // Profit
+                                                      : userBalanceController
+                                                                .selectedIndex ==
+                                                            3
+                                                      ? Colors
+                                                            .amber // Sale
+                                                      : AppColors.primaryColor,
+                                                  fontWeight: FontWeight.bold,
                                                 ),
                                               ),
                                             ],
@@ -684,20 +656,22 @@ class _HomepagesState extends State<Homepages> {
                                                             fontSize: 18,
                                                             color:
                                                                 userBalanceController
-                                                                            .selectedIndex ==
-                                                                        0 ||
-                                                                    userBalanceController
-                                                                            .selectedIndex ==
-                                                                        2 ||
-                                                                    userBalanceController
-                                                                            .selectedIndex ==
-                                                                        3
-                                                                ? Colors.green
+                                                                        .selectedIndex ==
+                                                                    1
+                                                                ? Colors
+                                                                      .red // Debit
                                                                 : userBalanceController
                                                                           .selectedIndex ==
-                                                                      1
-                                                                ? Colors.red
-                                                                : Colors.black,
+                                                                      2
+                                                                ? Colors
+                                                                      .blue // Profit
+                                                                : userBalanceController
+                                                                          .selectedIndex ==
+                                                                      3
+                                                                ? Colors
+                                                                      .amber // Sale
+                                                                : AppColors
+                                                                      .primaryColor,
                                                             fontWeight:
                                                                 FontWeight.bold,
                                                           ),
@@ -708,17 +682,22 @@ class _HomepagesState extends State<Homepages> {
                                                             fontSize: 20,
                                                             color:
                                                                 userBalanceController
-                                                                            .selectedIndex ==
-                                                                        0 ||
-                                                                    userBalanceController
-                                                                            .selectedIndex ==
-                                                                        2
-                                                                ? Colors.green
+                                                                        .selectedIndex ==
+                                                                    1
+                                                                ? Colors
+                                                                      .red // Debit
                                                                 : userBalanceController
                                                                           .selectedIndex ==
-                                                                      1
-                                                                ? Colors.red
-                                                                : Colors.black,
+                                                                      2
+                                                                ? Colors
+                                                                      .blue // Profit
+                                                                : userBalanceController
+                                                                          .selectedIndex ==
+                                                                      3
+                                                                ? Colors
+                                                                      .amber // Sale
+                                                                : AppColors
+                                                                      .primaryColor,
                                                             fontWeight:
                                                                 FontWeight.bold,
                                                           ),
@@ -733,20 +712,22 @@ class _HomepagesState extends State<Homepages> {
                                                         fontSize: 12,
                                                         color:
                                                             userBalanceController
-                                                                        .selectedIndex ==
-                                                                    0 ||
-                                                                userBalanceController
-                                                                        .selectedIndex ==
-                                                                    2 ||
-                                                                userBalanceController
-                                                                        .selectedIndex ==
-                                                                    3
-                                                            ? Colors.green
+                                                                    .selectedIndex ==
+                                                                1
+                                                            ? Colors
+                                                                  .red // Debit
                                                             : userBalanceController
                                                                       .selectedIndex ==
-                                                                  1
-                                                            ? Colors.red
-                                                            : Colors.black,
+                                                                  2
+                                                            ? Colors
+                                                                  .blue // Profit
+                                                            : userBalanceController
+                                                                      .selectedIndex ==
+                                                                  3
+                                                            ? Colors
+                                                                  .amber // Sale
+                                                            : AppColors
+                                                                  .primaryColor,
                                                         fontWeight:
                                                             FontWeight.bold,
                                                       ),
@@ -892,7 +873,17 @@ class _HomepagesState extends State<Homepages> {
                                               return Container(
                                                 decoration: BoxDecoration(
                                                   color: isSelected
-                                                      ? AppColors.primaryColor
+                                                      ? index == 1
+                                                            ? Colors
+                                                                  .red // Debit / Loan
+                                                            : index == 2
+                                                            ? Colors
+                                                                  .blue // Profit
+                                                            : index == 3
+                                                            ? Colors
+                                                                  .amber // Sale / Gold
+                                                            : AppColors
+                                                                  .primaryColor
                                                       : Colors.white,
                                                   borderRadius:
                                                       BorderRadius.circular(8),
@@ -1178,17 +1169,15 @@ class _HomepagesState extends State<Homepages> {
                                                                   .start,
                                                           children: [
                                                             Flexible(
-                                                              child: Text(
-                                                                data
+                                                              child: KText(
+                                                                text: data
                                                                     .bundle!
                                                                     .bundleTitle
                                                                     .toString(),
-                                                                style: TextStyle(
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w600,
-                                                                  fontSize: 14,
-                                                                ),
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600,
+                                                                fontSize: 14,
                                                               ),
                                                             ),
                                                             Text(

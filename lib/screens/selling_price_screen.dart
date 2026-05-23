@@ -373,18 +373,7 @@ class _SellingPriceScreenState extends State<SellingPriceScreen> {
                                               ),
                                               Text(
                                                 data.amount.toString(),
-                                                style: TextStyle(
-                                                  fontFamily:
-                                                      box
-                                                              .read("language")
-                                                              .toString() ==
-                                                          "Fa"
-                                                      ? Get.find<
-                                                              FontController
-                                                            >()
-                                                            .currentFont
-                                                      : null,
-                                                ),
+                                                style: TextStyle(),
                                               ),
                                             ],
                                           ),

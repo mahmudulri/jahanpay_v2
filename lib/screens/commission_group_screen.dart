@@ -267,16 +267,7 @@ class _CommissionGroupScreenState extends State<CommissionGroupScreen> {
                                         ),
                                         Text(
                                           data.amount.toString(),
-                                          style: TextStyle(
-                                            fontFamily:
-                                                box
-                                                        .read("language")
-                                                        .toString() ==
-                                                    "Fa"
-                                                ? Get.find<FontController>()
-                                                      .currentFont
-                                                : null,
-                                          ),
+                                          style: TextStyle(),
                                         ),
                                       ],
                                     ),

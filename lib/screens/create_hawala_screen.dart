@@ -298,12 +298,12 @@ class _HawalaScreenState extends State<HawalaScreen> {
                                   child: TextField(
                                     style: TextStyle(
                                       height: 1.1,
-                                      fontFamily:
-                                          box.read("language").toString() ==
-                                              "Fa"
-                                          ? Get.find<FontController>()
-                                                .currentFont
-                                          : null,
+                                      // fontFamily:
+                                      //     box.read("language").toString() ==
+                                      //         "Fa"
+                                      //     ? Get.find<FontController>()
+                                      //           .currentFont
+                                      //     : null,
                                     ),
                                     keyboardType: TextInputType.phone,
                                     inputFormatters: <TextInputFormatter>[
@@ -749,10 +749,10 @@ class _HawalaScreenState extends State<HawalaScreen> {
                                   addHawalaController.finalAmount.toString(),
                                   style: TextStyle(
                                     color: Colors.white,
-                                    fontFamily:
-                                        box.read("language").toString() == "Fa"
-                                        ? Get.find<FontController>().currentFont
-                                        : null,
+                                    // fontFamily:
+                                    //     box.read("language").toString() == "Fa"
+                                    //     ? Get.find<FontController>().currentFont
+                                    //     : null,
                                   ),
                                 ),
                               ),

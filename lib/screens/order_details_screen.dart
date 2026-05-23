@@ -231,10 +231,12 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                       color: Color(0xff637381),
                                       fontWeight: FontWeight.w400,
                                     ),
-                                    KText(
-                                      text: "JP#- " + widget.orderID.toString(),
-                                      fontSize: 14,
-                                      color: Color(0xff212B36),
+                                    Text(
+                                      "JP#- " + widget.orderID.toString(),
+                                      style: TextStyle(
+                                        fontSize: 14,
+                                        color: Color(0xff212B36),
+                                      ),
                                     ),
                                   ],
                                 ),
@@ -299,11 +301,12 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                     ),
                                     SizedBox(width: 10),
                                     Flexible(
-                                      child: KText(
-                                        text: widget.rechargebleAccount
-                                            .toString(),
-                                        fontSize: 14,
-                                        color: Color(0xff212B36),
+                                      child: Text(
+                                        widget.rechargebleAccount.toString(),
+                                        style: TextStyle(
+                                          fontSize: 14,
+                                          color: Color(0xff212B36),
+                                        ),
                                       ),
                                     ),
                                   ],
@@ -347,21 +350,21 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                           fontWeight: FontWeight.w600,
                                         ),
                                         SizedBox(width: 8),
-                                        KText(
-                                          text:
-                                              NumberFormat.currency(
-                                                locale: 'en_US',
-                                                symbol: '',
-                                                decimalDigits: 2,
-                                              ).format(
-                                                double.parse(
-                                                  widget.sellingPrice
-                                                      .toString(),
-                                                ),
-                                              ),
-                                          color: Color(0xff212B36),
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w600,
+                                        Text(
+                                          NumberFormat.currency(
+                                            locale: 'en_US',
+                                            symbol: '',
+                                            decimalDigits: 2,
+                                          ).format(
+                                            double.parse(
+                                              widget.sellingPrice.toString(),
+                                            ),
+                                          ),
+                                          style: TextStyle(
+                                            color: Color(0xff212B36),
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w600,
+                                          ),
                                         ),
                                       ],
                                     ),

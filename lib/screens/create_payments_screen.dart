@@ -351,12 +351,12 @@ class _CreatePaymentsScreenState extends State<CreatePaymentsScreen> {
                                         addPaymentController.amountController,
                                     style: TextStyle(
                                       height: 1.1,
-                                      fontFamily:
-                                          box.read("language").toString() ==
-                                              "Fa"
-                                          ? Get.find<FontController>()
-                                                .currentFont
-                                          : null,
+                                      // fontFamily:
+                                      //     box.read("language").toString() ==
+                                      //         "Fa"
+                                      //     ? Get.find<FontController>()
+                                      //           .currentFont
+                                      //     : null,
                                     ),
                                     keyboardType: TextInputType.phone,
                                     inputFormatters: <TextInputFormatter>[
@@ -551,11 +551,12 @@ class _CreatePaymentsScreenState extends State<CreatePaymentsScreen> {
                             children: [
                               Expanded(
                                 child: Obx(
-                                  () => KText(
-                                    text:
-                                        addPaymentController.selectedDate.value,
-                                    fontSize: screenHeight * 0.020,
-                                    color: Colors.grey.shade600,
+                                  () => Text(
+                                    addPaymentController.selectedDate.value,
+                                    style: TextStyle(
+                                      fontSize: screenHeight * 0.020,
+                                      color: Colors.grey.shade600,
+                                    ),
                                   ),
                                 ),
                               ),

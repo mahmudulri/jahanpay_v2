@@ -560,6 +560,7 @@ class _TransactionsState extends State<Transactions> {
                                                             ).format(
                                                               startDate.value!,
                                                             ),
+                                                      isCustomFont: false,
 
                                                       fontSize:
                                                           screenWidth * 0.040,
@@ -889,6 +890,7 @@ class _TransactionsState extends State<Transactions> {
                                                   fontWeight: FontWeight.w400,
                                                   fontSize:
                                                       screenHeight * 0.020,
+                                                  isCustomFont: false,
                                                 ),
                                               ],
                                             ),
@@ -1040,6 +1042,7 @@ class _TransactionsState extends State<Transactions> {
                                                                   "debit"
                                                               ? Colors.black
                                                               : Colors.black,
+                                                          isCustomFont: false,
                                                         ),
                                                         SizedBox(width: 5),
                                                         Text(
