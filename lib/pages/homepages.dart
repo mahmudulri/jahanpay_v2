@@ -489,7 +489,7 @@ class _HomepagesState extends State<Homepages> {
                                     borderRadius: BorderRadius.circular(10),
                                     image: DecorationImage(
                                       image: imageProvider,
-                                      fit: BoxFit.cover,
+                                      fit: BoxFit.fill,
                                     ),
                                   ),
                                 );
@@ -510,7 +510,7 @@ class _HomepagesState extends State<Homepages> {
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 15),
                           child: Container(
-                            height: 120,
+                            height: 110,
                             width: screenWidth,
                             decoration: BoxDecoration(
                               color: Colors.white,
@@ -562,7 +562,12 @@ class _HomepagesState extends State<Homepages> {
                                                           color:
                                                               userBalanceController
                                                                       .selectedIndex ==
-                                                                  1
+                                                                  0
+                                                              ? Colors
+                                                                    .green // Balance
+                                                              : userBalanceController
+                                                                        .selectedIndex ==
+                                                                    1
                                                               ? Colors
                                                                     .red // Debit
                                                               : userBalanceController
@@ -587,17 +592,27 @@ class _HomepagesState extends State<Homepages> {
                                                           fontSize: 18,
                                                           color:
                                                               userBalanceController
-                                                                          .selectedIndex ==
-                                                                      0 ||
-                                                                  userBalanceController
-                                                                          .selectedIndex ==
-                                                                      2
-                                                              ? Colors.green
+                                                                      .selectedIndex ==
+                                                                  0
+                                                              ? Colors
+                                                                    .green // Balance
                                                               : userBalanceController
                                                                         .selectedIndex ==
                                                                     1
-                                                              ? Colors.red
-                                                              : Colors.black,
+                                                              ? Colors
+                                                                    .red // Debit
+                                                              : userBalanceController
+                                                                        .selectedIndex ==
+                                                                    2
+                                                              ? Colors
+                                                                    .blue // Profit
+                                                              : userBalanceController
+                                                                        .selectedIndex ==
+                                                                    3
+                                                              ? Colors
+                                                                    .amber // Sale
+                                                              : AppColors
+                                                                    .primaryColor,
                                                           fontWeight:
                                                               FontWeight.bold,
                                                         ),
@@ -607,11 +622,16 @@ class _HomepagesState extends State<Homepages> {
                                               Text(
                                                 box.read("currency_code"),
                                                 style: TextStyle(
-                                                  fontSize: 15,
+                                                  fontSize: 11,
                                                   color:
                                                       userBalanceController
                                                               .selectedIndex ==
-                                                          1
+                                                          0
+                                                      ? Colors
+                                                            .green // Balance
+                                                      : userBalanceController
+                                                                .selectedIndex ==
+                                                            1
                                                       ? Colors
                                                             .red // Debit
                                                       : userBalanceController
@@ -653,11 +673,16 @@ class _HomepagesState extends State<Homepages> {
                                                               .todayvalue
                                                               .toString(),
                                                           style: TextStyle(
-                                                            fontSize: 18,
+                                                            fontSize: 15,
                                                             color:
                                                                 userBalanceController
                                                                         .selectedIndex ==
-                                                                    1
+                                                                    0
+                                                                ? Colors
+                                                                      .green // Balance
+                                                                : userBalanceController
+                                                                          .selectedIndex ==
+                                                                      1
                                                                 ? Colors
                                                                       .red // Debit
                                                                 : userBalanceController
@@ -709,11 +734,16 @@ class _HomepagesState extends State<Homepages> {
                                                     Text(
                                                       box.read("currency_code"),
                                                       style: TextStyle(
-                                                        fontSize: 12,
+                                                        fontSize: 10,
                                                         color:
                                                             userBalanceController
                                                                     .selectedIndex ==
-                                                                1
+                                                                0
+                                                            ? Colors
+                                                                  .green // Balance
+                                                            : userBalanceController
+                                                                      .selectedIndex ==
+                                                                  1
                                                             ? Colors
                                                                   .red // Debit
                                                             : userBalanceController
@@ -741,7 +771,7 @@ class _HomepagesState extends State<Homepages> {
                                       ),
                                     ),
                                   ),
-                                  SizedBox(height: 8),
+
                                   Expanded(
                                     flex: 2,
                                     child: Container(
@@ -873,7 +903,10 @@ class _HomepagesState extends State<Homepages> {
                                               return Container(
                                                 decoration: BoxDecoration(
                                                   color: isSelected
-                                                      ? index == 1
+                                                      ? index == 0
+                                                            ? Colors
+                                                                  .green // Balance
+                                                            : index == 1
                                                             ? Colors
                                                                   .red // Debit / Loan
                                                             : index == 2

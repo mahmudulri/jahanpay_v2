@@ -84,7 +84,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
               child: RepaintBoundary(
                 key: shareKey,
                 child: Container(
-                  height: 525,
+                  height: 550,
                   width: screenWidth,
                   decoration: BoxDecoration(
                     color: Colors.white,
@@ -104,11 +104,12 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
-                              SizedBox(height: 8),
+                              Image.asset("assets/icons/logo.png", height: 65),
+                              // SizedBox(height: 8),
                               Padding(
                                 padding: EdgeInsets.symmetric(horizontal: 30),
                                 child: Container(
-                                  height: 60,
+                                  height: 40,
                                   width: double.maxFinite,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(15),
@@ -140,7 +141,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                     : widget.status.toString() == "1"
                                     ? Colors.green
                                     : Colors.red,
-                                fontSize: 18,
+                                fontSize: 16,
                               ),
                               Visibility(
                                 visible: widget.status.toString() == "2",

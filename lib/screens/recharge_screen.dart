@@ -233,7 +233,7 @@ class _RechargeScreenState extends State<RechargeScreen> {
                         Obx(
                           () => KText(
                             text:
-                                " ${box.read("countryName")} ${languagesController.tr("INTERNET_PACKAGE")}",
+                                " ${box.read("countryName")} ${languagesController.tr("MOBILE_RECHARGE")}",
                             fontWeight: FontWeight.bold,
                             fontSize: screenWidth * 0.040,
                             color: Colors.white,

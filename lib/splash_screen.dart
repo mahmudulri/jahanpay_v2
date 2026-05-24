@@ -64,24 +64,24 @@ class _SplashScreenState extends State<SplashScreen> {
         locale = const Locale("en", "US");
     }
 
-    await context.setLocale(locale);
-
-    if (!mounted) return;
+    EasyLocalization.of(context)!.setLocale(locale);
 
     if (box.read('userToken') == null) {
-      Get.offNamed(signinscreen);
+      Get.offAllNamed(signinscreen);
     } else {
       dashboardController.fetchDashboardData();
-      Get.offNamed(basescreen);
+      Get.offAllNamed(basescreen);
     }
   }
 
   @override
   void initState() {
     super.initState();
-    Future.delayed(const Duration(seconds: 2), () async {
-      if (!mounted) return;
-      await checkData();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      // Optional splash delay (UI-safe)
+      Future.delayed(const Duration(seconds: 2), () {
+        checkData();
+      });
     });
   }
 
