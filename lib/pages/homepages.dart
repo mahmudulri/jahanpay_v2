@@ -445,7 +445,7 @@ class _HomepagesState extends State<Homepages> {
                           child: Obx(() {
                             if (dashboardController.isLoading.value) {
                               return SizedBox(
-                                height: 130,
+                                height: 160,
                                 child: Center(
                                   child: CircularProgressIndicator(),
                                 ),
@@ -495,7 +495,7 @@ class _HomepagesState extends State<Homepages> {
                                 );
                               },
                               options: CarouselOptions(
-                                height: 150,
+                                height: 160,
                                 autoPlay: true,
                                 autoPlayInterval: Duration(seconds: 3),
                                 enlargeCenterPage: true,
@@ -510,7 +510,7 @@ class _HomepagesState extends State<Homepages> {
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 15),
                           child: Container(
-                            height: 130,
+                            height: 120,
                             width: screenWidth,
                             decoration: BoxDecoration(
                               color: Colors.white,
@@ -558,7 +558,7 @@ class _HomepagesState extends State<Homepages> {
                                                             .balance
                                                             .toString(),
                                                         style: TextStyle(
-                                                          fontSize: 20,
+                                                          fontSize: 18,
                                                           color:
                                                               userBalanceController
                                                                       .selectedIndex ==
@@ -584,7 +584,7 @@ class _HomepagesState extends State<Homepages> {
                                                     : Text(
                                                         "",
                                                         style: TextStyle(
-                                                          fontSize: 20,
+                                                          fontSize: 18,
                                                           color:
                                                               userBalanceController
                                                                           .selectedIndex ==
@@ -607,7 +607,7 @@ class _HomepagesState extends State<Homepages> {
                                               Text(
                                                 box.read("currency_code"),
                                                 style: TextStyle(
-                                                  fontSize: 20,
+                                                  fontSize: 15,
                                                   color:
                                                       userBalanceController
                                                               .selectedIndex ==
@@ -898,7 +898,7 @@ class _HomepagesState extends State<Homepages> {
                                                           TextAlign.center,
                                                       item['name']!,
                                                       style: TextStyle(
-                                                        fontSize: 14,
+                                                        fontSize: 13,
                                                         color: isSelected
                                                             ? Colors.white
                                                             : Colors.black,
@@ -1178,6 +1178,8 @@ class _HomepagesState extends State<Homepages> {
                                                                     FontWeight
                                                                         .w600,
                                                                 fontSize: 14,
+                                                                isCustomFont:
+                                                                    false,
                                                               ),
                                                             ),
                                                             Text(

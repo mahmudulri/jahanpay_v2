@@ -295,7 +295,7 @@ class _TransactionsTypeState extends State<TransactionsType> {
                               "PAYMENT_RECEIPT_REQUEST",
                             ),
                             imagelink: "assets/icons/wallet.png",
-                            mycolor: Color(0xff04B75D),
+                            mycolor: Color(0xFF4CAF50),
                             onpressed: () {
                               mypagecontroller.openSubPage(ReceiptsScreen());
                             },
@@ -306,7 +306,7 @@ class _TransactionsTypeState extends State<TransactionsType> {
                               "REQUES_LOAN_BALANCE",
                             ),
                             imagelink: "assets/icons/transactionsicon.png",
-                            mycolor: Color(0xff3498db),
+                            mycolor: Color(0xFF2196F3),
                             onpressed: () {
                               mypagecontroller.openSubPage(RequestLoanScreen());
                             },
@@ -315,7 +315,7 @@ class _TransactionsTypeState extends State<TransactionsType> {
                           PaymentButton(
                             buttonName: languagesController.tr("HAWALA"),
                             imagelink: "assets/icons/exchange.png",
-                            mycolor: Color(0xffFE8F2D),
+                            mycolor: Color(0xFF1ABC9C),
                             onpressed: () {
                               mypagecontroller.openSubPage(HawalaListScreen());
                             },
@@ -324,7 +324,7 @@ class _TransactionsTypeState extends State<TransactionsType> {
                           PaymentButton(
                             buttonName: languagesController.tr("HAWALA_RATES"),
                             imagelink: "assets/icons/exchange-rate.png",
-                            mycolor: Color(0xff4B7AFC),
+                            mycolor: Color(0xFFFFC107),
                             onpressed: () {
                               mypagecontroller.openSubPage(
                                 HawalaCurrencyScreen(),
@@ -337,7 +337,7 @@ class _TransactionsTypeState extends State<TransactionsType> {
                               "BALANCE_TRANSACTIONS",
                             ),
                             imagelink: "assets/icons/transactionsicon.png",
-                            mycolor: Color(0xffDE4B5E),
+                            mycolor: Color(0xFF1A237E),
                             onpressed: () {
                               mypagecontroller.openSubPage(Transactions());
                             },
@@ -348,7 +348,7 @@ class _TransactionsTypeState extends State<TransactionsType> {
                               "TRANSFER_COMISSION_TO_BALANCE",
                             ),
                             imagelink: "assets/icons/transactionsicon.png",
-                            mycolor: Color(0xff9b59b6),
+                            mycolor: Color(0xFF2E7D32),
                             onpressed: () {
                               mypagecontroller.openSubPage(
                                 CommissionTransferScreen(),
